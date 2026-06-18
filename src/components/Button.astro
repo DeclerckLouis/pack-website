@@ -3,6 +3,7 @@
 // variant: primary (orange), accent (blue), secondary (outline), ghost
 // size: sm | md | lg
 import Icon from "./Icon.astro";
+import { url } from "@/lib/url";
 interface Props {
   href?: string;
   variant?: "primary" | "accent" | "secondary" | "ghost";
@@ -26,7 +27,7 @@ const {
 
 const Tag = href ? "a" : "button";
 const iconSize = size === "lg" ? 18 : 17;
-const rest = href ? { href } : { type };
+const rest = href ? { href: url(href) } : { type };
 ---
 
 <Tag

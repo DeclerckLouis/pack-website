@@ -3,13 +3,14 @@ import { site } from "@/data/site";
 import { services } from "@/data/services";
 import Logo from "./Logo.astro";
 import Icon from "./Icon.astro";
+import { url } from "@/lib/url";
 const year = new Date().getFullYear();
 ---
 
 <footer class="site-footer">
   <div class="container site-footer__top">
     <div class="site-footer__brand">
-      <a href="/" aria-label="Packetflow — home">
+      <a href={url("/")} aria-label="Packetflow — home">
         <Logo variant="full" size={30} onDark tagline />
       </a>
       <p class="site-footer__lead">
@@ -27,17 +28,17 @@ const year = new Date().getFullYear();
       services.map((hub) => (
         <nav class="site-footer__col" aria-label={hub.navTitle}>
           <h2 class="site-footer__heading">
-            <a href={`/diensten/${hub.slug}`}>{hub.navTitle}</a>
+            <a href={url(`/diensten/${hub.slug}`)}>{hub.navTitle}</a>
           </h2>
           <ul>
             {hub.locals.length === 0 ? (
               <li>
-                <a href={`/diensten/${hub.slug}`}>Meer info</a>
+                <a href={url(`/diensten/${hub.slug}`)}>Meer info</a>
               </li>
             ) : (
               hub.locals.map((local) => (
                 <li>
-                  <a href={`/${local.slug}`}>{local.title}</a>
+                  <a href={url(`/${local.slug}`)}>{local.title}</a>
                 </li>
               ))
             )}
@@ -51,9 +52,9 @@ const year = new Date().getFullYear();
     <div class="container site-footer__bar-in">
       <span>{site.pillars} — © {year} {site.legalName}</span>
       <nav aria-label="Juridisch">
-        <a href="/over-mij">Over mij</a>
-        <a href="/privacy">Privacy</a>
-        <a href="/contact">Contact</a>
+        <a href={url("/over-mij")}>Over mij</a>
+        <a href={url("/privacy")}>Privacy</a>
+        <a href={url("/contact")}>Contact</a>
       </nav>
     </div>
   </div>

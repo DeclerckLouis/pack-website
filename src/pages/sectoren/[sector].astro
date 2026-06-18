@@ -8,6 +8,7 @@ import Button from "@/components/Button.astro";
 import { sectors, type Sector } from "@/data/sectors";
 import { getHub, services } from "@/data/services";
 import { service, breadcrumbs } from "@/lib/schema";
+import { url } from "@/lib/url";
 
 export function getStaticPaths() {
   return sectors.map((sector) => ({ params: { sector: sector.slug }, props: { sector } }));
@@ -37,7 +38,7 @@ const jsonLd = [
   <section class="page-hero">
     <div class="container page-hero__in">
       <nav class="crumbs" aria-label="Kruimelpad">
-        <a href="/sectoren">Voor wie?</a>
+        <a href={url("/sectoren")}>Voor wie?</a>
         <span class="crumbs__sep">/</span>
         <span aria-current="page">{sector.navTitle}</span>
       </nav>
@@ -104,7 +105,7 @@ const jsonLd = [
       <div class="grid-cards">
         {
           relatedHubs.map((hub) => (
-            <a href={`/diensten/${hub!.slug}`} class="rel-link">
+            <a href={url(`/diensten/${hub!.slug}`)} class="rel-link">
               <Card class="feature">
                 <span class="feature__icon"><Icon name={hub!.icon} size={20} /></span>
                 <h3>{hub!.title}</h3>
@@ -123,7 +124,7 @@ const jsonLd = [
             <ul>
               {relatedLocals.map((l) => (
                 <li>
-                  <a href={`/${l!.slug}`}>
+                  <a href={url(`/${l!.slug}`)}>
                     <Icon name="map-pin" size={15} color="var(--orange-600)" />
                     {l!.title}
                   </a>

@@ -8,6 +8,7 @@ import Icon from "@/components/Icon.astro";
 import Button from "@/components/Button.astro";
 import { services, type ServiceHub } from "@/data/services";
 import { service, breadcrumbs } from "@/lib/schema";
+import { url } from "@/lib/url";
 
 export function getStaticPaths() {
   return services.map((hub) => ({ params: { hub: hub.slug }, props: { hub } }));
@@ -31,7 +32,7 @@ const jsonLd = [
   <section class="page-hero">
     <div class="container page-hero__in">
       <nav class="crumbs" aria-label="Kruimelpad">
-        <a href="/diensten">Diensten</a>
+        <a href={url("/diensten")}>Diensten</a>
         <span class="crumbs__sep">/</span>
         <span aria-current="page">{hub.navTitle}</span>
       </nav>
@@ -75,7 +76,7 @@ const jsonLd = [
           </div>
           <div class="grid-cards">
             {hub.locals.map((local) => (
-              <a href={`/${local.slug}`} class="local-link">
+              <a href={url(`/${local.slug}`)} class="local-link">
                 <Card class="feature">
                   <span class="feature__icon"><Icon name={local.icon} size={20} /></span>
                   <h3>{local.title}</h3>

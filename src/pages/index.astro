@@ -8,6 +8,7 @@ import Kicker from "@/components/Kicker.astro";
 import Icon from "@/components/Icon.astro";
 import { site } from "@/data/site";
 import { services } from "@/data/services";
+import { url } from "@/lib/url";
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -236,7 +237,7 @@ const posture = [
           <div class="about__name">Louis Declerck</div>
           <div class="about__meta">Packetflow · Jabbeke, West-Vlaanderen</div>
         </div>
-        <a href="/over-mij" class="about__link">Lees meer <Icon name="arrow-right" size={15} /></a>
+        <a href={url("/over-mij")} class="about__link">Lees meer <Icon name="arrow-right" size={15} /></a>
       </div>
     </div>
   </section>

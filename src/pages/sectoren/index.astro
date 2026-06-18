@@ -7,6 +7,7 @@ import Icon from "@/components/Icon.astro";
 import Button from "@/components/Button.astro";
 import { sectors } from "@/data/sectors";
 import { breadcrumbs } from "@/lib/schema";
+import { url } from "@/lib/url";
 
 const jsonLd = breadcrumbs([
   ["Home", "/"],
@@ -34,7 +35,7 @@ const jsonLd = breadcrumbs([
     <div class="container grid-cards">
       {
         sectors.map((sector) => (
-          <a href={`/sectoren/${sector.slug}`} class="sector-link">
+          <a href={url(`/sectoren/${sector.slug}`)} class="sector-link">
             <Card class="feature">
               <span class="feature__icon"><Icon name={sector.icon} size={20} /></span>
               <h3>{sector.navTitle}</h3>

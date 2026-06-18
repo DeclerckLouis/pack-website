@@ -3,15 +3,18 @@ import { site, mainNav } from "@/data/site";
 import Logo from "./Logo.astro";
 import Button from "./Button.astro";
 import Icon from "./Icon.astro";
+import { url } from "@/lib/url";
 
 const path = Astro.url.pathname;
-const isActive = (href: string) =>
-  href === "/" ? path === "/" : path === href || path.startsWith(href + "/");
+const isActive = (href: string) => {
+  const h = url(href);
+  return h === "/" ? path === h : path === h || path.startsWith(h + "/");
+};
 ---
 
 <header class="site-header">
   <div class="site-header__in">
-    <a href="/" aria-label="Packetflow — home">
+    <a href={url("/")} aria-label="Packetflow — home">
       <Logo variant="full" size={30} />
     </a>
 
@@ -19,7 +22,7 @@ const isActive = (href: string) =>
       {
         mainNav.map((item) => (
           <a
-            href={item.href}
+            href={url(item.href)}
             aria-current={isActive(item.href) ? "page" : undefined}
             class:list={["site-nav__link", isActive(item.href) && "is-active"]}
           >

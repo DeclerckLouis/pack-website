@@ -8,6 +8,7 @@ import Kicker from "@/components/Kicker.astro";
 import { site } from "@/data/site";
 import { allLocals, type LocalPage, type ServiceHub } from "@/data/services";
 import { service, breadcrumbs } from "@/lib/schema";
+import { url } from "@/lib/url";
 
 // Flat, root-level slugs (e.g. /it-support-oudenburg). Static routes like
 // /pakket and /contact take priority, so there is no collision.
@@ -41,9 +42,9 @@ const jsonLd = [
   <section class="page-hero">
     <div class="container page-hero__in">
       <nav class="crumbs" aria-label="Kruimelpad">
-        <a href="/diensten">Diensten</a>
+        <a href={url("/diensten")}>Diensten</a>
         <span class="crumbs__sep">/</span>
-        <a href={`/diensten/${hub.slug}`}>{hub.navTitle}</a>
+        <a href={url(`/diensten/${hub.slug}`)}>{hub.navTitle}</a>
         <span class="crumbs__sep">/</span>
         <span aria-current="page">{local.city}</span>
       </nav>
@@ -73,7 +74,7 @@ const jsonLd = [
         </ul>
         <Card class="local-hubcard">
           <p>{hub.description}</p>
-          <a href={`/diensten/${hub.slug}`} class="local-hubcard__link">
+          <a href={url(`/diensten/${hub.slug}`)} class="local-hubcard__link">
             Alles over {hub.navTitle} <Icon name="arrow-right" size={15} />
           </a>
         </Card>
@@ -96,7 +97,7 @@ const jsonLd = [
               <ul class="local-siblings">
                 {siblings.map((s) => (
                   <li>
-                    <a href={`/${s.slug}`}>
+                    <a href={url(`/${s.slug}`)}>
                       <Icon name="map-pin" size={15} color="var(--orange-600)" />
                       {s.title}
                     </a>
