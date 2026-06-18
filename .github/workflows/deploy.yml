@@ -3,9 +3,11 @@ name: Deploy to GitHub Pages
 # Publishes a live preview of the site to GitHub Pages.
 # Runs on pushes to main and to the active feature branch, plus manually.
 #
-# One-time setup in the repo: Settings → Pages → "Build and deployment" →
-# Source: "GitHub Actions". (If deploying from a non-default branch is blocked,
-# allow it under Settings → Environments → github-pages → deployment branches.)
+# ONE-TIME SETUP (required, owner only — CI cannot do this):
+#   Repo → Settings → Pages → "Build and deployment" → Source: "GitHub Actions".
+# After that this workflow goes green on its own. If deploying from a non-default
+# branch is blocked, allow it under Settings → Environments → github-pages →
+# deployment branches.
 on:
   push:
     branches:
@@ -32,16 +34,12 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
           cache: npm
 
       - name: Resolve Pages base path
         id: pages
         uses: actions/configure-pages@v5
-        with:
-          # Enable Pages (GitHub Actions source) automatically on first run,
-          # so no manual Settings → Pages toggle is needed.
-          enablement: true
 
       - name: Install dependencies
         run: npm ci
