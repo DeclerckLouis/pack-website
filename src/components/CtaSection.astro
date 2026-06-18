@@ -1,26 +1,58 @@
 ---
 import { site } from "@/data/site";
+import Button from "./Button.astro";
+import Kicker from "./Kicker.astro";
 interface Props {
   title?: string;
   body?: string;
 }
 const {
-  title = "Klaar voor een IT-partner die meedenkt?",
-  body = "Plan een vrijblijvend gesprek. We kijken samen waar je staat en hoe we je kunnen ontzorgen.",
+  title = "30 minuten, kosteloos — bij u of via telefoon",
+  body = "Vertel kort waar het schoentje knelt. Ik antwoord binnen één werkdag — vaak sneller.",
 } = Astro.props;
 ---
 
-<section class="container-page py-16">
-  <div class="rounded-card bg-brand px-6 py-12 text-center text-white sm:px-12">
-    <h2 class="mx-auto max-w-2xl text-2xl font-bold sm:text-3xl">{title}</h2>
-    <p class="mx-auto mt-4 max-w-xl text-white/80">{body}</p>
-    <div class="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
-      <a href="/contact" class="btn bg-white text-brand hover:bg-white/90">
+<section class="section cta">
+  <div class="container cta__inner">
+    <Kicker>Vrijblijvend kennismaken</Kicker>
+    <h2 class="cta__title">{title}</h2>
+    <p class="lead cta__body">{body}</p>
+    <div class="cta__actions">
+      <Button href="/contact" variant="primary" size="lg" iconRight="arrow-right">
         Plan een gesprek
-      </a>
-      <a href={site.phoneHref} class="btn border border-white/30 text-white hover:bg-white/10">
+      </Button>
+      <Button href={site.phoneHref} variant="secondary" size="lg" iconLeft="phone">
         Bel {site.phone}
-      </a>
+      </Button>
     </div>
   </div>
 </section>
+
+<style>
+  .cta {
+    background: var(--surface-sunken);
+    border-top: 1px solid var(--border-soft);
+  }
+  .cta__inner {
+    max-width: var(--container-md);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .cta__title {
+    font-size: var(--text-2xl);
+    margin: var(--space-3) 0 var(--space-4);
+  }
+  .cta__body {
+    max-width: 48ch;
+    margin: 0 auto;
+  }
+  .cta__actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-3);
+    margin-top: var(--space-6);
+  }
+</style>

@@ -1,92 +1,87 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import CtaSection from "@/components/CtaSection.astro";
-import { site } from "@/data/site";
+import Card from "@/components/Card.astro";
+import Badge from "@/components/Badge.astro";
+import Kicker from "@/components/Kicker.astro";
+import Icon from "@/components/Icon.astro";
+import Button from "@/components/Button.astro";
 import { services, type ServiceHub } from "@/data/services";
+import { service, breadcrumbs } from "@/lib/schema";
 
 export function getStaticPaths() {
-  return services.map((hub) => ({
-    params: { hub: hub.slug },
-    props: { hub },
-  }));
+  return services.map((hub) => ({ params: { hub: hub.slug }, props: { hub } }));
 }
-
 interface Props {
   hub: ServiceHub;
 }
 const { hub } = Astro.props;
 
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@type": "Service",
-  serviceType: hub.title,
-  name: `${hub.title} — ${site.serviceArea}`,
-  description: hub.description,
-  provider: { "@type": "LocalBusiness", name: site.legalName },
-  areaServed: site.serviceArea,
-};
+const jsonLd = [
+  service({ name: hub.title, description: hub.description, serviceType: hub.title }),
+  breadcrumbs([
+    ["Home", "/"],
+    ["Diensten", "/diensten"],
+    [hub.navTitle, `/diensten/${hub.slug}`],
+  ]),
+];
 ---
 
 <BaseLayout title={hub.title} description={hub.description} jsonLd={jsonLd}>
-  <section class="border-b border-line bg-subtle">
-    <div class="container-page py-20">
-      <nav class="text-sm text-muted" aria-label="Kruimelpad">
-        <a href="/diensten" class="hover:text-ink">Diensten</a>
-        <span class="px-2">/</span>
-        <span class="text-ink">{hub.navTitle}</span>
+  <section class="page-hero">
+    <div class="container page-hero__in">
+      <nav class="crumbs" aria-label="Kruimelpad">
+        <a href="/diensten">Diensten</a>
+        <span class="crumbs__sep">/</span>
+        <span aria-current="page">{hub.navTitle}</span>
       </nav>
-      <p class="mt-6 text-xs font-semibold uppercase tracking-wide text-brand">
-        {hub.audience}
-      </p>
-      <h1 class="mt-2 max-w-3xl text-4xl font-extrabold leading-tight text-ink sm:text-5xl">
-        {hub.title}
-      </h1>
-      <p class="mt-6 max-w-2xl text-lg text-muted">{hub.tagline}</p>
-      <div class="mt-8">
-        <a href="/contact" class="btn-primary">Vraag info aan</a>
+      <Badge tone="blue">{hub.audience}</Badge>
+      <h1>{hub.title}</h1>
+      <p class="lead page-hero__lead">{hub.tagline}</p>
+      <div class="page-hero__actions">
+        <Button href="/contact" variant="primary" iconRight="arrow-right">Vraag info aan</Button>
       </div>
     </div>
   </section>
 
-  <section class="container-page py-20">
-    <div class="max-w-3xl">
-      <h2 class="text-3xl font-bold text-ink">Wat we voor je doen</h2>
-      <p class="mt-4 text-muted">{hub.description}</p>
-    </div>
-
-    <div class="mt-10 grid gap-6 md:grid-cols-2">
-      {
-        hub.features.map((f) => (
-          <div class="rounded-card border border-line bg-white p-7">
-            <h3 class="text-lg font-bold text-ink">{f.title}</h3>
-            <p class="mt-2 text-sm text-muted">{f.body}</p>
-          </div>
-        ))
-      }
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <Kicker>Wat ik voor u doe</Kicker>
+        <p>{hub.description}</p>
+      </div>
+      <div class="grid-cards">
+        {
+          hub.features.map((f) => (
+            <Card class="feature">
+              <span class="feature__icon"><Icon name={f.icon} size={20} /></span>
+              <h3>{f.title}</h3>
+              <p>{f.body}</p>
+            </Card>
+          ))
+        }
+      </div>
     </div>
   </section>
 
   {
     hub.locals.length > 0 && (
-      <section class="border-y border-line bg-subtle">
-        <div class="container-page py-16">
-          <h2 class="text-2xl font-bold text-ink">
-            {hub.navTitle} in jouw regio
-          </h2>
-          <p class="mt-3 max-w-2xl text-muted">
-            Lokale aanpak, dichtbij. Bekijk de pagina voor jouw gemeente of regio.
-          </p>
-          <div class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      <section class="section locals-band">
+        <div class="container">
+          <div class="section-head">
+            <Kicker>In jouw regio</Kicker>
+            <h2>{hub.navTitle} dichtbij</h2>
+            <p>Lokale aanpak met een vast aanspreekpunt. Bekijk de pagina voor uw gemeente of regio.</p>
+          </div>
+          <div class="grid-cards">
             {hub.locals.map((local) => (
-              <a
-                href={`/${local.slug}`}
-                class="group rounded-card border border-line bg-white p-6 transition hover:border-brand hover:shadow-md"
-              >
-                <h3 class="font-bold text-ink">{local.title}</h3>
-                <p class="mt-2 text-sm text-muted">{local.intro}</p>
-                <span class="mt-4 inline-block text-sm font-semibold text-brand">
-                  Lees meer →
-                </span>
+              <a href={`/${local.slug}`} class="local-link">
+                <Card class="feature">
+                  <span class="feature__icon"><Icon name={local.icon} size={20} /></span>
+                  <h3>{local.title}</h3>
+                  <p>{local.intro}</p>
+                  <span class="local-link__more">Lees meer <Icon name="arrow-right" size={15} /></span>
+                </Card>
               </a>
             ))}
           </div>
@@ -97,3 +92,33 @@ const jsonLd = {
 
   <CtaSection />
 </BaseLayout>
+
+<style>
+  .locals-band {
+    background: var(--paper);
+    border-top: 1px solid var(--border-soft);
+  }
+  .page-hero :global(.badge) {
+    margin-bottom: var(--space-4);
+  }
+  .local-link {
+    display: block;
+  }
+  .local-link :global(.card) {
+    transition:
+      border-color var(--dur-base) var(--ease-out),
+      box-shadow var(--dur-base) var(--ease-out);
+  }
+  .local-link:hover :global(.card) {
+    border-color: var(--orange-300);
+    box-shadow: var(--shadow-md);
+  }
+  .local-link__more {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: var(--text-sm);
+    font-weight: var(--fw-medium);
+    color: var(--primary);
+  }
+</style>

@@ -1,0 +1,226 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import CtaSection from "@/components/CtaSection.astro";
+import Card from "@/components/Card.astro";
+import Kicker from "@/components/Kicker.astro";
+import Icon from "@/components/Icon.astro";
+import Button from "@/components/Button.astro";
+import { site } from "@/data/site";
+import { breadcrumbs, ORG_ID } from "@/lib/schema";
+
+const jsonLd = [
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: site.owner,
+    jobTitle: "Netwerkspecialist & oprichter",
+    worksFor: { "@id": ORG_ID },
+    homeLocation: { "@type": "Place", name: `${site.address.city}, ${site.address.region}` },
+  },
+  breadcrumbs([
+    ["Home", "/"],
+    ["Over mij", "/over-mij"],
+  ]),
+];
+
+const values = [
+  ["handshake", "Persoonlijk", "U krijgt altijd mij aan de lijn — dezelfde persoon die uw kantoor kent."],
+  ["clock", "Buiten de uren", "Ik werk 's avonds en in het weekend, zodat uw werk nooit stilvalt."],
+  ["wallet", "Scherp geprijsd", "Geen complexe contracten, geen overhead. U betaalt voor het werk."],
+];
+---
+
+<BaseLayout
+  title="Over mij — Louis Declerck, Packetflow"
+  description="Ik ben Louis Declerck uit Jabbeke. Als netwerkspecialist help ik in bijberoep kleine kantoren met hun IT — persoonlijk, lokaal en zonder complexe contracten."
+  jsonLd={jsonLd}
+>
+  <section class="page-hero">
+    <div class="container page-hero__in about-hero">
+      <div>
+        <Kicker>Over mij</Kicker>
+        <h1>Achter Packetflow zit één persoon — ik</h1>
+        <p class="lead page-hero__lead">
+          Geen callcenter, geen wisselende technici. Bij Packetflow krijgt u
+          altijd dezelfde persoon die uw zaak en uw dossiers kent.
+        </p>
+      </div>
+      <div class="portrait">
+        {/* TODO: vervang door een echte foto van Louis (plaats in public/louis.jpg
+            en zet hier een <img src="/louis.jpg" alt="Louis Declerck" />). */}
+        <div class="portrait__ph" aria-hidden="true">LD</div>
+        <span class="portrait__cap">Louis Declerck · Jabbeke</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container about-letter">
+      <div class="prose">
+        <p class="about-letter__hi">Hallo,</p>
+        <p>
+          Ik ben <strong>Louis Declerck</strong> uit Jabbeke. Als
+          netwerkspecialist werk ik overdag in de IT, en in bijberoep help ik
+          kleine kantoren — advocaten, architecten en makelaars — met alles wat
+          met hun IT te maken heeft.
+        </p>
+        <p>
+          Ik merkte dat net die kleine kantoren vaak tussen wal en schip vallen.
+          Te klein voor een eigen IT-afdeling, te belangrijk om de IT zomaar aan
+          het toeval over te laten. Ze hebben geen nood aan een groot bedrijf met
+          complexe contracten en een wachtrij — ze hebben nood aan iemand die
+          opneemt, die hun zaak kent, en die het gewoon oplost.
+        </p>
+        <p>
+          Dat is wat ik doe. Microsoft 365, een veilige back-up van uw dossiers,
+          Peppol en beveiliging — proactief bewaakt, zodat ik problemen vaak zie
+          vóór u ze merkt. En omdat ik geen kantoren en overhead moet betalen,
+          kan ik dat scherp geprijsd aanbieden.
+        </p>
+        <p>
+          Geen complexe contracten, gewoon persoonlijke service. Onderhoud doe ik
+          's avonds en in het weekend, zodat uw werk nooit wordt onderbroken.
+        </p>
+        <p class="about-letter__sign">— Louis</p>
+      </div>
+
+      <aside>
+        <Card class="about-facts">
+          <h2 class="about-facts__title">In het kort</h2>
+          <ul>
+            <li><Icon name="map-pin" size={16} /> {site.address.city}, {site.address.region}</li>
+            <li><Icon name="briefcase" size={16} /> IT in bijberoep, netwerkspecialist</li>
+            <li><Icon name="clock" size={16} /> Beschikbaar 's avonds &amp; in het weekend</li>
+            <li><Icon name="phone" size={16} /> <a href={site.phoneHref}>{site.phone}</a></li>
+            <li><Icon name="mail" size={16} /> <a href={`mailto:${site.email}`}>{site.email}</a></li>
+          </ul>
+        </Card>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section about-values">
+    <div class="container grid-3-plain">
+      {
+        values.map(([icon, k, v]) => (
+          <div class="about-value">
+            <span class="about-value__icon"><Icon name={icon} size={20} color="#fff" /></span>
+            <h3>{k}</h3>
+            <p>{v}</p>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
+  <CtaSection />
+</BaseLayout>
+
+<style>
+  .about-hero {
+    display: grid;
+    grid-template-columns: 1.4fr 0.6fr;
+    gap: var(--space-7);
+    align-items: center;
+  }
+  .portrait {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-3);
+  }
+  .portrait__ph {
+    width: 180px;
+    height: 220px;
+    border-radius: var(--radius-lg);
+    background: linear-gradient(160deg, var(--blue-700), var(--blue-900));
+    color: var(--cream);
+    display: grid;
+    place-content: center;
+    font-family: var(--font-display);
+    font-size: var(--text-3xl);
+    letter-spacing: 0.05em;
+    box-shadow: var(--shadow-md);
+  }
+  .portrait__cap {
+    font-size: var(--text-sm);
+    color: var(--text-muted);
+  }
+
+  .about-letter {
+    display: grid;
+    grid-template-columns: 1.7fr 1fr;
+    gap: var(--space-7);
+    align-items: start;
+  }
+  .about-letter__hi {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: var(--text-xl);
+    color: var(--text-strong);
+    margin-bottom: var(--space-4) !important;
+  }
+  .about-letter__sign {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: var(--text-lg);
+    color: var(--text-strong);
+  }
+  .about-facts__title {
+    font-family: var(--font-sans);
+    font-size: var(--text-base);
+    font-weight: var(--fw-semibold);
+    margin: 0 0 var(--space-4);
+  }
+  .about-facts ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .about-facts li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: var(--text-sm);
+    color: var(--text-body);
+  }
+  .about-facts a:hover {
+    color: var(--text-strong);
+  }
+
+  .about-values {
+    background: var(--ink);
+  }
+  .about-value__icon {
+    width: 44px;
+    height: 44px;
+    border-radius: var(--radius-md);
+    background: var(--orange-600);
+    display: grid;
+    place-content: center;
+    margin-bottom: var(--space-3);
+  }
+  .about-value h3 {
+    color: var(--cream);
+    font-size: var(--text-lg);
+  }
+  .about-value p {
+    margin-top: var(--space-2);
+    font-size: var(--text-sm);
+    color: var(--grey-300);
+  }
+
+  @media (max-width: 880px) {
+    .about-hero,
+    .about-letter,
+    .grid-3-plain {
+      grid-template-columns: 1fr;
+    }
+    .grid-3-plain {
+      gap: var(--space-6);
+    }
+  }
+</style>

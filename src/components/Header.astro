@@ -1,29 +1,27 @@
 ---
 import { site, mainNav } from "@/data/site";
+import Logo from "./Logo.astro";
+import Button from "./Button.astro";
+import Icon from "./Icon.astro";
+
 const path = Astro.url.pathname;
 const isActive = (href: string) =>
-  href === "/" ? path === "/" : path.startsWith(href);
+  href === "/" ? path === "/" : path === href || path.startsWith(href + "/");
 ---
 
-<header class="sticky top-0 z-50 border-b border-line bg-surface/90 backdrop-blur">
-  <div class="container-page flex h-16 items-center justify-between">
-    <a href="/" class="flex items-center gap-2 text-lg font-bold text-ink">
-      <span class="grid h-8 w-8 place-items-center rounded-lg bg-brand text-white">P</span>
-      {site.name}
+<header class="site-header">
+  <div class="site-header__in">
+    <a href="/" aria-label="Packetflow — home">
+      <Logo variant="full" size={30} />
     </a>
 
-    <nav class="hidden items-center gap-1 md:flex" aria-label="Hoofdnavigatie">
+    <nav class="site-nav" aria-label="Hoofdnavigatie">
       {
         mainNav.map((item) => (
           <a
             href={item.href}
             aria-current={isActive(item.href) ? "page" : undefined}
-            class:list={[
-              "rounded-full px-4 py-2 text-sm font-medium transition",
-              isActive(item.href)
-                ? "bg-subtle text-ink"
-                : "text-muted hover:text-ink",
-            ]}
+            class:list={["site-nav__link", isActive(item.href) && "is-active"]}
           >
             {item.label}
           </a>
@@ -31,11 +29,73 @@ const isActive = (href: string) =>
       }
     </nav>
 
-    <div class="flex items-center gap-3">
-      <a href={site.phoneHref} class="hidden text-sm font-semibold text-ink sm:block">
+    <div class="site-header__actions">
+      <a href={site.phoneHref} class="site-header__phone">
+        <Icon name="phone" size={16} />
         {site.phone}
       </a>
-      <a href="/contact" class="btn-primary !px-5 !py-2">Contacteer ons</a>
+      <Button href="/contact" variant="primary" size="sm">Plan een gesprek</Button>
     </div>
   </div>
 </header>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 30;
+    background: rgba(251, 249, 244, 0.85);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border-soft);
+  }
+  .site-header__in {
+    max-width: var(--container-lg);
+    margin: 0 auto;
+    padding: 14px var(--space-5);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-5);
+  }
+  .site-nav {
+    display: flex;
+    gap: 28px;
+    align-items: center;
+  }
+  .site-nav__link {
+    font-family: var(--font-sans);
+    font-size: var(--text-sm);
+    font-weight: var(--fw-medium);
+    color: var(--text-body);
+    transition: color var(--dur-fast) var(--ease-out);
+  }
+  .site-nav__link:hover,
+  .site-nav__link.is-active {
+    color: var(--text-strong);
+  }
+  .site-header__actions {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .site-header__phone {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    font-family: var(--font-sans);
+    font-size: var(--text-sm);
+    font-weight: var(--fw-medium);
+    color: var(--text-strong);
+  }
+
+  @media (max-width: 880px) {
+    .site-nav {
+      display: none;
+    }
+  }
+  @media (max-width: 560px) {
+    .site-header__phone {
+      display: none;
+    }
+  }
+</style>

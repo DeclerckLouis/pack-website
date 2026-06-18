@@ -5,20 +5,24 @@
 //   - /[local]                        -> a local landing page (flat slug, best
 //                                        for local search e.g. /it-support-oudenburg)
 //
-// To add a new local page, add an entry to the relevant hub's `locals` array.
-// To add a new hub, add an entry to `services`.
+// Voice: Dutch (Flemish), formal "u", first person (Louis). Warm, plain-spoken.
+//
+// NOTE ON DOORWAY PAGES: each local page must carry genuinely unique value
+// (a `context` paragraph + distinct `highlights`), not just a swapped city
+// name — otherwise Google can filter them as thin doorway pages. Keep the set
+// small and substantive rather than scaling near-identical templates.
 
 export type LocalPage = {
   slug: string; // flat, root-level slug -> /<slug>
   title: string; // <title> + H1
   city: string;
   region: string;
-  /** Short value proposition shown in the hero. */
+  icon: string; // Lucide icon name
   intro: string;
-  /** Bullet points tailored to this location / audience. */
+  /** Unique, location-specific paragraph — the anti-doorway content. */
+  context: string;
   highlights: string[];
-  /** SEO meta description. */
-  description: string;
+  description: string; // SEO meta description
 };
 
 export type ServiceHub = {
@@ -26,10 +30,10 @@ export type ServiceHub = {
   navTitle: string;
   title: string;
   audience: string;
+  icon: string; // Lucide icon name
   tagline: string;
   description: string;
-  /** What's included in this service hub. */
-  features: { title: string; body: string }[];
+  features: { title: string; body: string; icon: string }[];
   locals: LocalPage[];
 };
 
@@ -37,27 +41,33 @@ export const services: ServiceHub[] = [
   {
     slug: "it-beheer-support",
     navTitle: "IT-Beheer & Support",
-    title: "IT-Beheer & Support",
-    audience: "KMO's & praktijken",
-    tagline: "Eén vast aanspreekpunt voor al je IT — proactief beheerd.",
+    title: "IT-beheer & support",
+    audience: "Advocaten, architecten & makelaars",
+    icon: "life-buoy",
+    tagline:
+      "Eén aanspreekpunt dat uw kantoor kent — geen wachtrij, geen wisselende technici.",
     description:
-      "Volledig beheer en support van je IT-omgeving voor KMO's en (medische) praktijken. Wij houden je systemen draaiend, beveiligd en up-to-date, zodat jij verder kan met ondernemen.",
+      "Ik neem het volledige beheer en de support van uw IT in handen. Altijd dezelfde persoon die uw kantoor en uw dossiers kent, proactief bewaakt en bereikbaar buiten de kantooruren.",
     features: [
       {
-        title: "Proactief monitoring & onderhoud",
-        body: "We detecteren en lossen problemen op vóór ze je werking verstoren — geen verrassingen, geen stilstand.",
+        icon: "radar",
+        title: "Proactieve monitoring",
+        body: "Ik bewaak uw systemen op de achtergrond en grijp in vóór er iets stilvalt — vaak vóór u het merkt.",
       },
       {
-        title: "Helpdesk met een vast gezicht",
-        body: "Eén lokaal aanspreekpunt dat jouw omgeving kent. Snel bereikbaar via telefoon, mail of op locatie.",
+        icon: "handshake",
+        title: "Eén vast aanspreekpunt",
+        body: "Altijd dezelfde persoon. Geen ticketnummer, geen wachtrij, geen wisselende technici bij uw dossiers.",
       },
       {
-        title: "Beheer van werkplekken & servers",
-        body: "Installatie, updates, beveiliging en beheer van laptops, desktops en servers — centraal opgevolgd.",
+        icon: "clock",
+        title: "Onderhoud buiten de uren",
+        body: "Updates en onderhoud gebeuren 's avonds en in het weekend — zonder uw werk te onderbreken.",
       },
       {
-        title: "Vaste maandprijs",
-        body: "Voorspelbare kosten zonder uurtje-factuurtje. Volledige ontzorging via het KMO-Pakket.",
+        icon: "wallet",
+        title: "Scherp geprijsd",
+        body: "Geen overhead van een groot bedrijf. U betaalt voor het werk, niet voor de kantoren errond.",
       },
     ],
     locals: [
@@ -66,107 +76,89 @@ export const services: ServiceHub[] = [
         title: "IT-partner Jabbeke",
         city: "Jabbeke",
         region: "West-Vlaanderen",
+        icon: "map-pin",
         intro:
-          "Je IT-partner letterlijk om de hoek in Jabbeke. Lokaal, snel ter plaatse en met een vast aanspreekpunt voor jouw KMO of praktijk.",
+          "Uw IT-partner letterlijk om de hoek. Ik werk vanuit Jabbeke en sta snel bij u — persoonlijk en met een vast aanspreekpunt voor uw kantoor.",
+        context:
+          "Packetflow is gevestigd in Jabbeke — dit is mijn thuisbasis. Voor kantoren in Jabbeke, Varsenare, Snellegem en Zerkegem betekent dat: ik ben vaak binnen het halfuur ter plaatse als het echt nodig is, en ik ken de lokale context. Veel van mijn klanten kwamen via mond-tot-mond uit de buurt.",
         highlights: [
-          "Lokaal aanwezig in Jabbeke en omstreken",
-          "Snel ter plaatse bij problemen",
-          "Vast aanspreekpunt dat je zaak kent",
-          "Volledige ontzorging via het KMO-Pakket",
+          "Thuisbasis: ik woon en werk in Jabbeke",
+          "Vaak binnen het halfuur ter plaatse",
+          "Eén vast aanspreekpunt dat uw zaak kent",
+          "Beschikbaar 's avonds en in het weekend",
         ],
         description:
-          "Lokale IT-partner in Jabbeke voor KMO's en praktijken. Proactief IT-beheer, support en cybersecurity met een vast aanspreekpunt om de hoek.",
+          "IT-partner in Jabbeke voor kleine kantoren. Lokale IT-support, Microsoft 365, backup en beveiliging met één vast aanspreekpunt om de hoek.",
       },
       {
         slug: "it-support-oudenburg",
         title: "IT-support Oudenburg",
         city: "Oudenburg",
         region: "West-Vlaanderen",
+        icon: "life-buoy",
         intro:
-          "Betrouwbare IT-support voor ondernemers en praktijken in Oudenburg. Eén lokaal aanspreekpunt voor beheer, support en beveiliging.",
+          "Betrouwbare IT-support voor advocaten, architecten en makelaars in Oudenburg. Eén lokaal aanspreekpunt voor beheer, support en beveiliging.",
+        context:
+          "Oudenburg ligt op een steenworp van Jabbeke, langs de as richting Oostende. Voor de zelfstandigen en kleine praktijken hier ben ik dichtbij genoeg om snel langs te komen, zonder de verplaatsingskosten van een IT-bedrijf uit de stad. Ideaal als uw huidige 'IT-er' een neef is die nooit tijd heeft.",
         highlights: [
-          "IT-support voor KMO's en praktijken in Oudenburg",
+          "Snel ter plaatse vanuit het nabijgelegen Jabbeke",
+          "Geen verplaatsingskosten van een stadskantoor",
           "Proactief beheer en snelle interventie",
-          "Lokaal, persoonlijk en bereikbaar",
-          "Vaste maandprijs zonder verrassingen",
+          "Persoonlijk: dezelfde persoon, elke keer",
         ],
         description:
-          "IT-support in Oudenburg voor KMO's en praktijken. Lokale IT-partner voor proactief beheer, support, Microsoft 365 en cybersecurity.",
+          "IT-support in Oudenburg voor advocaten, architecten en makelaars. Lokale IT-partner voor proactief beheer, Microsoft 365 en cybersecurity.",
       },
       {
         slug: "managed-it-west-vlaanderen",
         title: "Managed IT West-Vlaanderen",
         city: "West-Vlaanderen",
         region: "West-Vlaanderen",
+        icon: "map",
         intro:
-          "Managed IT-services voor KMO's in heel West-Vlaanderen. Wij nemen het volledige beheer van je IT-omgeving uit handen.",
+          "Beheerde IT voor kleine kantoren in heel West-Vlaanderen. Ik neem het volledige beheer van uw IT-omgeving uit handen, proactief bewaakt.",
+        context:
+          "Niet elk kantoor zit om de hoek — en dat hoeft ook niet. Het meeste beheer en de monitoring gebeuren op afstand: ik zie problemen en los ze op zonder dat ik fysiek moet langskomen. Voor de momenten dat het wél ter plaatse moet, plan ik gericht in. Zo bedien ik kantoren van Brugge tot de kust met dezelfde persoonlijke aanpak.",
         highlights: [
-          "Volledig beheerde IT voor West-Vlaamse KMO's",
-          "Proactieve monitoring & cybersecurity",
+          "Beheer en monitoring grotendeels op afstand",
+          "Gericht ter plaatse wanneer het echt nodig is",
           "Microsoft 365, backup en Peppol inbegrepen",
-          "Eén partner, één vaste maandprijs",
+          "Eén partner voor uw hele IT, regiobreed",
         ],
         description:
-          "Managed IT in West-Vlaanderen voor KMO's. Volledig beheerde IT-omgeving met proactieve monitoring, support, backup en beveiliging.",
-      },
-      {
-        slug: "it-beheer-brugge",
-        title: "IT-beheer Brugge",
-        city: "Brugge",
-        region: "West-Vlaanderen",
-        intro:
-          "IT-beheer en support voor KMO's en professionele praktijken in en rond Brugge — proactief, lokaal en met een vast aanspreekpunt.",
-        highlights: [
-          "IT-beheer voor KMO's en praktijken in Brugge",
-          "Proactief onderhoud en snelle support",
-          "Microsoft 365, backup en beveiliging",
-          "Volledige ontzorging via het KMO-Pakket",
-        ],
-        description:
-          "IT-beheer in Brugge voor KMO's en praktijken. Lokale IT-partner voor proactief beheer, support, Microsoft 365 en cybersecurity.",
-      },
-      {
-        slug: "it-beheer-oostende",
-        title: "IT-beheer Oostende",
-        city: "Oostende",
-        region: "West-Vlaanderen",
-        intro:
-          "IT-beheer en support voor ondernemers en praktijken in Oostende. Eén lokale partner voor beheer, beveiliging en ondersteuning.",
-        highlights: [
-          "IT-beheer voor KMO's en praktijken in Oostende",
-          "Proactieve monitoring en snelle interventie",
-          "Microsoft 365, backup en cybersecurity",
-          "Vaste maandprijs, geen verrassingen",
-        ],
-        description:
-          "IT-beheer in Oostende voor KMO's en praktijken. Lokale IT-partner voor proactief beheer, support, Microsoft 365 en beveiliging.",
+          "Managed IT in West-Vlaanderen voor kleine kantoren. Volledig beheerde IT-omgeving met proactieve monitoring, support, backup en beveiliging.",
       },
     ],
   },
   {
     slug: "zakelijke-wifi-netwerken",
     navTitle: "Zakelijke WiFi & Netwerken",
-    title: "Zakelijke WiFi & Netwerken",
+    title: "Zakelijke WiFi & netwerken",
     audience: "Horeca, B&B's & kantoren",
-    tagline: "Stabiele, snelle en veilige netwerken die altijd werken.",
+    icon: "wifi",
+    tagline: "Een stabiel, veilig netwerk dat altijd werkt — ook tijdens de piek.",
     description:
-      "Professionele WiFi en netwerkinstallaties voor horeca, B&B's en kantoren. Van een betrouwbaar gastennetwerk tot een gescheiden kassanetwerk dat altijd online blijft, ook tijdens de drukste momenten.",
+      "Professionele WiFi en netwerken voor horeca, B&B's en kantoren. Van een betrouwbaar gastennetwerk tot een gescheiden kassanetwerk dat online blijft, ook op de drukste momenten.",
     features: [
       {
+        icon: "wifi",
         title: "Naadloze WiFi-dekking",
-        body: "Volledige dekking zonder dode zones — van terras tot tot in de verste kamer, met access points die naadloos overschakelen.",
+        body: "Volledige dekking zonder dode zones — van het terras tot in de verste kamer.",
       },
       {
+        icon: "split",
         title: "Gescheiden gasten- & bedrijfsnetwerk",
-        body: "Gasten online zonder risico voor je kassa, boekhouding of camerasysteem. Veilig opgesplitst per gebruik.",
+        body: "Gasten online zonder risico voor uw kassa, boekhouding of camera's. Veilig opgesplitst per gebruik.",
       },
       {
+        icon: "activity",
         title: "Betrouwbaar tijdens piekmomenten",
-        body: "Netwerken die overeind blijven wanneer het druk is — cruciaal voor horeca en seizoenspieken aan de kust.",
+        body: "Netwerken die overeind blijven wanneer het druk is — cruciaal voor horeca en seizoenspieken.",
       },
       {
-        title: "Beheer & opvolging op afstand",
-        body: "We monitoren je netwerk op afstand en grijpen in voor jij merkt dat er iets mis is.",
+        icon: "radar",
+        title: "Beheer op afstand",
+        body: "Ik monitor uw netwerk op afstand en grijp in vóór u merkt dat er iets mis is.",
       },
     ],
     locals: [
@@ -175,13 +167,16 @@ export const services: ServiceHub[] = [
         title: "WiFi-installatie horeca Jabbeke",
         city: "Jabbeke",
         region: "West-Vlaanderen",
+        icon: "wifi",
         intro:
-          "Professionele WiFi-installatie voor horeca in Jabbeke. Stabiel gastennetwerk en een gescheiden kassanetwerk dat altijd werkt.",
+          "Professionele WiFi-installatie voor horeca in Jabbeke. Een stabiel gastennetwerk en een gescheiden kassanetwerk dat altijd werkt.",
+        context:
+          "Een zaak langs de baan of aan de afrit in Jabbeke trekt passanten én vaste klanten — en die verwachten werkende WiFi en een kassa die niet uitvalt op het drukste moment. Ik scheid uw gastennetwerk van uw kassa- en boekhoudsysteem, zodat een volle zaak nooit uw betaalterminal plat legt.",
         highlights: [
           "WiFi op maat van horeca in Jabbeke",
           "Gescheiden gasten- en kassanetwerk",
           "Volledige dekking, ook op het terras",
-          "Lokale installatie en opvolging",
+          "Lokale installatie en snelle opvolging",
         ],
         description:
           "WiFi-installatie voor horeca in Jabbeke. Stabiel gastennetwerk, gescheiden kassanetwerk en volledige dekking, lokaal geïnstalleerd en beheerd.",
@@ -191,62 +186,78 @@ export const services: ServiceHub[] = [
         title: "Gastennetwerk B&B Brugse Ommeland",
         city: "Brugse Ommeland",
         region: "West-Vlaanderen",
+        icon: "bed-double",
         intro:
-          "Een betrouwbaar gastennetwerk voor B&B's en boutique hotels in het Brugse Ommeland. Tevreden gasten, veilig gescheiden van je eigen systemen.",
+          "Een betrouwbaar gastennetwerk voor B&B's en boutique hotels in het Brugse Ommeland. Tevreden gasten, veilig gescheiden van uw eigen systemen.",
+        context:
+          "In het Brugse Ommeland — Damme, Beernem, Zedelgem, Torhout — draait gastvrijheid steeds vaker op een goede review, en 'trage WiFi' is een klassieke klacht. Ik zorg voor dekking in élke kamer en de tuin, met een eenvoudig gastenportaal en uw eigen netwerk veilig apart. Geen gedeeld wachtwoord dat al jaren op een briefje staat.",
         highlights: [
-          "Gastennetwerk voor B&B's in het Brugse Ommeland",
-          "Veilig gescheiden van je privénetwerk",
-          "Volledige dekking in alle kamers",
-          "Eenvoudig voor gasten, veilig voor jou",
+          "Volledige dekking in alle kamers én buiten",
+          "Eenvoudig gastenportaal, geen briefje met wachtwoord",
+          "Uw eigen netwerk veilig gescheiden",
+          "Minder 'de WiFi doet het niet'-reviews",
         ],
         description:
-          "Gastennetwerk voor B&B's en boutique hotels in het Brugse Ommeland. Betrouwbare WiFi in alle kamers, veilig gescheiden van je eigen systemen.",
+          "Gastennetwerk voor B&B's en boutique hotels in het Brugse Ommeland. Betrouwbare WiFi in alle kamers, veilig gescheiden van uw eigen systemen.",
       },
       {
         slug: "stabiel-netwerk-kmo-oostende",
         title: "Stabiel netwerk KMO Oostende",
         city: "Oostende",
         region: "West-Vlaanderen",
+        icon: "network",
         intro:
-          "Een stabiel en veilig bedrijfsnetwerk voor KMO's en kantoren in Oostende. Betrouwbare bekabeling, WiFi en beheer onder één dak.",
+          "Een stabiel en veilig bedrijfsnetwerk voor kantoren in Oostende. Betrouwbare bekabeling, WiFi en beheer onder één dak.",
+        context:
+          "Oostende combineert kantoren, praktijken en zaken die het hele jaar door moeten draaien. Voor een groeiend kantoor is het netwerk vaak de zwakke schakel: een mix van oude switches en goedkope routers. Ik leg een propere basis — bekabeling, een degelijk netwerk en WiFi die meegroeit — zodat u er niet meer aan hoeft te denken.",
         highlights: [
-          "Bedrijfsnetwerken voor KMO's in Oostende",
-          "Stabiele bekabeling en WiFi",
+          "Propere bekabeling en degelijke netwerkbasis",
+          "Zakelijke WiFi die meegroeit met uw kantoor",
           "Veilig en gescheiden per toepassing",
           "Beheer en opvolging op afstand",
         ],
         description:
-          "Stabiel bedrijfsnetwerk voor KMO's en kantoren in Oostende. Betrouwbare bekabeling, zakelijke WiFi en netwerkbeheer onder één dak.",
+          "Stabiel bedrijfsnetwerk voor kantoren in Oostende. Betrouwbare bekabeling, zakelijke WiFi en netwerkbeheer onder één dak.",
       },
     ],
   },
   {
     slug: "cloud-backup-beveiliging",
     navTitle: "Cloud, Backup & Beveiliging",
-    title: "Cloud, Backup & Beveiliging",
-    audience: "Elke onderneming",
-    tagline: "Je data veilig, beschikbaar en beschermd — altijd.",
+    title: "Cloud, backup & beveiliging",
+    audience: "Elk klein kantoor",
+    icon: "shield-check",
+    tagline:
+      "Uw dossiers veilig, beschermd en altijd terug te halen — met AI die mee bewaakt.",
     description:
-      "Microsoft 365, betrouwbare backups en cybersecurity voor je hele organisatie. We zorgen dat je data veilig in de cloud staat, dat alles automatisch wordt gebackupt en dat je beschermd bent tegen verlies, ransomware en menselijke fouten.",
+      "Microsoft 365, veilige backup en cybersecurity voor uw kantoor. Ik zorg dat uw dossiers veilig in de cloud staan, automatisch gebackupt worden en beschermd zijn tegen verlies, ransomware en menselijke fouten — met AI die verdacht gedrag vroeg opmerkt.",
     features: [
       {
-        title: "Microsoft 365 beheer",
-        body: "Volledig beheer van e-mail, Teams, SharePoint en gebruikers — correct ingesteld en beveiligd.",
+        icon: "mail",
+        title: "Microsoft 365",
+        body: "E-mail, Teams, SharePoint en licenties — correct opgezet, beveiligd en onderhouden zonder kopzorgen.",
       },
       {
-        title: "Automatische backups",
-        body: "Betrouwbare back-ups van je bestanden én je Microsoft 365-omgeving, automatisch en getest.",
+        icon: "database",
+        title: "Veilige back-up",
+        body: "Uw dossiers automatisch en versleuteld bewaard. Getest, niet gehoopt — ook van uw Microsoft 365-omgeving.",
       },
       {
-        title: "Cybersecurity",
-        body: "Bescherming tegen ransomware, phishing en datalekken met meerlaagse beveiliging en monitoring.",
+        icon: "shield-check",
+        title: "Cybersecurity & MFA",
+        body: "Bescherming tegen phishing en ransomware, tweestapsverificatie en updates, met AI-detectie van verdacht gedrag.",
       },
       {
-        title: "Peppol & e-facturatie",
-        body: "Klaar voor de verplichte e-facturatie via Peppol — correct opgezet en geïntegreerd.",
+        icon: "sparkles",
+        title: "Microsoft 365 Copilot & AI",
+        body: "AI die u tijd bespaart bij documenten en e-mail — veilig ingericht, zodat uw cliëntgegevens privé blijven.",
+      },
+      {
+        icon: "file-check",
+        title: "Peppol e-facturatie",
+        body: "Klaar voor de verplichte e-facturatie via Peppol, correct gekoppeld aan uw boekhouding.",
       },
     ],
-    // No local sub-pages yet — local intent for cloud/security is low.
     locals: [],
   },
 ];
