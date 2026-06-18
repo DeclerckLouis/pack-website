@@ -1,0 +1,22 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { site } from "@/data/site";
+---
+
+<BaseLayout title="Privacybeleid" description={`Privacybeleid van ${site.legalName}.`}>
+  <section class="container-page py-20">
+    <div class="prose-pack max-w-3xl">
+      <h1 class="text-4xl font-extrabold text-ink">Privacybeleid</h1>
+      <p class="mt-6">
+        Dit is een tijdelijke placeholder voor het privacybeleid van
+        {site.legalName}. Vervang deze tekst door je definitieve privacyverklaring
+        die voldoet aan de GDPR/AVG, met onder meer welke gegevens je verzamelt,
+        waarvoor, hoe lang je ze bewaart en welke rechten bezoekers hebben.
+      </p>
+      <p class="mt-4">
+        Voor vragen over je gegevens kan je ons bereiken via
+        <a href={`mailto:${site.email}`} class="text-brand">{site.email}</a>.
+      </p>
+    </div>
+  </section>
+</BaseLayout>

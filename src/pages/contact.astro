@@ -1,0 +1,92 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { site } from "@/data/site";
+---
+
+<BaseLayout
+  title="Contact"
+  description={`Neem contact op met ${site.name}, je lokale IT-partner in ${site.serviceArea}. Bel ${site.phone} of mail ${site.email}.`}
+>
+  <section class="border-b border-line bg-subtle">
+    <div class="container-page py-20">
+      <h1 class="text-4xl font-extrabold leading-tight text-ink sm:text-5xl">
+        Laten we kennismaken
+      </h1>
+      <p class="mt-6 max-w-2xl text-lg text-muted">
+        Een vraag, een probleem of zin in een vrijblijvend gesprek? We helpen je
+        graag verder — persoonlijk en zonder verkooppraat.
+      </p>
+    </div>
+  </section>
+
+  <section class="container-page py-20">
+    <div class="grid gap-12 lg:grid-cols-2">
+      <div>
+        <h2 class="text-2xl font-bold text-ink">Rechtstreeks contact</h2>
+        <dl class="mt-6 space-y-5">
+          <div>
+            <dt class="text-sm text-muted">Telefoon</dt>
+            <dd>
+              <a href={site.phoneHref} class="text-lg font-semibold text-ink hover:text-brand">
+                {site.phone}
+              </a>
+            </dd>
+          </div>
+          <div>
+            <dt class="text-sm text-muted">E-mail</dt>
+            <dd>
+              <a href={`mailto:${site.email}`} class="text-lg font-semibold text-ink hover:text-brand">
+                {site.email}
+              </a>
+            </dd>
+          </div>
+          <div>
+            <dt class="text-sm text-muted">Adres</dt>
+            <dd class="text-lg font-semibold text-ink">
+              {site.address.street}, {site.address.postalCode} {site.address.city}
+            </dd>
+          </div>
+        </dl>
+      </div>
+
+      {/* Static form scaffold — wire `action` to a form handler / endpoint
+          (e.g. Formspree, Netlify Forms, or a serverless function) before launch. */}
+      <form
+        class="rounded-card border border-line bg-white p-7"
+        action="#"
+        method="post"
+      >
+        <div class="grid gap-4">
+          <label class="block">
+            <span class="text-sm font-medium text-ink">Naam</span>
+            <input
+              type="text"
+              name="naam"
+              required
+              class="mt-1 w-full rounded-lg border border-line px-3 py-2 outline-none focus:border-brand"
+            />
+          </label>
+          <label class="block">
+            <span class="text-sm font-medium text-ink">E-mail</span>
+            <input
+              type="email"
+              name="email"
+              required
+              class="mt-1 w-full rounded-lg border border-line px-3 py-2 outline-none focus:border-brand"
+            />
+          </label>
+          <label class="block">
+            <span class="text-sm font-medium text-ink">Bericht</span>
+            <textarea
+              name="bericht"
+              rows="4"
+              required
+              class="mt-1 w-full rounded-lg border border-line px-3 py-2 outline-none focus:border-brand"
+            ></textarea>
+          </label>
+          <button type="submit" class="btn-primary w-full">Verstuur</button>
+        </div>
+      </form>
+    </div>
+  </section>
+</BaseLayout>

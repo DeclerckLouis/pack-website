@@ -1,0 +1,142 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import CtaSection from "@/components/CtaSection.astro";
+import { site } from "@/data/site";
+import { services } from "@/data/services";
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  name: site.legalName,
+  description: site.description,
+  telephone: site.phone,
+  email: site.email,
+  areaServed: site.serviceArea,
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: site.address.street,
+    postalCode: site.address.postalCode,
+    addressLocality: site.address.city,
+    addressRegion: site.address.region,
+    addressCountry: "BE",
+  },
+};
+
+const pillars = [
+  {
+    title: "Lokaal",
+    body: "Een partner uit de buurt die snel ter plaatse is en je zaak persoonlijk kent.",
+  },
+  {
+    title: "Proactief",
+    body: "We lossen problemen op vóór je er last van hebt — geen brandjes blussen achteraf.",
+  },
+  {
+    title: "Eén aanspreekpunt",
+    body: "Voor al je IT, één vast gezicht en één duidelijke factuur. Geen doorverwijzen.",
+  },
+];
+---
+
+<BaseLayout title={site.name} jsonLd={jsonLd}>
+  <!-- Hero -->
+  <section class="relative overflow-hidden border-b border-line bg-subtle">
+    <div class="container-page grid gap-10 py-20 lg:grid-cols-2 lg:items-center lg:py-28">
+      <div>
+        <p class="inline-flex rounded-full border border-line bg-white px-3 py-1 text-xs font-semibold text-brand">
+          IT-partner in {site.serviceArea}
+        </p>
+        <h1 class="mt-5 text-4xl font-extrabold leading-tight text-ink sm:text-5xl">
+          Lokale, proactieve IT zonder zorgen voor je KMO.
+        </h1>
+        <p class="mt-6 max-w-xl text-lg text-muted">
+          {site.name} is je vaste aanspreekpunt voor IT-beheer, Microsoft 365,
+          backup, Peppol, cybersecurity en zakelijke WiFi. Wij houden je IT
+          draaiend aan een vaste maandprijs — jij focust op ondernemen.
+        </p>
+        <div class="mt-8 flex flex-col gap-3 sm:flex-row">
+          <a href="/pakket" class="btn-primary">Ontdek het KMO-Pakket</a>
+          <a href="/diensten" class="btn-secondary">Bekijk onze diensten</a>
+        </div>
+      </div>
+
+      <div class="rounded-card border border-line bg-white p-6 shadow-sm">
+        <div class="grid gap-4">
+          {
+            pillars.map((p) => (
+              <div class="rounded-xl bg-subtle p-5">
+                <h2 class="font-semibold text-ink">{p.title}</h2>
+                <p class="mt-1 text-sm text-muted">{p.body}</p>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services overview -->
+  <section class="container-page py-20">
+    <div class="max-w-2xl">
+      <h2 class="text-3xl font-bold text-ink">Onze diensten</h2>
+      <p class="mt-4 text-muted">
+        Drie heldere domeinen waarmee we West-Vlaamse ondernemers volledig
+        ontzorgen.
+      </p>
+    </div>
+
+    <div class="mt-10 grid gap-6 md:grid-cols-3">
+      {
+        services.map((hub) => (
+          <a
+            href={`/diensten/${hub.slug}`}
+            class="group flex flex-col rounded-card border border-line bg-white p-7 transition hover:border-brand hover:shadow-md"
+          >
+            <p class="text-xs font-semibold uppercase tracking-wide text-brand">
+              {hub.audience}
+            </p>
+            <h3 class="mt-2 text-xl font-bold text-ink">{hub.title}</h3>
+            <p class="mt-3 flex-1 text-sm text-muted">{hub.tagline}</p>
+            <span class="mt-5 text-sm font-semibold text-brand">
+              Meer weten →
+            </span>
+          </a>
+        ))
+      }
+    </div>
+  </section>
+
+  <!-- Pakket teaser -->
+  <section class="border-y border-line bg-subtle">
+    <div class="container-page grid gap-10 py-16 lg:grid-cols-2 lg:items-center">
+      <div>
+        <h2 class="text-3xl font-bold text-ink">Volledige ontzorging: het KMO-Pakket</h2>
+        <p class="mt-4 text-muted">
+          Microsoft 365, backup, Peppol en cybersecurity gebundeld in één
+          pakket aan een vaste maandprijs. Voorspelbaar, compleet en zonder
+          verrassingen.
+        </p>
+        <a href="/pakket" class="btn-primary mt-8">Bekijk het pakket</a>
+      </div>
+      <ul class="grid gap-3 sm:grid-cols-2">
+        {
+          [
+            "Microsoft 365 beheer",
+            "Automatische backups",
+            "Peppol & e-facturatie",
+            "Cybersecurity",
+            "Proactieve monitoring",
+            "Vaste maandprijs",
+          ].map((item) => (
+            <li class="flex items-center gap-2 rounded-lg bg-white px-4 py-3 text-sm font-medium text-ink">
+              <span class="text-brand">✓</span>
+              {item}
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <CtaSection />
+</BaseLayout>

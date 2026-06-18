@@ -1,0 +1,41 @@
+---
+import { site, mainNav } from "@/data/site";
+const path = Astro.url.pathname;
+const isActive = (href: string) =>
+  href === "/" ? path === "/" : path.startsWith(href);
+---
+
+<header class="sticky top-0 z-50 border-b border-line bg-surface/90 backdrop-blur">
+  <div class="container-page flex h-16 items-center justify-between">
+    <a href="/" class="flex items-center gap-2 text-lg font-bold text-ink">
+      <span class="grid h-8 w-8 place-items-center rounded-lg bg-brand text-white">P</span>
+      {site.name}
+    </a>
+
+    <nav class="hidden items-center gap-1 md:flex" aria-label="Hoofdnavigatie">
+      {
+        mainNav.map((item) => (
+          <a
+            href={item.href}
+            aria-current={isActive(item.href) ? "page" : undefined}
+            class:list={[
+              "rounded-full px-4 py-2 text-sm font-medium transition",
+              isActive(item.href)
+                ? "bg-subtle text-ink"
+                : "text-muted hover:text-ink",
+            ]}
+          >
+            {item.label}
+          </a>
+        ))
+      }
+    </nav>
+
+    <div class="flex items-center gap-3">
+      <a href={site.phoneHref} class="hidden text-sm font-semibold text-ink sm:block">
+        {site.phone}
+      </a>
+      <a href="/contact" class="btn-primary !px-5 !py-2">Contacteer ons</a>
+    </div>
+  </div>
+</header>

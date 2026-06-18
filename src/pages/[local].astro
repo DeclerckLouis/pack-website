@@ -1,0 +1,126 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import CtaSection from "@/components/CtaSection.astro";
+import { site } from "@/data/site";
+import { allLocals, type LocalPage, type ServiceHub } from "@/data/services";
+
+// Flat, root-level slugs (e.g. /it-support-oudenburg) — ideal for local search
+// intent. Static routes like /pakket and /contact take priority over this
+// dynamic route, so there is no collision.
+export function getStaticPaths() {
+  return allLocals().map((local) => ({
+    params: { local: local.slug },
+    props: { local },
+  }));
+}
+
+interface Props {
+  local: LocalPage & { hub: ServiceHub };
+}
+const { local } = Astro.props;
+const { hub } = local;
+
+// Sibling local pages within the same hub, for internal linking.
+const siblings = hub.locals.filter((l) => l.slug !== local.slug);
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  serviceType: hub.title,
+  name: local.title,
+  description: local.description,
+  provider: { "@type": "LocalBusiness", name: site.legalName },
+  areaServed: { "@type": "Place", name: local.city },
+};
+---
+
+<BaseLayout title={local.title} description={local.description} jsonLd={jsonLd}>
+  <section class="border-b border-line bg-subtle">
+    <div class="container-page py-20">
+      <nav class="text-sm text-muted" aria-label="Kruimelpad">
+        <a href="/diensten" class="hover:text-ink">Diensten</a>
+        <span class="px-2">/</span>
+        <a href={`/diensten/${hub.slug}`} class="hover:text-ink">{hub.navTitle}</a>
+        <span class="px-2">/</span>
+        <span class="text-ink">{local.city}</span>
+      </nav>
+      <h1 class="mt-6 max-w-3xl text-4xl font-extrabold leading-tight text-ink sm:text-5xl">
+        {local.title}
+      </h1>
+      <p class="mt-6 max-w-2xl text-lg text-muted">{local.intro}</p>
+      <div class="mt-8 flex flex-col gap-3 sm:flex-row">
+        <a href="/contact" class="btn-primary">Vraag info aan</a>
+        <a href={site.phoneHref} class="btn-secondary">Bel {site.phone}</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="container-page py-20">
+    <div class="grid gap-12 lg:grid-cols-3">
+      <div class="lg:col-span-2">
+        <h2 class="text-3xl font-bold text-ink">
+          Waarom {site.name} in {local.city}?
+        </h2>
+        <ul class="mt-6 space-y-3">
+          {
+            local.highlights.map((h) => (
+              <li class="flex items-start gap-3">
+                <span class="mt-1 text-brand">✓</span>
+                <span class="text-muted">{h}</span>
+              </li>
+            ))
+          }
+        </ul>
+
+        <div class="mt-10 rounded-card border border-line bg-subtle p-7">
+          <p class="text-muted">{hub.description}</p>
+          <a
+            href={`/diensten/${hub.slug}`}
+            class="mt-4 inline-block text-sm font-semibold text-brand"
+          >
+            Alles over {hub.navTitle} →
+          </a>
+        </div>
+      </div>
+
+      <aside class="space-y-6">
+        <div class="rounded-card border border-line bg-white p-6">
+          <h3 class="font-bold text-ink">In het kort</h3>
+          <dl class="mt-4 space-y-3 text-sm">
+            <div>
+              <dt class="text-muted">Dienst</dt>
+              <dd class="font-medium text-ink">{hub.navTitle}</dd>
+            </div>
+            <div>
+              <dt class="text-muted">Regio</dt>
+              <dd class="font-medium text-ink">{local.city}</dd>
+            </div>
+            <div>
+              <dt class="text-muted">Voor</dt>
+              <dd class="font-medium text-ink">{hub.audience}</dd>
+            </div>
+          </dl>
+        </div>
+
+        {
+          siblings.length > 0 && (
+            <div class="rounded-card border border-line bg-white p-6">
+              <h3 class="font-bold text-ink">Ook in de buurt</h3>
+              <ul class="mt-3 space-y-2 text-sm">
+                {siblings.map((s) => (
+                  <li>
+                    <a href={`/${s.slug}`} class="text-muted hover:text-brand">
+                      {s.title}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )
+        }
+      </aside>
+    </div>
+  </section>
+
+  <CtaSection />
+</BaseLayout>

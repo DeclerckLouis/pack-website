@@ -1,0 +1,72 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import CtaSection from "@/components/CtaSection.astro";
+import { services } from "@/data/services";
+---
+
+<BaseLayout
+  title="Diensten — IT-beheer, zakelijke WiFi, cloud & beveiliging"
+  description="Onze drie diensten: IT-beheer & support voor KMO's en praktijken, zakelijke WiFi & netwerken voor horeca en B&B's, en cloud, backup & beveiliging."
+>
+  <section class="border-b border-line bg-subtle">
+    <div class="container-page py-20">
+      <h1 class="max-w-3xl text-4xl font-extrabold leading-tight text-ink sm:text-5xl">
+        Onze diensten
+      </h1>
+      <p class="mt-6 max-w-2xl text-lg text-muted">
+        Drie heldere domeinen waarmee we ondernemers, praktijken en horeca in
+        West-Vlaanderen volledig ontzorgen.
+      </p>
+    </div>
+  </section>
+
+  <section class="container-page py-20">
+    <div class="grid gap-10">
+      {
+        services.map((hub) => (
+          <article class="rounded-card border border-line bg-white p-8 lg:p-10">
+            <div class="grid gap-8 lg:grid-cols-3">
+              <div class="lg:col-span-2">
+                <p class="text-xs font-semibold uppercase tracking-wide text-brand">
+                  {hub.audience}
+                </p>
+                <h2 class="mt-2 text-2xl font-bold text-ink">
+                  <a href={`/diensten/${hub.slug}`} class="hover:text-brand">
+                    {hub.title}
+                  </a>
+                </h2>
+                <p class="mt-3 text-muted">{hub.description}</p>
+                <a
+                  href={`/diensten/${hub.slug}`}
+                  class="mt-5 inline-block text-sm font-semibold text-brand"
+                >
+                  Ontdek {hub.navTitle} →
+                </a>
+              </div>
+
+              {hub.locals.length > 0 && (
+                <div class="rounded-xl bg-subtle p-6">
+                  <h3 class="text-sm font-semibold text-ink">In jouw regio</h3>
+                  <ul class="mt-3 space-y-2 text-sm">
+                    {hub.locals.map((local) => (
+                      <li>
+                        <a
+                          href={`/${local.slug}`}
+                          class="text-muted hover:text-brand"
+                        >
+                          {local.title}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+            </div>
+          </article>
+        ))
+      }
+    </div>
+  </section>
+
+  <CtaSection />
+</BaseLayout>

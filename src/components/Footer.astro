@@ -1,0 +1,63 @@
+---
+import { site } from "@/data/site";
+import { services } from "@/data/services";
+const year = new Date().getFullYear();
+---
+
+<footer class="mt-24 border-t border-line bg-subtle">
+  <div class="container-page grid gap-10 py-14 md:grid-cols-2 lg:grid-cols-4">
+    <div>
+      <a href="/" class="flex items-center gap-2 text-lg font-bold text-ink">
+        <span class="grid h-8 w-8 place-items-center rounded-lg bg-brand text-white">P</span>
+        {site.name}
+      </a>
+      <p class="mt-4 max-w-xs text-sm text-muted">{site.tagline}.</p>
+      <address class="mt-4 not-italic text-sm text-muted">
+        {site.address.street}<br />
+        {site.address.postalCode} {site.address.city}<br />
+        <a href={site.phoneHref} class="hover:text-ink">{site.phone}</a><br />
+        <a href={`mailto:${site.email}`} class="hover:text-ink">{site.email}</a>
+      </address>
+    </div>
+
+    {/* Service hubs + their local pages, linked from the footer per the
+        agreed structure (kept out of the top nav). */}
+    {
+      services.map((hub) => (
+        <div>
+          <h2 class="text-sm font-semibold text-ink">
+            <a href={`/diensten/${hub.slug}`} class="hover:text-brand">
+              {hub.navTitle}
+            </a>
+          </h2>
+          <ul class="mt-4 space-y-2 text-sm text-muted">
+            {hub.locals.length === 0 && (
+              <li>
+                <a href={`/diensten/${hub.slug}`} class="hover:text-ink">
+                  Meer info
+                </a>
+              </li>
+            )}
+            {hub.locals.map((local) => (
+              <li>
+                <a href={`/${local.slug}`} class="hover:text-ink">
+                  {local.title}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))
+    }
+  </div>
+
+  <div class="border-t border-line">
+    <div class="container-page flex flex-col items-center justify-between gap-3 py-6 text-xs text-muted sm:flex-row">
+      <p>&copy; {year} {site.legalName}. Alle rechten voorbehouden.</p>
+      <nav class="flex gap-4" aria-label="Juridisch">
+        <a href="/privacy" class="hover:text-ink">Privacybeleid</a>
+        <a href="/contact" class="hover:text-ink">Contact</a>
+      </nav>
+    </div>
+  </div>
+</footer>

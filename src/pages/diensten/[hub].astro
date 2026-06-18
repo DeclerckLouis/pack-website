@@ -1,0 +1,99 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import CtaSection from "@/components/CtaSection.astro";
+import { site } from "@/data/site";
+import { services, type ServiceHub } from "@/data/services";
+
+export function getStaticPaths() {
+  return services.map((hub) => ({
+    params: { hub: hub.slug },
+    props: { hub },
+  }));
+}
+
+interface Props {
+  hub: ServiceHub;
+}
+const { hub } = Astro.props;
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  serviceType: hub.title,
+  name: `${hub.title} — ${site.serviceArea}`,
+  description: hub.description,
+  provider: { "@type": "LocalBusiness", name: site.legalName },
+  areaServed: site.serviceArea,
+};
+---
+
+<BaseLayout title={hub.title} description={hub.description} jsonLd={jsonLd}>
+  <section class="border-b border-line bg-subtle">
+    <div class="container-page py-20">
+      <nav class="text-sm text-muted" aria-label="Kruimelpad">
+        <a href="/diensten" class="hover:text-ink">Diensten</a>
+        <span class="px-2">/</span>
+        <span class="text-ink">{hub.navTitle}</span>
+      </nav>
+      <p class="mt-6 text-xs font-semibold uppercase tracking-wide text-brand">
+        {hub.audience}
+      </p>
+      <h1 class="mt-2 max-w-3xl text-4xl font-extrabold leading-tight text-ink sm:text-5xl">
+        {hub.title}
+      </h1>
+      <p class="mt-6 max-w-2xl text-lg text-muted">{hub.tagline}</p>
+      <div class="mt-8">
+        <a href="/contact" class="btn-primary">Vraag info aan</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="container-page py-20">
+    <div class="max-w-3xl">
+      <h2 class="text-3xl font-bold text-ink">Wat we voor je doen</h2>
+      <p class="mt-4 text-muted">{hub.description}</p>
+    </div>
+
+    <div class="mt-10 grid gap-6 md:grid-cols-2">
+      {
+        hub.features.map((f) => (
+          <div class="rounded-card border border-line bg-white p-7">
+            <h3 class="text-lg font-bold text-ink">{f.title}</h3>
+            <p class="mt-2 text-sm text-muted">{f.body}</p>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
+  {
+    hub.locals.length > 0 && (
+      <section class="border-y border-line bg-subtle">
+        <div class="container-page py-16">
+          <h2 class="text-2xl font-bold text-ink">
+            {hub.navTitle} in jouw regio
+          </h2>
+          <p class="mt-3 max-w-2xl text-muted">
+            Lokale aanpak, dichtbij. Bekijk de pagina voor jouw gemeente of regio.
+          </p>
+          <div class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {hub.locals.map((local) => (
+              <a
+                href={`/${local.slug}`}
+                class="group rounded-card border border-line bg-white p-6 transition hover:border-brand hover:shadow-md"
+              >
+                <h3 class="font-bold text-ink">{local.title}</h3>
+                <p class="mt-2 text-sm text-muted">{local.intro}</p>
+                <span class="mt-4 inline-block text-sm font-semibold text-brand">
+                  Lees meer →
+                </span>
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+    )
+  }
+
+  <CtaSection />
+</BaseLayout>
