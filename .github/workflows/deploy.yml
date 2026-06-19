@@ -1,18 +1,15 @@
 name: Deploy to GitHub Pages
 
-# Publishes a live preview of the site to GitHub Pages.
-# Runs on pushes to main and to the active feature branch, plus manually.
+# Publishes the live site to GitHub Pages.
+# Runs on pushes to main, plus manually.
 #
 # ONE-TIME SETUP (required, owner only — CI cannot do this):
 #   Repo → Settings → Pages → "Build and deployment" → Source: "GitHub Actions".
-# After that this workflow goes green on its own. If deploying from a non-default
-# branch is blocked, allow it under Settings → Environments → github-pages →
-# deployment branches.
+# After that this workflow goes green on its own.
 on:
   push:
     branches:
       - main
-      - claude/modest-goldberg-ygudtg
   workflow_dispatch:
 
 # Allow the workflow to publish to Pages.
