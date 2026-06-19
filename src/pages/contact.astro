@@ -17,6 +17,9 @@ const contactItems = [
   ["mail", site.email, `mailto:${site.email}`],
   ["map-pin", `${site.address.city}, ${site.address.region}`, null],
 ];
+
+// Odoo website_form endpoint — POSTing here creates a crm.lead (opportunity).
+const odooEndpoint = `${site.odooBaseUrl}/website/form/crm.lead`;
 ---
 
 <BaseLayout
@@ -49,29 +52,100 @@ const contactItems = [
       </div>
 
       <Card raised>
-        {/* TODO: koppel deze form aan een handler (Formspree, Netlify Forms,
-            Cloudflare, of een eigen endpoint) en stel `action`/`method` in. */}
-        <form class="contact-form" action="#" method="post">
+        <form id="contact-form" class="contact-form" novalidate>
           <label>
             <span class="contact-form__label">Naam</span>
-            <input type="text" name="naam" placeholder="Uw naam of kantoor" required />
+            <input type="text" name="contact_name" placeholder="Uw naam" required />
           </label>
           <label>
             <span class="contact-form__label">E-mail</span>
-            <input type="email" name="email" placeholder="u@kantoor.be" required />
+            <input type="email" name="email_from" placeholder="u@kantoor.be" required />
+          </label>
+          <label>
+            <span class="contact-form__label">Telefoon <span class="contact-form__opt">(optioneel)</span></span>
+            <input type="tel" name="phone" placeholder="0470 12 34 56" />
+          </label>
+          <label>
+            <span class="contact-form__label">Bedrijf / kantoor <span class="contact-form__opt">(optioneel)</span></span>
+            <input type="text" name="partner_name" placeholder="Naam van uw zaak of kantoor" />
           </label>
           <label>
             <span class="contact-form__label">Waarmee kan ik helpen?</span>
-            <textarea name="bericht" rows="4" placeholder="Vertel kort over uw situatie…"></textarea>
+            <textarea name="description" rows="4" placeholder="Vertel kort over uw situatie…" required></textarea>
           </label>
+
+          {/* Honeypot — bots fill this, humans never see it. */}
+          <div class="contact-form__hp" aria-hidden="true">
+            <label>Laat dit veld leeg<input type="text" name="website" tabindex="-1" autocomplete="off" /></label>
+          </div>
+
+          <div id="contact-error" class="form-msg" hidden role="alert">
+            Er ging iets mis bij het versturen. Mail me gerust rechtstreeks op
+            <a href={`mailto:${site.email}`}>{site.email}</a>.
+          </div>
+
           <Button type="submit" variant="primary" size="lg" fullWidth iconRight="send">
             Verstuur aanvraag
           </Button>
         </form>
+
+        <div id="contact-success" class="form-success" hidden>
+          <span class="form-success__icon"><Icon name="check" size={28} color="var(--success)" /></span>
+          <h2 class="form-success__title">Bedankt — tot binnenkort!</h2>
+          <p class="form-success__body">Ik neem binnen één werkdag contact met u op.</p>
+        </div>
       </Card>
     </div>
   </section>
 </BaseLayout>
+
+<script define:vars={{ endpoint: odooEndpoint, fallbackEmail: site.email }}>
+  const form = document.getElementById("contact-form");
+  const errorEl = document.getElementById("contact-error");
+  const successEl = document.getElementById("contact-success");
+
+  if (form) {
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      if (!form.reportValidity()) return;
+
+      // Honeypot: if filled, silently pretend success (it's a bot).
+      const honey = form.querySelector('input[name="website"]');
+      if (honey && honey.value) {
+        form.hidden = true;
+        successEl.hidden = false;
+        return;
+      }
+
+      const submitBtn = form.querySelector('button[type="submit"]');
+      errorEl.hidden = true;
+      if (submitBtn) submitBtn.disabled = true;
+
+      const data = new FormData(form);
+      data.delete("website"); // drop honeypot
+      // Odoo crm.lead requires a title (`name`).
+      const naam = (data.get("contact_name") || "").toString().trim() || "onbekend";
+      data.set("name", `Website-aanvraag — ${naam}`);
+
+      try {
+        // Odoo Online (SaaS) can't add CORS headers, so we send a CORS
+        // "simple request" in no-cors mode: the multipart POST still reaches
+        // Odoo and creates the crm.lead, but the response is opaque (we can't
+        // read the {id}). We optimistically show success; only a real network
+        // failure (offline/DNS) rejects and triggers the mailto fallback.
+        // (On Odoo.sh/self-hosted you can install packetflow_form_cors and
+        // switch to a normal fetch to verify the response — see odoo/ in repo.)
+        await fetch(endpoint, { method: "POST", mode: "no-cors", body: data });
+        form.hidden = true;
+        successEl.hidden = false;
+      } catch (err) {
+        console.error("Contactformulier versturen mislukt:", err);
+        if (submitBtn) submitBtn.disabled = false;
+        errorEl.hidden = false;
+      }
+    });
+  }
+</script>
 
 <style>
   .contact__grid {
@@ -134,6 +208,10 @@ const contactItems = [
     color: var(--text-strong);
     margin-bottom: 6px;
   }
+  .contact-form__opt {
+    color: var(--text-faint);
+    font-weight: var(--fw-regular);
+  }
   .contact-form input,
   .contact-form textarea {
     width: 100%;
@@ -159,6 +237,52 @@ const contactItems = [
   .contact-form textarea {
     resize: vertical;
   }
+  /* Honeypot — visually and from a11y tree hidden, still in the DOM for bots. */
+  .contact-form__hp {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+  }
+  .form-msg {
+    font-size: var(--text-sm);
+    color: var(--danger);
+    background: var(--danger-soft);
+    border-radius: var(--radius-md);
+    padding: 10px 14px;
+  }
+  .form-msg a {
+    color: var(--danger);
+    text-decoration: underline;
+  }
+
+  .form-success {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 10px;
+    padding: var(--space-6) var(--space-2);
+  }
+  .form-success__icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: var(--success-soft);
+    display: grid;
+    place-content: center;
+  }
+  .form-success__title {
+    font-size: var(--text-lg);
+    margin: 0;
+  }
+  .form-success__body {
+    font-size: var(--text-sm);
+    color: var(--text-muted);
+    margin: 0;
+  }
+
   @media (max-width: 880px) {
     .contact__grid {
       grid-template-columns: 1fr;
