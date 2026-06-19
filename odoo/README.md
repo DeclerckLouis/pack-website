@@ -30,6 +30,7 @@ Prerequisites on the Odoo side (all standard, no code):
    | Naam | `contact_name` |
    | E-mail | `email_from` |
    | Telefoon | `phone` |
+   | Bedrijf / kantoor | `partner_name` |
    | Bericht | `description` |
    | _(derived)_ | `name` = "Website-aanvraag — {naam}" |
 

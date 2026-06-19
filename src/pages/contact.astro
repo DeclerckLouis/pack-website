@@ -55,7 +55,7 @@ const odooEndpoint = `${site.odooBaseUrl}/website/form/crm.lead`;
         <form id="contact-form" class="contact-form" novalidate>
           <label>
             <span class="contact-form__label">Naam</span>
-            <input type="text" name="contact_name" placeholder="Uw naam of kantoor" required />
+            <input type="text" name="contact_name" placeholder="Uw naam" required />
           </label>
           <label>
             <span class="contact-form__label">E-mail</span>
@@ -64,6 +64,10 @@ const odooEndpoint = `${site.odooBaseUrl}/website/form/crm.lead`;
           <label>
             <span class="contact-form__label">Telefoon <span class="contact-form__opt">(optioneel)</span></span>
             <input type="tel" name="phone" placeholder="0470 12 34 56" />
+          </label>
+          <label>
+            <span class="contact-form__label">Bedrijf / kantoor <span class="contact-form__opt">(optioneel)</span></span>
+            <input type="text" name="partner_name" placeholder="Naam van uw zaak of kantoor" />
           </label>
           <label>
             <span class="contact-form__label">Waarmee kan ik helpen?</span>
