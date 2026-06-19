@@ -17,6 +17,13 @@ export const site = {
     country: "België",
   },
   serviceArea: "West-Vlaanderen",
+  // Odoo CRM instance that receives website-form submissions. The contact form
+  // POSTs to `${odooBaseUrl}/website/form/crm.lead`, which creates a crm.lead
+  // (opportunity) natively. Override at build time with PUBLIC_ODOO_URL.
+  // TODO before launch: confirm this points at wherever Odoo lives after the
+  // migration, and configure CORS + the website_form allowlist on Odoo (see
+  // the contact-form PR for the exact Odoo-side steps).
+  odooBaseUrl: import.meta.env.PUBLIC_ODOO_URL ?? "https://www.packetflow.be",
 } as const;
 
 // Top navigation. Lean by design: the service hubs live under /diensten, the
