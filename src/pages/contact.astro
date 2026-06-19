@@ -124,17 +124,14 @@ const odooEndpoint = `${site.odooBaseUrl}/website/form/crm.lead`;
       data.set("name", `Website-aanvraag — ${naam}`);
 
       try {
-        const res = await fetch(endpoint, { method: "POST", body: data });
-        if (!res.ok) throw new Error(`HTTP ${res.status}`);
-        // Odoo returns JSON like {"id": 42}; treat a truthy id as success.
-        let ok = true;
-        try {
-          const json = await res.json();
-          ok = !!(json && json.id);
-        } catch {
-          /* non-JSON 2xx — assume ok */
-        }
-        if (!ok) throw new Error("no record id");
+        // Odoo Online (SaaS) can't add CORS headers, so we send a CORS
+        // "simple request" in no-cors mode: the multipart POST still reaches
+        // Odoo and creates the crm.lead, but the response is opaque (we can't
+        // read the {id}). We optimistically show success; only a real network
+        // failure (offline/DNS) rejects and triggers the mailto fallback.
+        // (On Odoo.sh/self-hosted you can install packetflow_form_cors and
+        // switch to a normal fetch to verify the response — see odoo/ in repo.)
+        await fetch(endpoint, { method: "POST", mode: "no-cors", body: data });
         form.hidden = true;
         successEl.hidden = false;
       } catch (err) {
