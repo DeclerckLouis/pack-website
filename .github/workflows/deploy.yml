@@ -30,6 +30,10 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     name: Build & deploy
+    # Exposed at job level so the deploy step's `if:` can test for it (secrets
+    # can't be referenced directly in an `if` expression).
+    env:
+      CF_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
     steps:
       - uses: actions/checkout@v4
 
@@ -49,6 +53,9 @@ jobs:
         run: npm run build
 
       - name: Deploy to Cloudflare Pages
+        # Skips (CI stays green) until the owner adds the Cloudflare secrets
+        # — see §1b. Once CLOUDFLARE_API_TOKEN exists, deploys run normally.
+        if: ${{ env.CF_API_TOKEN != '' }}
         uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
