@@ -1,114 +1,117 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import CtaSection from "@/components/CtaSection.astro";
+import Card from "@/components/Card.astro";
+import Badge from "@/components/Badge.astro";
+import Kicker from "@/components/Kicker.astro";
+import Icon from "@/components/Icon.astro";
+import Button from "@/components/Button.astro";
 import { site } from "@/data/site";
+import { service, breadcrumbs } from "@/lib/schema";
+
+// PRICING: aligned to the live Odoo site (€99/maand, vast). Confirm before
+// launch — change `price` / `priceUnit` here if the model differs.
+const price = "€99";
+const priceUnit = "/ maand";
 
 const includes = [
-  {
-    title: "Microsoft 365",
-    body: "E-mail, Teams, Office-apps en gebruikersbeheer — correct opgezet, beveiligd en up-to-date gehouden.",
-  },
-  {
-    title: "Backup",
-    body: "Automatische, geteste back-ups van je bestanden én je Microsoft 365-omgeving. Nooit nog data kwijt.",
-  },
-  {
-    title: "Peppol & e-facturatie",
-    body: "Klaar voor de verplichte e-facturatie via Peppol, correct geïntegreerd in je werking.",
-  },
-  {
-    title: "Cybersecurity",
-    body: "Meerlaagse bescherming tegen ransomware, phishing en datalekken, met monitoring en opvolging.",
-  },
-  {
-    title: "Proactief beheer",
-    body: "Monitoring en onderhoud van je werkplekken en systemen — problemen opgelost vóór ze je raken.",
-  },
-  {
-    title: "Support inbegrepen",
-    body: "Een vast, lokaal aanspreekpunt dat je omgeving kent. Snel bereikbaar wanneer je het nodig hebt.",
-  },
+  ["mail", "Microsoft 365", "E-mail, agenda, Teams en licenties — opgezet, beveiligd en onderhouden."],
+  ["database", "Veilige back-up", "Uw dossiers automatisch en versleuteld bewaard. Getest, niet gehoopt."],
+  ["file-check", "Peppol e-facturatie", "Klaar voor de verplichte e-facturatie, gekoppeld aan uw boekhouding."],
+  ["shield-check", "Cybersecurity & MFA", "Bescherming tegen phishing en ransomware, met AI-detectie van verdacht gedrag."],
+  ["radar", "Proactieve monitoring", "Ik bewaak uw systemen en grijp in vóór er iets stilvalt."],
+  ["life-buoy", "Support inbegrepen", "Eén vast aanspreekpunt, bereikbaar 's avonds en in het weekend."],
 ];
 
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@type": "Service",
-  serviceType: "Managed IT-pakket voor KMO's",
-  provider: { "@type": "LocalBusiness", name: site.legalName },
-  areaServed: site.serviceArea,
-  name: "KMO-Pakket",
-  description:
-    "Volledige IT-ontzorging voor KMO's: Microsoft 365, backup, Peppol en cybersecurity aan een vaste maandprijs.",
-};
+const jsonLd = [
+  service({
+    name: "KMO-Pakket",
+    description:
+      "Volledige IT-ontzorging voor kleine kantoren: Microsoft 365, backup, Peppol en cybersecurity aan een vaste maandprijs.",
+    serviceType: "Managed IT-pakket",
+  }),
+  breadcrumbs([
+    ["Home", "/"],
+    ["KMO-Pakket", "/pakket"],
+  ]),
+];
 ---
 
 <BaseLayout
   title="KMO-Pakket — volledige IT-ontzorging aan een vaste maandprijs"
-  description="Het KMO-Pakket bundelt Microsoft 365, backup, Peppol en cybersecurity in één vaste maandprijs. Volledige ontzorging voor je onderneming."
+  description="Het KMO-Pakket bundelt Microsoft 365, backup, Peppol en cybersecurity in één vaste maandprijs. Volledige ontzorging voor uw kantoor, scherp geprijsd."
   jsonLd={jsonLd}
 >
-  <section class="border-b border-line bg-subtle">
-    <div class="container-page py-20 text-center">
-      <p class="inline-flex rounded-full border border-line bg-white px-3 py-1 text-xs font-semibold text-brand">
-        Het KMO-Pakket
-      </p>
-      <h1 class="mx-auto mt-5 max-w-3xl text-4xl font-extrabold leading-tight text-ink sm:text-5xl">
-        Volledige IT-ontzorging aan één vaste maandprijs.
-      </h1>
-      <p class="mx-auto mt-6 max-w-2xl text-lg text-muted">
-        Alles wat je KMO nodig heeft om veilig, productief en in regel te
-        werken — gebundeld in één pakket. Geen uurtje-factuurtje, geen
-        verrassingen. Eén partner, één prijs.
-      </p>
-      <div class="mt-8 flex justify-center">
-        <a href="/contact" class="btn-primary">Vraag je offerte op maat</a>
+  <section class="page-hero">
+    <div class="container page-hero__in pakket-hero">
+      <div>
+        <Kicker>Het KMO-Pakket</Kicker>
+        <h1>Volledige ontzorging aan één vaste prijs</h1>
+        <p class="lead page-hero__lead">
+          Alles wat een klein kantoor nodig heeft om veilig en in regel te
+          werken — gebundeld in één pakket. Geen uurtje-factuurtje, geen
+          verrassingen. Eén partner, één vaste prijs.
+        </p>
+        <div class="page-hero__actions">
+          <Button href="/contact" variant="primary" iconRight="arrow-right">Vraag uw offerte</Button>
+        </div>
+      </div>
+
+      <Card raised class="price-card">
+        <Badge tone="orange" dot>Meest gekozen</Badge>
+        <div class="price">
+          <span class="price__amount">{price}</span>
+          <span class="price__unit">{priceUnit}</span>
+        </div>
+        <p class="price__note">Voor een klein kantoor. Vaste prijs, maandelijks opzegbaar.</p>
+        <ul class="checklist price__list">
+          {
+            ["Microsoft 365 & e-mail", "Back-up van uw dossiers", "Peppol e-facturatie", "Beveiliging & monitoring", "Support buiten de uren"].map((i) => (
+              <li>
+                <span class="check"><Icon name="check" size={14} /></span>
+                <span>{i}</span>
+              </li>
+            ))
+          }
+        </ul>
+        <Button href="/contact" variant="primary" size="lg" fullWidth iconRight="arrow-right">
+          Start vrijblijvend
+        </Button>
+      </Card>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <Kicker>Wat zit erin?</Kicker>
+        <h2>Alles centraal beheerd, zonder kopzorgen</h2>
+      </div>
+      <div class="pakket-grid">
+        {
+          includes.map(([icon, title, body]) => (
+            <Card class="feature">
+              <span class="feature__icon"><Icon name={icon} size={20} /></span>
+              <h3>{title}</h3>
+              <p>{body}</p>
+            </Card>
+          ))
+        }
       </div>
     </div>
   </section>
 
-  <section class="container-page py-20">
-    <div class="max-w-2xl">
-      <h2 class="text-3xl font-bold text-ink">Wat zit er in het pakket?</h2>
-      <p class="mt-4 text-muted">
-        Alles centraal beheerd, zodat jij je geen zorgen hoeft te maken over je IT.
-      </p>
-    </div>
-
-    <div class="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-      {
-        includes.map((item) => (
-          <div class="rounded-card border border-line bg-white p-7">
-            <div class="grid h-10 w-10 place-items-center rounded-lg bg-brand/10 font-bold text-brand">
-              ✓
-            </div>
-            <h3 class="mt-4 text-lg font-bold text-ink">{item.title}</h3>
-            <p class="mt-2 text-sm text-muted">{item.body}</p>
-          </div>
-        ))
-      }
-    </div>
-  </section>
-
-  <section class="border-y border-line bg-subtle">
-    <div class="container-page grid gap-8 py-16 md:grid-cols-3">
+  <section class="section pakket-why">
+    <div class="container grid-3-plain">
       {
         [
-          {
-            k: "Voorspelbaar",
-            v: "Eén vaste maandprijs per gebruiker. Je weet exact waar je aan toe bent.",
-          },
-          {
-            k: "Compleet",
-            v: "Beheer, beveiliging, backup en support — alles onder één dak.",
-          },
-          {
-            k: "Lokaal",
-            v: `Een vast aanspreekpunt in ${site.serviceArea} dat je zaak echt kent.`,
-          },
-        ].map((b) => (
+          ["Voorspelbaar", "Eén vaste prijs. U weet exact waar u aan toe bent, elke maand."],
+          ["Compleet", "Beheer, beveiliging, backup en support — alles onder één dak."],
+          ["Lokaal", `Eén vast aanspreekpunt in ${site.serviceArea} dat uw zaak echt kent.`],
+        ].map(([k, v]) => (
           <div>
-            <h3 class="text-lg font-bold text-ink">{b.k}</h3>
-            <p class="mt-2 text-sm text-muted">{b.v}</p>
+            <h3 class="pakket-why__k">{k}</h3>
+            <p class="pakket-why__v">{v}</p>
           </div>
         ))
       }
@@ -116,7 +119,74 @@ const jsonLd = {
   </section>
 
   <CtaSection
-    title="Benieuwd wat het pakket voor jou kost?"
-    body="We stellen een pakket samen op maat van je team en bezorgen je een heldere prijs per gebruiker."
+    title="Benieuwd wat het pakket voor uw kantoor kost?"
+    body="Ik stel een pakket samen op maat van uw team en bezorg u een heldere prijs — vrijblijvend."
   />
 </BaseLayout>
+
+<style>
+  .pakket-hero {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: var(--space-7);
+    align-items: center;
+  }
+  .price-card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+  .price {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+  }
+  .price__amount {
+    font-family: var(--font-display);
+    font-weight: var(--fw-semibold);
+    font-size: var(--text-3xl);
+    color: var(--text-strong);
+    letter-spacing: -0.02em;
+  }
+  .price__unit {
+    font-size: var(--text-md);
+    color: var(--text-muted);
+  }
+  .price__note {
+    font-size: var(--text-sm);
+    color: var(--text-muted);
+    margin: 0;
+  }
+  .price__list {
+    margin: var(--space-2) 0;
+  }
+  .pakket-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-5);
+  }
+  .pakket-why {
+    background: var(--paper);
+    border-block: 1px solid var(--border-soft);
+  }
+  .grid-3-plain {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-6);
+  }
+  .pakket-why__k {
+    font-size: var(--text-lg);
+  }
+  .pakket-why__v {
+    margin-top: var(--space-2);
+    font-size: var(--text-sm);
+    color: var(--text-muted);
+  }
+  @media (max-width: 880px) {
+    .pakket-hero,
+    .pakket-grid,
+    .grid-3-plain {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

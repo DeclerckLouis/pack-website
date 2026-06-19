@@ -1,0 +1,16 @@
+---
+// Thin wrapper for Lucide icons. Lucide is loaded from CDN in BaseLayout and
+// replaces these <i data-lucide> placeholders with inline SVG on load.
+interface Props {
+  name: string;
+  size?: number;
+  class?: string;
+  color?: string;
+}
+const { name, size = 18, class: className, color } = Astro.props;
+const style = [`width:${size}px`, `height:${size}px`, color && `color:${color}`]
+  .filter(Boolean)
+  .join(";");
+---
+
+<i data-lucide={name} style={style} class={className} aria-hidden="true"></i>

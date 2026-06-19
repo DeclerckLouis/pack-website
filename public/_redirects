@@ -1,0 +1,28 @@
+# 301 redirect map for the Odoo → Astro migration.
+# Format: Netlify / Cloudflare Pages `_redirects`. The trailing `301!` forces
+# the redirect even if a file exists. Old paths below are the real indexed
+# Odoo URLs from Google Search Console (Pages export).
+#
+# LAUNCH BLOCKER (only relevant once the site moves to packetflow.be): without
+# these, the ranking + backlink equity of the old URLs is lost.
+
+# ---- Canonical host: keep www (the host Odoo ranks on), 301 the apex ----
+https://packetflow.be/*   https://www.packetflow.be/:splat   301!
+
+# ---- Old Odoo paths → new equivalents (from GSC) ----
+/diensten/it-beheer        /diensten/it-beheer-support           301   # 493 impressions
+/kmo-pakket                /pakket                               301   # 377 impressions
+/diensten/wifi-netwerk     /diensten/zakelijke-wifi-netwerken    301
+/sectoren/vrije-beroepen   /sectoren/vrije-beroepen-praktijken   301
+/contactus                 /contact                              301
+/appointment/1             /contact                              301   # Odoo appointment page
+
+# English pages → Dutch equivalents (site is nl-only now)
+/en/about-me               /over-mij                             301
+/en/privacy                /privacy                              301
+/en/*                      /                                     301
+
+# Unchanged slugs (/, /over-mij, /privacy) need no redirect.
+#
+# NOTE: lab.packetflow.be (homelab) is a separate subdomain — out of scope here.
+# TODO: re-check GSC before DNS cutover in case new URLs got indexed since.

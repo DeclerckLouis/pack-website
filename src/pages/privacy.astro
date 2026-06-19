@@ -1,22 +1,38 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
+import Kicker from "@/components/Kicker.astro";
 import { site } from "@/data/site";
 ---
 
 <BaseLayout title="Privacybeleid" description={`Privacybeleid van ${site.legalName}.`}>
-  <section class="container-page py-20">
-    <div class="prose-pack max-w-3xl">
-      <h1 class="text-4xl font-extrabold text-ink">Privacybeleid</h1>
-      <p class="mt-6">
-        Dit is een tijdelijke placeholder voor het privacybeleid van
-        {site.legalName}. Vervang deze tekst door je definitieve privacyverklaring
-        die voldoet aan de GDPR/AVG, met onder meer welke gegevens je verzamelt,
-        waarvoor, hoe lang je ze bewaart en welke rechten bezoekers hebben.
-      </p>
-      <p class="mt-4">
-        Voor vragen over je gegevens kan je ons bereiken via
-        <a href={`mailto:${site.email}`} class="text-brand">{site.email}</a>.
-      </p>
+  <section class="section">
+    <div class="container privacy">
+      <Kicker>Juridisch</Kicker>
+      <h1 class="privacy__title">Privacybeleid</h1>
+      <div class="prose">
+        <p>
+          Dit is een tijdelijke placeholder voor het privacybeleid van
+          {site.legalName}. Vervang deze tekst vóór de lancering door uw
+          definitieve privacyverklaring conform de GDPR/AVG: welke gegevens u
+          verzamelt, waarvoor, hoe lang u ze bewaart, met wie u ze deelt en
+          welke rechten bezoekers hebben.
+        </p>
+        <p>
+          Heeft u een vraag over uw gegevens? Mail gerust naar
+          <a href={`mailto:${site.email}`}>{site.email}</a> of bel
+          <a href={site.phoneHref}>{site.phone}</a>.
+        </p>
+      </div>
     </div>
   </section>
 </BaseLayout>
+
+<style>
+  .privacy {
+    max-width: var(--container-md);
+  }
+  .privacy__title {
+    font-size: var(--text-2xl);
+    margin: var(--space-3) 0 var(--space-5);
+  }
+</style>

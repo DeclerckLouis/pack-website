@@ -3,17 +3,22 @@ import "@/styles/global.css";
 import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
 import { site } from "@/data/site";
+import { url } from "@/lib/url";
 
 interface Props {
   title: string;
   description?: string;
-  /** Optional JSON-LD structured data object(s). */
   jsonLd?: Record<string, unknown> | Record<string, unknown>[];
+  /** Social share image, relative to the site root. */
+  image?: string;
 }
 
-const { title, description = site.description, jsonLd } = Astro.props;
-const fullTitle = title === site.name ? title : `${title} | ${site.name}`;
+const { title, description = site.description, jsonLd, image = "/images/og-image.png" } =
+  Astro.props;
+const fullTitle =
+  title === site.name ? `${site.name} — ${site.tagline}` : `${title} | ${site.name}`;
 const canonical = new URL(Astro.url.pathname, Astro.site ?? Astro.url).href;
+const ogImage = new URL(url(image), Astro.site ?? Astro.url).href;
 ---
 
 <!doctype html>
@@ -21,50 +26,41 @@ const canonical = new URL(Astro.url.pathname, Astro.site ?? Astro.url).href;
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/svg+xml" href={url("/favicon.svg")} />
     <link rel="canonical" href={canonical} />
     <meta name="generator" content={Astro.generator} />
 
     <title>{fullTitle}</title>
     <meta name="description" content={description} />
 
-    <!-- Open Graph -->
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="nl_BE" />
     <meta property="og:site_name" content={site.name} />
     <meta property="og:title" content={fullTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
-
+    <meta property="og:image" content={ogImage} />
     <meta name="twitter:card" content="summary_large_image" />
-
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
-      rel="stylesheet"
-    />
+    <meta name="twitter:image" content={ogImage} />
 
     {
       jsonLd && (
-        <script
-          type="application/ld+json"
-          set:html={JSON.stringify(jsonLd)}
-        />
+        <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
       )
     }
   </head>
   <body>
-    <a
-      href="#main"
-      class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[100] focus:rounded-md focus:bg-brand focus:px-4 focus:py-2 focus:text-white"
-    >
-      Naar inhoud
-    </a>
+    <a href="#main" class="skip-link">Naar inhoud</a>
     <Header />
     <main id="main">
       <slot />
     </main>
     <Footer />
+
+    <!-- Lucide icons: replaces <i data-lucide> placeholders with inline SVG. -->
+    <script src="https://unpkg.com/lucide@latest" is:inline></script>
+    <script is:inline>
+      window.lucide && window.lucide.createIcons();
+    </script>
   </body>
 </html>
