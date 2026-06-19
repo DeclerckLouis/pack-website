@@ -11,19 +11,19 @@ export type Partner = {
 };
 
 export const partnersIntro =
-  "Trots om te werken met de oplossingen van toonaangevende partners — bewezen technologie, professioneel voor u ingericht.";
+  "Trots om te werken met de netwerkoplossingen van erkende partners — professionele WiFi en netwerken die u kunt vertrouwen.";
 
 export const partners: Partner[] = [
   {
-    name: "Microsoft Cloud Partner",
-    logo: "/images/partners/microsoft.svg",
-    alt: "Microsoft Cloud Partner",
-    url: "https://www.microsoft.com/",
+    name: "Ruckus Registered Partner",
+    logo: "/images/partnership-badges/ruckus-registered.png",
+    alt: "Ruckus Networks Registered Partner",
+    url: "https://www.ruckusnetworks.com/",
   },
   {
-    name: "Pax8",
-    logo: "/images/partners/pax8.svg",
-    alt: "Pax8 partner",
-    url: "https://www.pax8.com/",
+    name: "Zyxel Ally",
+    logo: "/images/partnership-badges/zyxel-ally.png",
+    alt: "Zyxel Networks Ally partner",
+    url: "https://www.zyxel.com/",
   },
 ];

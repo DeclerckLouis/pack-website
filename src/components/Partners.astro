@@ -20,9 +20,9 @@ import { url } from "@/lib/url";
                 alt={p.alt}
                 loading="lazy"
                 class="partners__logo"
-                onerror="this.style.display='none'"
+                onerror="this.style.display='none'; this.nextElementSibling.classList.remove('sr-only')"
               />
-              <span class="partners__name">{p.name}</span>
+              <span class="partners__name sr-only">{p.name}</span>
             </>
           );
           return (
@@ -73,9 +73,10 @@ import { url } from "@/lib/url";
   .partners__item > :global(*) {
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: var(--space-4);
     height: 100%;
-    padding: var(--space-4) var(--space-5);
+    padding: var(--space-5);
     background: var(--surface-raised);
     border: 1px solid var(--border-soft);
     border-radius: var(--radius-md);
@@ -86,7 +87,7 @@ import { url } from "@/lib/url";
     box-shadow: var(--shadow-sm);
   }
   .partners__logo {
-    height: 36px;
+    height: 64px;
     width: auto;
     flex: none;
   }

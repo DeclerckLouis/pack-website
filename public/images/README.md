@@ -19,12 +19,12 @@ Tip: when logged into the old site, right-click → "Save image as", or use
 
 ## Partner badges
 
-Drop partner logos in `public/images/partners/` (edit the list in
-`src/data/partners.ts`). Defaults expected:
+Partner badges live in `public/images/partnership-badges/` (edit the list in
+`src/data/partners.ts`). Current:
 
 | Filename | Partner |
 | --- | --- |
-| `partners/microsoft.svg` | Microsoft Cloud Partner |
-| `partners/pax8.svg` | Pax8 |
+| `partnership-badges/ruckus-registered.png` | Ruckus Registered Partner |
+| `partnership-badges/zyxel-ally.png` | Zyxel Ally |
 
-Until a logo exists, a clean text badge with the partner name shows instead.
+Until a logo exists, the partner name shows as text instead.
