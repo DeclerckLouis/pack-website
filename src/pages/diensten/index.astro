@@ -83,7 +83,7 @@ const jsonLd = breadcrumbs([
   .svc-hub {
     display: grid;
     grid-template-columns: 1.6fr 1fr;
-    gap: var(--space-6);
+    gap: var(--space-7);
     align-items: start;
   }
   .svc-hub__icon {
@@ -136,6 +136,10 @@ const jsonLd = breadcrumbs([
   @media (max-width: 880px) {
     .svc-hub {
       grid-template-columns: 1fr;
+    }
+    /* stacked: keep the regio box clear of the button above it */
+    .svc-hub__locals {
+      margin-top: var(--space-5);
     }
   }
 </style>

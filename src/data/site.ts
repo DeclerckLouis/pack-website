@@ -4,7 +4,7 @@ export const site = {
   legalName: "Packetflow",
   owner: "Louis Declerck",
   tagline: "Uw partner in IT",
-  pillars: "Lokaal · Discreet · Scherp geprijsd",
+  pillars: "Lokaal · Persoonlijk · Scherp geprijsd",
   description:
     "Packetflow is uw lokale IT-partner in West-Vlaanderen. In bijberoep help ik advocaten, architecten en makelaars met Microsoft 365, veilige backup, Peppol en cybersecurity — één aanspreekpunt, proactief en scherp geprijsd.",
   email: "louis@packetflow.be",

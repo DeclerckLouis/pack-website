@@ -193,7 +193,7 @@ const firstContact = [
 <style>
   .about-hero {
     display: grid;
-    grid-template-columns: 1.4fr 0.6fr;
+    grid-template-columns: 1.25fr 0.75fr;
     gap: var(--space-7);
     align-items: center;
   }
@@ -208,8 +208,10 @@ const firstContact = [
     gap: var(--space-3);
   }
   .about-portrait {
-    width: 220px;
-    height: 270px;
+    width: 100%;
+    max-width: 300px;
+    aspect-ratio: 4 / 5;
+    height: auto;
     border-radius: var(--radius-lg);
     box-shadow: var(--shadow-md);
   }
@@ -224,7 +226,7 @@ const firstContact = [
   }
   .about-bijberoep {
     display: grid;
-    grid-template-columns: 1.3fr 0.7fr;
+    grid-template-columns: 1fr 1fr;
     gap: var(--space-7);
     align-items: start;
   }
@@ -248,13 +250,14 @@ const firstContact = [
   }
   .about-case__quote {
     margin: var(--space-4) 0 0;
-    padding: 0;
+    padding: 0 0 0 var(--space-5);
     border: 0;
-    font-family: var(--font-display);
-    font-style: italic;
-    font-size: clamp(20px, 2.4vw, 26px);
-    line-height: 1.5;
-    color: var(--text-strong);
+    border-left: 3px solid var(--orange-500);
+    font-family: var(--font-sans);
+    font-style: normal;
+    font-size: clamp(17px, 1.4vw, 19px);
+    line-height: 1.7;
+    color: var(--text-body);
   }
 
   .about-steps {
