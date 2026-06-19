@@ -16,3 +16,15 @@ a graceful monogram/placeholder shows instead, so nothing looks broken).
 
 Tip: when logged into the old site, right-click → "Save image as", or use
 `curl -o louis.jpg "<url>"` from a browser session that has the cookie.
+
+## Partner badges
+
+Drop partner logos in `public/images/partners/` (edit the list in
+`src/data/partners.ts`). Defaults expected:
+
+| Filename | Partner |
+| --- | --- |
+| `partners/microsoft.svg` | Microsoft Cloud Partner |
+| `partners/pax8.svg` | Pax8 |
+
+Until a logo exists, a clean text badge with the partner name shows instead.
