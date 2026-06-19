@@ -128,7 +128,9 @@ const jsonLd = [
     color: var(--text-strong);
     margin: var(--space-4) 0 var(--space-6);
   }
-  .local-hubcard {
+  /* Card root carries the Card component's scope, not this page's —
+     target it with :global() so these styles actually apply. */
+  .local-grid :global(.local-hubcard) {
     margin-top: var(--space-6);
     background: var(--surface-sunken);
   }
