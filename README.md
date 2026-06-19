@@ -22,6 +22,19 @@ npm run build    # output to ./dist
 npm run preview
 ```
 
+### One-shot environment setup
+
+`./scripts/setup.sh` installs dependencies, wires up Playwright against the
+environment's cached Chromium (so it works in sandboxes that block the
+Playwright CDN), and smoke-tests the build. After it runs you can screenshot
+any page for visual verification:
+
+```bash
+npm run preview &
+node scripts/screenshot.mjs http://localhost:4321/diensten /tmp/diensten.png 1280
+```
+
+
 ## Information architecture
 
 Two cross-linked layers, both generated from data files:
