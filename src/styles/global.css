@@ -289,13 +289,6 @@ svg {
   border-radius: var(--radius-md);
 }
 
-/* Lucide icons inherit text color & size. */
-[data-lucide] {
-  width: 1em;
-  height: 1em;
-  stroke-width: 2;
-}
-
 /* ============================================================
    Shared page building blocks (sub-pages)
    ============================================================ */

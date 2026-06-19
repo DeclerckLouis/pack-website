@@ -9,9 +9,9 @@ import Button from "@/components/Button.astro";
 import { site } from "@/data/site";
 import { service, breadcrumbs } from "@/lib/schema";
 
-// PRICING: aligned to the live Odoo site (€99/maand, vast). Confirm before
-// launch — change `price` / `priceUnit` here if the model differs.
-const price = "€99";
+// PRICING: an entry "vanaf" price — the package is scoped per kantoor, so the
+// closing CTA ("op maat van uw team") and this headline stay consistent.
+const price = "vanaf €99";
 const priceUnit = "/ maand";
 
 const includes = [
@@ -63,7 +63,10 @@ const jsonLd = [
           <span class="price__amount">{price}</span>
           <span class="price__unit">{priceUnit}</span>
         </div>
-        <p class="price__note">Voor een klein kantoor. Vaste prijs, maandelijks opzegbaar.</p>
+        <p class="price__note">
+          Voor een klein kantoor, op maat van uw team. Maandelijks opzegbaar.
+          Microsoft 365-licenties worden apart en aan kostprijs doorgerekend.
+        </p>
         <ul class="checklist price__list">
           {
             ["Microsoft 365 & e-mail", "Back-up van uw dossiers", "Peppol e-facturatie", "Beveiliging & monitoring", "Support buiten de uren"].map((i) => (

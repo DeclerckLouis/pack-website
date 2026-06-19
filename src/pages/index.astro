@@ -10,24 +10,12 @@ import Icon from "@/components/Icon.astro";
 import Portrait from "@/components/Portrait.astro";
 import { site } from "@/data/site";
 import { services } from "@/data/services";
+import { localBusiness } from "@/lib/schema";
 import { url } from "@/lib/url";
 
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@type": "LocalBusiness",
-  name: site.legalName,
-  description: site.description,
-  telephone: site.phoneIntl,
-  email: site.email,
-  areaServed: site.serviceArea,
-  founder: { "@type": "Person", name: site.owner },
-  address: {
-    "@type": "PostalAddress",
-    addressLocality: site.address.city,
-    addressRegion: site.address.region,
-    addressCountry: "BE",
-  },
-};
+// Reference the canonical LocalBusiness node so the homepage and every inner
+// page describe the same business (one source of truth in schema.ts).
+const jsonLd = localBusiness();
 
 const status = [
   ["Microsoft 365", "shield-check", "success", "Veilig"],
