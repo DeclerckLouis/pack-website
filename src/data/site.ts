@@ -23,7 +23,7 @@ export const site = {
   // TODO before launch: confirm this points at wherever Odoo lives after the
   // migration, and configure CORS + the website_form allowlist on Odoo (see
   // the contact-form PR for the exact Odoo-side steps).
-  odooBaseUrl: import.meta.env.PUBLIC_ODOO_URL ?? "https://www.packetflow.be",
+  odooBaseUrl: import.meta.env.PUBLIC_ODOO_URL ?? "https://louisdeclerck.odoo.com",
 } as const;
 
 // Top navigation. Lean by design: the service hubs live under /diensten, the
