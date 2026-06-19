@@ -6,6 +6,7 @@ import Badge from "@/components/Badge.astro";
 import Card from "@/components/Card.astro";
 import Kicker from "@/components/Kicker.astro";
 import Icon from "@/components/Icon.astro";
+import Portrait from "@/components/Portrait.astro";
 import { site } from "@/data/site";
 import { services } from "@/data/services";
 import { url } from "@/lib/url";
@@ -34,10 +35,11 @@ const status = [
   ["Werkstation — balie", "monitor", "warning", "Update gepland"],
 ];
 
+// Warmer "why" blocks, restored from the previous site.
 const pillars = [
-  ["wallet", "Scherp geprijsd", "Geen overhead van een groot bedrijf. U betaalt voor het werk, niet voor de kantoren errond."],
-  ["radar", "Proactieve monitoring", "Ik bewaak uw systemen op de achtergrond en grijp in vóór er iets stilvalt."],
-  ["handshake", "Eén aanspreekpunt", "Altijd dezelfde persoon, die uw zaak en uw dossiers kent. Geen wachtrij, geen ticketnummer."],
+  ["clock", "Ondersteuning buiten de 9-to-5", "Uw zaak beheren stopt niet om 17u. Ik ook niet. Beschikbaar 's avonds en in het weekend om uw systemen draaiende te houden."],
+  ["map-pin", "Lokaal in Jabbeke", "Snelle ondersteuning ter plaatse voor lokale bedrijven in West- en Oost-Vlaanderen."],
+  ["award", "Kwaliteit & flexibiliteit", "Professionele IT-standaarden, met de flexibiliteit om te ondersteunen wanneer het er echt toe doet."],
 ];
 
 // Flatten the hubs into a single services grid for the homepage teaser.
@@ -86,7 +88,7 @@ const posture = [
       <div>
         <Card raised padded={false}>
           <div class="statuscard__head">
-            <span class="statuscard__title">Systeemstatus — Maes Advocaten</span>
+            <span class="statuscard__title">Systeemstatus — voorbeeldkantoor</span>
             <Badge tone="success" dot>Operationeel</Badge>
           </div>
           <div class="statuscard__body">
@@ -102,7 +104,7 @@ const posture = [
               ))
             }
             <p class="statuscard__note">
-              <Icon name="eye" size={14} /> Proactief gemonitord — ik zie het vaak vóór u het merkt.
+              <Icon name="eye" size={14} /> Illustratief voorbeeld — proactief gemonitord, ik zie het vaak vóór u het merkt.
             </p>
           </div>
         </Card>
@@ -141,7 +143,7 @@ const posture = [
             Alles wat een klein kantoor nodig heeft
           </h2>
         </div>
-        <Badge tone="blue">Voor advocaten, architecten &amp; makelaars</Badge>
+        <Badge tone="blue">Voor praktijken, kantoren, horeca &amp; verenigingen</Badge>
       </div>
       <div class="svc-grid">
         {
@@ -216,7 +218,7 @@ const posture = [
             ))
           }
           <p class="statuscard__note">
-            <Icon name="eye" size={14} /> AI helpt mee bewaken — verdacht gedrag valt sneller op.
+            <Icon name="eye" size={14} /> Illustratief voorbeeld — AI helpt mee bewaken, verdacht gedrag valt sneller op.
           </p>
         </div>
       </Card>
@@ -232,7 +234,7 @@ const posture = [
         met hun IT — zodat techniek nooit in de weg staat van uw échte werk.”
       </blockquote>
       <div class="about__person">
-        <span class="about__avatar">LD</span>
+        <Portrait src="/images/louis.jpg" alt="Louis Declerck" class="about__avatar" />
         <div>
           <div class="about__name">Louis Declerck</div>
           <div class="about__meta">Packetflow · Jabbeke, West-Vlaanderen</div>
@@ -488,13 +490,8 @@ const posture = [
     width: 52px;
     height: 52px;
     border-radius: 50%;
-    background: var(--blue-700);
-    color: #fff;
-    display: grid;
-    place-content: center;
-    font-weight: var(--fw-semibold);
-    font-family: var(--font-sans);
     flex: none;
+    --portrait-mono: var(--text-base);
   }
   .about__name {
     font-family: var(--font-sans);

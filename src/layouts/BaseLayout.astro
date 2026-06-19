@@ -9,12 +9,16 @@ interface Props {
   title: string;
   description?: string;
   jsonLd?: Record<string, unknown> | Record<string, unknown>[];
+  /** Social share image, relative to the site root. */
+  image?: string;
 }
 
-const { title, description = site.description, jsonLd } = Astro.props;
+const { title, description = site.description, jsonLd, image = "/images/og-image.png" } =
+  Astro.props;
 const fullTitle =
   title === site.name ? `${site.name} — ${site.tagline}` : `${title} | ${site.name}`;
 const canonical = new URL(Astro.url.pathname, Astro.site ?? Astro.url).href;
+const ogImage = new URL(url(image), Astro.site ?? Astro.url).href;
 ---
 
 <!doctype html>
@@ -35,7 +39,9 @@ const canonical = new URL(Astro.url.pathname, Astro.site ?? Astro.url).href;
     <meta property="og:title" content={fullTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content={ogImage} />
 
     {
       jsonLd && (

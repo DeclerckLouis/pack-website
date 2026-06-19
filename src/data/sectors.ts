@@ -18,6 +18,8 @@ export type Sector = {
   icon: string; // Lucide icon name
   tagline: string;
   description: string;
+  /** Optional hero photo (in public/images); hidden gracefully if absent. */
+  image?: string;
   /** The pains this audience recognises — written in their words. */
   pains: { title: string; body: string; icon: string }[];
   /** How Packetflow answers each pain. */
@@ -34,6 +36,7 @@ export const sectors: Sector[] = [
     navTitle: "Vrije beroepen & praktijken",
     title: "IT voor advocaten, architecten & makelaars",
     icon: "scale",
+    image: "/images/sector-vrije-beroepen.webp",
     tagline:
       "Discrete, betrouwbare IT voor kleine kantoren waar vertrouwen en dossiers centraal staan.",
     description:
@@ -69,6 +72,7 @@ export const sectors: Sector[] = [
     navTitle: "Horeca & B&B's",
     title: "IT & WiFi voor horeca en B&B's",
     icon: "utensils",
+    image: "/images/sector-horeca.webp",
     tagline:
       "Een kassa die niet uitvalt en gasten-WiFi die werkt — ook op het drukste moment.",
     description:

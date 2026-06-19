@@ -5,6 +5,7 @@ import Card from "@/components/Card.astro";
 import Kicker from "@/components/Kicker.astro";
 import Icon from "@/components/Icon.astro";
 import Button from "@/components/Button.astro";
+import Portrait from "@/components/Portrait.astro";
 import { site } from "@/data/site";
 import { breadcrumbs, ORG_ID } from "@/lib/schema";
 
@@ -23,93 +24,166 @@ const jsonLd = [
   ]),
 ];
 
-const values = [
-  ["handshake", "Persoonlijk", "U krijgt altijd mij aan de lijn — dezelfde persoon die uw kantoor kent."],
-  ["clock", "Buiten de uren", "Ik werk 's avonds en in het weekend, zodat uw werk nooit stilvalt."],
-  ["wallet", "Scherp geprijsd", "Geen complexe contracten, geen overhead. U betaalt voor het werk."],
+const principles = [
+  ["file-text", "Documentatie als standaard", "Netwerkschema's, configuraties, wachtwoorden — bewaard en beschikbaar zodat een andere IT'er morgen verder kan zonder bij nul te beginnen."],
+  ["scale", "Eerlijk advies, ook tegen mijn omzet in", "Werkt uw setup goed genoeg? Dan zeg ik dat. Heeft u iets niet nodig? Dan verkoop ik het niet."],
+  ["unlock", "Geen langetermijncontracten", "U werkt met mij zolang u tevreden bent. Geen lock-in, geen vaste maandkosten zonder duidelijke waarde."],
+  ["map-pin", "Ter plaatse én op afstand", "Installaties: ik kom langs. Configuratie en mailproblemen: meestal op afstand — sneller voor u."],
+  ["badge-check", "Microsoft Cloud Partner", "Voor M365-licenties wordt u rechtstreeks bij mij gefactureerd. Eén partij, één factuur, één aanspreekpunt."],
+  ["users", "Samenwerking met collega's", "Voor stroomwerken werk ik samen met elektriciens. Voor zware projecten verwijs ik door. Geen beloftes die ik niet kan waarmaken."],
+];
+
+const meaning = [
+  "Ik kies klanten zorgvuldig. Geen tien dossiers in parallel, geen weken wachten op een antwoord.",
+  "U krijgt mij persoonlijk. Geen callcenter, geen “iemand uit mijn team belt u terug”.",
+  "Ik kom langs wanneer u tijd heeft. Zaakvoerders en bestuursleden zijn overdag bezig met hun eigen zaak.",
+  "Mijn tarieven zijn redelijk. Geen kantoor, geen overhead, geen marketingafdeling die betaald moet worden.",
+];
+
+const firstContact = [
+  ["U vertelt kort wat u zoekt", "Een nieuw netwerk, een Peppol-deadline, een crashende laptop, of gewoon “ik weet niet waar te beginnen”."],
+  ["U krijgt eerlijk antwoord", "Of ik kan helpen, of niet, of u beter ergens anders zit. Geen verkooppraatje, geen automatisch ingeplande “ontdekkingsgesprekken”."],
+  ["Past het?", "Dan plannen we een vrijblijvende intake — telefonisch, op afstand, of ter plaatse als dat zinvol is. Pas als u akkoord bent met een offerte begint het echte werk."],
 ];
 ---
 
 <BaseLayout
   title="Over mij — Louis Declerck, Packetflow"
-  description="Ik ben Louis Declerck uit Jabbeke. Als netwerkspecialist help ik in bijberoep kleine kantoren met hun IT — persoonlijk, lokaal en zonder complexe contracten."
+  description="Ik ben Louis Declerck, oprichter van Packetflow. Geen tussenpersoon, geen wisselend team — u krijgt mij persoonlijk, 's avonds en in het weekend. Lokaal in West-Vlaanderen."
   jsonLd={jsonLd}
 >
+  {/* Hero */}
   <section class="page-hero">
     <div class="container page-hero__in about-hero">
       <div>
         <Kicker>Over mij</Kicker>
-        <h1>Achter Packetflow zit één persoon — ik</h1>
-        <p class="lead page-hero__lead">
-          Geen callcenter, geen wisselende technici. Bij Packetflow krijgt u
-          altijd dezelfde persoon die uw zaak en uw dossiers kent.
-        </p>
+        <h1>Hallo, ik ben Louis!</h1>
+        <div class="prose about-hero__intro">
+          <p>
+            Ik ben de oprichter van Packetflow en de persoon die uw IT in handen
+            krijgt. Geen tussenpersoon, geen wisselend team, geen junior met mijn
+            naam op de offerte.
+          </p>
+          <p>
+            Overdag werk ik als netwerkspecialist in een professionele
+            IT-omgeving. 's Avonds en in het weekend ben ik beschikbaar voor mijn
+            eigen klanten. Voor de meeste zaakvoerders en bestuurders is dat
+            precies het moment waarop ze zelf tijd hebben.
+          </p>
+        </div>
+        <div class="page-hero__actions">
+          <Button href="/contact" variant="primary" iconRight="send">Stuur me een bericht</Button>
+        </div>
       </div>
-      <div class="portrait">
-        {/* TODO: vervang door een echte foto van Louis (plaats in public/louis.jpg
-            en zet hier een <img src="/louis.jpg" alt="Louis Declerck" />). */}
-        <div class="portrait__ph" aria-hidden="true">LD</div>
-        <span class="portrait__cap">Louis Declerck · Jabbeke</span>
+      <div class="about-hero__photo">
+        <Portrait src="/images/louis.jpg" alt="Louis Declerck, oprichter van Packetflow" class="about-portrait" />
+        <span class="about-hero__cap">Louis Declerck · Jabbeke</span>
       </div>
     </div>
   </section>
 
+  {/* Bijberoep */}
   <section class="section">
-    <div class="container about-letter">
+    <div class="container about-bijberoep">
       <div class="prose">
-        <p class="about-letter__hi">Hallo,</p>
+        <Kicker>Eerlijk verhaal</Kicker>
+        <h2 class="about-h2">Waarom Packetflow een bijberoep is, en waarom dat goed nieuws is</h2>
         <p>
-          Ik ben <strong>Louis Declerck</strong> uit Jabbeke. Als
-          netwerkspecialist werk ik overdag in de IT, en in bijberoep help ik
-          kleine kantoren — advocaten, architecten en makelaars — met alles wat
-          met hun IT te maken heeft.
+          Een vraag die soms terugkomt: “Doe je dit werk fulltime?” Eerlijk
+          antwoord: nee.
         </p>
         <p>
-          Ik merkte dat net die kleine kantoren vaak tussen wal en schip vallen.
-          Te klein voor een eigen IT-afdeling, te belangrijk om de IT zomaar aan
-          het toeval over te laten. Ze hebben geen nood aan een groot bedrijf met
-          complexe contracten en een wachtrij — ze hebben nood aan iemand die
-          opneemt, die hun zaak kent, en die het gewoon oplost.
+          Packetflow runt op avonden en weekends. Dat is geen tijdelijke fase —
+          het is een bewuste keuze, en het bepaalt voor wie ik wel en niet de
+          juiste IT-partner ben.
         </p>
-        <p>
-          Dat is wat ik doe. Microsoft 365, een veilige back-up van uw dossiers,
-          Peppol en beveiliging — proactief bewaakt, zodat ik problemen vaak zie
-          vóór u ze merkt. En omdat ik geen kantoren en overhead moet betalen,
-          kan ik dat scherp geprijsd aanbieden.
-        </p>
-        <p>
-          Geen complexe contracten, gewoon persoonlijke service. Onderhoud doe ik
-          's avonds en in het weekend, zodat uw werk nooit wordt onderbroken.
-        </p>
-        <p class="about-letter__sign">— Louis</p>
       </div>
-
-      <aside>
-        <Card class="about-facts">
-          <h2 class="about-facts__title">In het kort</h2>
-          <ul>
-            <li><Icon name="map-pin" size={16} /> {site.address.city}, {site.address.region}</li>
-            <li><Icon name="briefcase" size={16} /> IT in bijberoep, netwerkspecialist</li>
-            <li><Icon name="clock" size={16} /> Beschikbaar 's avonds &amp; in het weekend</li>
-            <li><Icon name="phone" size={16} /> <a href={site.phoneHref}>{site.phone}</a></li>
-            <li><Icon name="mail" size={16} /> <a href={`mailto:${site.email}`}>{site.email}</a></li>
-          </ul>
-        </Card>
-      </aside>
+      <Card class="about-meaning">
+        <h3 class="about-meaning__title">Wat het betekent voor u</h3>
+        <ul class="checklist">
+          {
+            meaning.map((m) => (
+              <li>
+                <span class="check"><Icon name="check" size={14} /></span>
+                <span>{m}</span>
+              </li>
+            ))
+          }
+        </ul>
+      </Card>
     </div>
   </section>
 
-  <section class="section about-values">
-    <div class="container grid-3-plain">
-      {
-        values.map(([icon, k, v]) => (
-          <div class="about-value">
-            <span class="about-value__icon"><Icon name={icon} size={20} color="#fff" /></span>
-            <h3>{k}</h3>
-            <p>{v}</p>
-          </div>
-        ))
-      }
+  {/* Hoe ik werk */}
+  <section class="section about-work">
+    <div class="container">
+      <div class="section-head">
+        <Kicker>Hoe ik werk</Kicker>
+        <h2>Een paar principes waar u mij aan mag houden</h2>
+      </div>
+      <div class="grid-cards about-work__grid">
+        {
+          principles.map(([icon, title, body]) => (
+            <Card class="feature">
+              <span class="feature__icon"><Icon name={icon} size={20} /></span>
+              <h3>{title}</h3>
+              <p>{body}</p>
+            </Card>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  {/* Praktijkcase */}
+  <section class="section">
+    <div class="container about-case">
+      <Kicker>Een voorbeeld uit de praktijk</Kicker>
+      <blockquote class="about-case__quote">
+        Een kleine onderneming in Wallonië, na de overname van een pand waarvan
+        de vorige eigenaar de IT-infrastructuur “even snel zelf had gedaan”.
+        Resultaat: een patchkast vol ongelabelde kabels, een netwerk dat niemand
+        begreep, en bij elke storing de hoop dat je niet de verkeerde stekker uit
+        zou trekken. Tien uur ter plaatse: alles in kaart gebracht, herbedraad,
+        gelabeld, gedocumenteerd. Nu weet de eigenaar — en elke toekomstige
+        IT'er — exact wat waar zit.
+      </blockquote>
+    </div>
+  </section>
+
+  {/* Eerste contact */}
+  <section class="section about-steps">
+    <div class="container">
+      <div class="section-head">
+        <Kicker>Hoe een eerste contact eruitziet</Kicker>
+        <h2>Drie stappen, zonder verkooppraat</h2>
+      </div>
+      <ol class="steps">
+        {
+          firstContact.map(([title, body], i) => (
+            <li class="step">
+              <span class="step__num">{i + 1}</span>
+              <div>
+                <h3 class="step__title">{title}</h3>
+                <p class="step__body">{body}</p>
+              </div>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </section>
+
+  {/* Waar werk ik */}
+  <section class="section about-area">
+    <div class="container">
+      <Kicker color="var(--orange-300)">Waar werk ik</Kicker>
+      <p class="about-area__text">
+        Mijn thuisbasis is Jabbeke. Ik werk regelmatig in Brugge, Oostende,
+        Knokke-Heist, Blankenberge, Zedelgem, Oostkamp en de rest van
+        West-Vlaanderen. Voor specifieke projecten reis ik verder: recente
+        klanten zaten in Oost-Vlaanderen en Wallonië.
+      </p>
     </div>
   </section>
 
@@ -123,104 +197,129 @@ const values = [
     gap: var(--space-7);
     align-items: center;
   }
-  .portrait {
+  .about-hero__intro {
+    margin-top: var(--space-5);
+    max-width: 56ch;
+  }
+  .about-hero__photo {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: var(--space-3);
   }
-  .portrait__ph {
-    width: 180px;
-    height: 220px;
+  .about-portrait {
+    width: 220px;
+    height: 270px;
     border-radius: var(--radius-lg);
-    background: linear-gradient(160deg, var(--blue-700), var(--blue-900));
-    color: var(--cream);
-    display: grid;
-    place-content: center;
-    font-family: var(--font-display);
-    font-size: var(--text-3xl);
-    letter-spacing: 0.05em;
     box-shadow: var(--shadow-md);
   }
-  .portrait__cap {
+  .about-hero__cap {
     font-size: var(--text-sm);
     color: var(--text-muted);
   }
 
-  .about-letter {
+  .about-h2 {
+    font-size: var(--text-2xl);
+    margin: var(--space-3) 0 var(--space-4);
+  }
+  .about-bijberoep {
     display: grid;
-    grid-template-columns: 1.7fr 1fr;
+    grid-template-columns: 1.3fr 0.7fr;
     gap: var(--space-7);
     align-items: start;
   }
-  .about-letter__hi {
-    font-family: var(--font-display);
-    font-style: italic;
-    font-size: var(--text-xl);
-    color: var(--text-strong);
-    margin-bottom: var(--space-4) !important;
-  }
-  .about-letter__sign {
-    font-family: var(--font-display);
-    font-style: italic;
-    font-size: var(--text-lg);
-    color: var(--text-strong);
-  }
-  .about-facts__title {
+  .about-meaning__title {
     font-family: var(--font-sans);
     font-size: var(--text-base);
     font-weight: var(--fw-semibold);
     margin: 0 0 var(--space-4);
   }
-  .about-facts ul {
-    list-style: none;
-    margin: 0;
+
+  .about-work {
+    background: var(--paper);
+    border-block: 1px solid var(--border-soft);
+  }
+  .about-work__grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .about-case {
+    max-width: var(--container-md);
+  }
+  .about-case__quote {
+    margin: var(--space-4) 0 0;
     padding: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-  }
-  .about-facts li {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-size: var(--text-sm);
-    color: var(--text-body);
-  }
-  .about-facts a:hover {
+    border: 0;
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: clamp(20px, 2.4vw, 26px);
+    line-height: 1.5;
     color: var(--text-strong);
   }
 
-  .about-values {
-    background: var(--ink);
+  .about-steps {
+    background: var(--paper);
+    border-block: 1px solid var(--border-soft);
   }
-  .about-value__icon {
-    width: 44px;
-    height: 44px;
-    border-radius: var(--radius-md);
+  .steps {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-5);
+    counter-reset: step;
+  }
+  .step {
+    display: flex;
+    gap: var(--space-4);
+  }
+  .step__num {
+    flex: none;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
     background: var(--orange-600);
+    color: #fff;
     display: grid;
     place-content: center;
-    margin-bottom: var(--space-3);
+    font-family: var(--font-display);
+    font-weight: var(--fw-semibold);
   }
-  .about-value h3 {
-    color: var(--cream);
-    font-size: var(--text-lg);
+  .step__title {
+    font-size: var(--text-md);
+    font-family: var(--font-sans);
+    font-weight: var(--fw-semibold);
+    margin: 4px 0 6px;
   }
-  .about-value p {
-    margin-top: var(--space-2);
+  .step__body {
     font-size: var(--text-sm);
-    color: var(--grey-300);
+    line-height: 1.6;
+    color: var(--text-muted);
+  }
+
+  .about-area {
+    background: var(--ink);
+  }
+  .about-area__text {
+    margin-top: var(--space-4);
+    max-width: 70ch;
+    font-size: var(--text-md);
+    line-height: var(--leading-relaxed);
+    color: var(--cream);
   }
 
   @media (max-width: 880px) {
     .about-hero,
-    .about-letter,
-    .grid-3-plain {
+    .about-bijberoep {
       grid-template-columns: 1fr;
     }
-    .grid-3-plain {
-      gap: var(--space-6);
+    .about-work__grid,
+    .steps {
+      grid-template-columns: 1fr;
+    }
+    .about-hero__photo {
+      order: -1;
     }
   }
 </style>

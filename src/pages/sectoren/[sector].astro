@@ -36,17 +36,31 @@ const jsonLd = [
 
 <BaseLayout title={sector.navTitle} description={sector.description} jsonLd={jsonLd}>
   <section class="page-hero">
-    <div class="container page-hero__in">
-      <nav class="crumbs" aria-label="Kruimelpad">
-        <a href={url("/sectoren")}>Voor wie?</a>
-        <span class="crumbs__sep">/</span>
-        <span aria-current="page">{sector.navTitle}</span>
-      </nav>
-      <h1>{sector.title}</h1>
-      <p class="lead page-hero__lead">{sector.description}</p>
-      <div class="page-hero__actions">
-        <Button href="/contact" variant="primary" iconRight="arrow-right">Vrijblijvend kennismaken</Button>
+    <div class:list={["container", "page-hero__in", sector.image && "sector-hero"]}>
+      <div>
+        <nav class="crumbs" aria-label="Kruimelpad">
+          <a href={url("/sectoren")}>Voor wie?</a>
+          <span class="crumbs__sep">/</span>
+          <span aria-current="page">{sector.navTitle}</span>
+        </nav>
+        <h1>{sector.title}</h1>
+        <p class="lead page-hero__lead">{sector.description}</p>
+        <div class="page-hero__actions">
+          <Button href="/contact" variant="primary" iconRight="arrow-right">Vrijblijvend kennismaken</Button>
+        </div>
       </div>
+      {
+        sector.image && (
+          <div class="sector-hero__media">
+            <img
+              src={url(sector.image)}
+              alt={sector.navTitle}
+              loading="lazy"
+              onerror="this.closest('.sector-hero__media').style.display='none'"
+            />
+          </div>
+        )
+      }
     </div>
   </section>
 
@@ -141,6 +155,26 @@ const jsonLd = [
 </BaseLayout>
 
 <style>
+  .sector-hero {
+    display: grid;
+    grid-template-columns: 1.25fr 0.75fr;
+    gap: var(--space-7);
+    align-items: center;
+  }
+  .sector-hero__media img {
+    width: 100%;
+    height: 100%;
+    max-height: 320px;
+    object-fit: cover;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+  }
+  @media (max-width: 880px) {
+    .sector-hero {
+      grid-template-columns: 1fr;
+    }
+  }
+
   .approach {
     background: var(--paper);
     border-block: 1px solid var(--border-soft);
