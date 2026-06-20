@@ -7,6 +7,10 @@ export const ORG_ID = `${SITE_URL}/#business`;
 
 /** The canonical LocalBusiness node. Reference it by @id elsewhere. */
 export function localBusiness() {
+  // Off-site profiles, if known — keeps schema valid when they aren't yet set.
+  const sameAs = [site.profiles.googleBusiness, site.profiles.linkedin].filter(
+    Boolean,
+  );
   return {
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
@@ -14,16 +18,21 @@ export function localBusiness() {
     name: site.legalName,
     description: site.description,
     url: SITE_URL,
+    logo: `${SITE_URL}/images/og-image.png`,
+    image: `${SITE_URL}/images/louis.webp`,
     telephone: site.phoneIntl,
     email: site.email,
+    vatID: site.vatId,
     founder: { "@type": "Person", name: site.owner },
     priceRange: "€€",
     areaServed: { "@type": "AdministrativeArea", name: site.serviceArea },
+    ...(sameAs.length ? { sameAs } : {}),
     address: {
       "@type": "PostalAddress",
+      streetAddress: site.address.street,
       addressLocality: site.address.city,
       addressRegion: site.address.region,
-      postalCode: "8490",
+      postalCode: site.address.postalCode,
       addressCountry: "BE",
     },
     geo: {

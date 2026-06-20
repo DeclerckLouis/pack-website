@@ -15,8 +15,10 @@ interface Props {
 
 const { title, description = site.description, jsonLd, image = "/images/og-image.png" } =
   Astro.props;
+// The homepage (title === site.name) gets a keyword-bearing <title> with geo +
+// audience; inner pages keep the "{title} | Packetflow" pattern.
 const fullTitle =
-  title === site.name ? `${site.name} — ${site.tagline}` : `${title} | ${site.name}`;
+  title === site.name ? site.homeTitle : `${title} | ${site.name}`;
 const canonical = new URL(Astro.url.pathname, Astro.site ?? Astro.url).href;
 const ogImage = new URL(url(image), Astro.site ?? Astro.url).href;
 ---
@@ -56,11 +58,5 @@ const ogImage = new URL(url(image), Astro.site ?? Astro.url).href;
       <slot />
     </main>
     <Footer />
-
-    <!-- Lucide icons: replaces <i data-lucide> placeholders with inline SVG. -->
-    <script src="https://unpkg.com/lucide@latest" is:inline></script>
-    <script is:inline>
-      window.lucide && window.lucide.createIcons();
-    </script>
   </body>
 </html>

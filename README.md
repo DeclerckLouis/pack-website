@@ -22,18 +22,27 @@ npm run build    # output to ./dist
 npm run preview
 ```
 
-### One-shot environment setup
+## Deployment & branch flow
 
-`./scripts/setup.sh` installs dependencies, wires up Playwright against the
-environment's cached Chromium (so it works in sandboxes that block the
-Playwright CDN), and smoke-tests the build. After it runs you can screenshot
-any page for visual verification:
+Two environments, two branches:
 
-```bash
-npm run preview &
-node scripts/screenshot.mjs http://localhost:4321/diensten /tmp/diensten.png 1280
-```
+| Environment           | Branch | Workflow             | Target                          |
+| --------------------- | ------ | -------------------- | ------------------------------- |
+| Staging / acceptance  | `acc`  | `github-pages.yml`   | GitHub Pages (project sub-path) |
+| Production            | `main` | `deploy.yml`         | Cloudflare Pages (www.packetflow.be) |
 
+**Flow:** open a feature-branch PR **into `acc`** → merge → review the live
+result on GitHub Pages → open a promotion PR **`acc` → `main`** → merge → it
+goes live on Cloudflare.
+
+`promote-guard.yml` fails any PR into `main` that doesn't come from `acc`, so
+production can only be reached through staging. Cloudflare's deploy step skips
+until the `CLOUDFLARE_API_TOKEN` / `CLOUDFLARE_ACCOUNT_ID` repo secrets are set
+(see the comments in `deploy.yml`).
+
+To make the guard binding, protect `main` (Settings → Branches): require a PR
+before merging, require the **Build & deploy** and **Only promote from acc**
+checks, and don't allow direct pushes.
 
 ## Information architecture
 

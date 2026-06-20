@@ -1,7 +1,8 @@
 // Sector ("Voor wie?") hubs — restored from the live Odoo site, which segments
 // the audience rather than only the services. The recurring-revenue engine is
-// `vrije-beroepen-praktijken`; horeca/B&B is the project-based network work;
-// verenigingen/VZW rounds out the local long tail.
+// split across two professional tracks: `medische-praktijken` (where the real
+// clients live) and `kantoren-vrije-beroepen`. Horeca/B&B is the project-based
+// network work; verenigingen/VZW rounds out the local long tail.
 //
 // Same generator shape as services.ts:
 //   - /sectoren                 -> overview of all sectors
@@ -28,12 +29,58 @@ export type Sector = {
   serviceSlugs: string[];
   /** Local page slugs to surface for this sector (optional). */
   localSlugs: string[];
+  /**
+   * Anonymised client references for a small proof strip. Leave empty until
+   * the client has given permission — never invent quotes. See §3e.
+   */
+  references?: { label: string }[];
 };
 
 export const sectors: Sector[] = [
   {
-    slug: "vrije-beroepen-praktijken",
-    navTitle: "Vrije beroepen & praktijken",
+    slug: "medische-praktijken",
+    navTitle: "Medische & zorgpraktijken",
+    title: "IT voor apotheken, tandartsen en praktijken",
+    icon: "stethoscope",
+    image: "/images/sector-medisch.webp", // optional; graceful fallback if absent
+    tagline:
+      "Betrouwbare IT voor een praktijk waar patiëntgegevens en de balie nooit mogen stilvallen.",
+    description:
+      "Een apotheek, tandarts- of huisartsenpraktijk draait op patiëntgegevens die privé moeten blijven en op systemen die de hele dag moeten meegaan. Ik zorg dat uw praktijksoftware, uw backup en uw beveiliging kloppen — discreet en in regel met de GDPR, zonder dat u erover hoeft na te denken.",
+    pains: [
+      {
+        icon: "shield",
+        title: "Patiëntgegevens & GDPR",
+        body: "Medische gegevens zijn de meest gevoelige die er zijn. Ik leg vast wie erbij kan, beveilig de toegang en houd u in regel.",
+      },
+      {
+        icon: "activity",
+        title: "De balie mag niet stilvallen",
+        body: "Een systeem dat plat ligt met een volle wachtzaal is geen optie. Ik bewaak proactief en grijp in vóór het misloopt.",
+      },
+      {
+        icon: "plug",
+        title: "Koppeling met praktijksoftware",
+        body: "Uw medisch dossier, voorschriften of apotheeksysteem moet vlot blijven werken. Ik zorg dat het netwerk en de koppelingen kloppen.",
+      },
+    ],
+    approach: [
+      "Microsoft 365 en e-mail correct en veilig ingericht.",
+      "Versleutelde, geteste back-up van uw praktijkgegevens.",
+      "Beveiliging en MFA afgestemd op de gevoeligheid van zorgdata.",
+      "Eén vast aanspreekpunt dat uw praktijk en uw software kent.",
+    ],
+    serviceSlugs: ["it-beheer-support", "cloud-backup-beveiliging"],
+    localSlugs: ["it-partner-jabbeke", "it-support-oudenburg", "managed-it-west-vlaanderen"],
+    // TODO (§3e): Apotheek Gobert + OrthoKloeck are real clients — add as
+    // anonymised references once they've given permission, e.g.:
+    //   { label: "Apotheek, regio Brugge" },
+    //   { label: "Orthodontiepraktijk, West-Vlaanderen" },
+    references: [],
+  },
+  {
+    slug: "kantoren-vrije-beroepen",
+    navTitle: "Kantoren & vrije beroepen",
     title: "IT voor advocaten, architecten & makelaars",
     icon: "scale",
     image: "/images/sector-vrije-beroepen.webp",

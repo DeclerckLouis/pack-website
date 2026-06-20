@@ -13,7 +13,7 @@ https://packetflow.be/*   https://www.packetflow.be/:splat   301!
 /diensten/it-beheer        /diensten/it-beheer-support           301   # 493 impressions
 /kmo-pakket                /pakket                               301   # 377 impressions
 /diensten/wifi-netwerk     /diensten/zakelijke-wifi-netwerken    301
-/sectoren/vrije-beroepen   /sectoren/vrije-beroepen-praktijken   301
+/sectoren/vrije-beroepen   /sectoren/kantoren-vrije-beroepen     301
 /contactus                 /contact                              301
 /appointment/1             /contact                              301   # Odoo appointment page
 

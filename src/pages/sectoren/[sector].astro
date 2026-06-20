@@ -85,6 +85,25 @@ const jsonLd = [
     </div>
   </section>
 
+  {/* Proof strip — anonymised references, only when present (see §3e) */}
+  {
+    sector.references && sector.references.length > 0 && (
+      <section class="section proof">
+        <div class="container">
+          <span class="kicker">Vertrouwd door</span>
+          <ul class="proof__list">
+            {sector.references.map((r) => (
+              <li class="proof__item">
+                <Icon name="badge-check" size={18} color="var(--orange-600)" />
+                {r.label}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+    )
+  }
+
   {/* Approach */}
   <section class="section approach">
     <div class="container grid-2">
@@ -173,6 +192,28 @@ const jsonLd = [
     .sector-hero {
       grid-template-columns: 1fr;
     }
+  }
+
+  .proof {
+    padding-block: var(--space-7);
+    background: var(--paper);
+    border-block: 1px solid var(--border-soft);
+  }
+  .proof__list {
+    list-style: none;
+    margin: var(--space-4) 0 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-5);
+  }
+  .proof__item {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: var(--text-sm);
+    font-weight: var(--fw-medium);
+    color: var(--text-strong);
   }
 
   .approach {

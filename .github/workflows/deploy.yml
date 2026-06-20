@@ -1,31 +1,42 @@
-name: Deploy to GitHub Pages
+name: Deploy to Cloudflare Pages
 
-# Publishes the live site to GitHub Pages.
-# Runs on pushes to main, plus manually.
+# Production deploy (the live site, www.packetflow.be):
+#   - push to main          -> production deploy
+#   - pull_request          -> preview deploy + build validation
+#   - workflow_dispatch     -> manual run
+# Staging/acceptance lives on GitHub Pages instead (see github-pages.yml,
+# which deploys from the `acc` branch). Promote acc -> main to go live.
 #
-# ONE-TIME SETUP (required, owner only — CI cannot do this):
-#   Repo → Settings → Pages → "Build and deployment" → Source: "GitHub Actions".
-# After that this workflow goes green on its own.
+# ONE-TIME SETUP (owner only — CI cannot do this), see the handoff brief §1b:
+#   1. Cloudflare dashboard -> Workers & Pages -> Create -> Pages -> Direct
+#      Upload; name the project `packetflow` (must match --project-name).
+#   2. Project settings -> Production branch -> `main`.
+#   3. Create an API token with the "Cloudflare Pages -> Edit" permission.
+#   4. Add repo secrets CLOUDFLARE_API_TOKEN and CLOUDFLARE_ACCOUNT_ID.
+#   5. Add the custom domain www.packetflow.be + an apex -> www redirect.
+
 on:
   push:
-    branches:
-      - main
+    branches: [main]
+  pull_request:
   workflow_dispatch:
 
-# Allow the workflow to publish to Pages.
 permissions:
   contents: read
-  pages: write
-  id-token: write
+  deployments: write
 
-# One deploy at a time; don't cancel an in-progress run.
 concurrency:
-  group: pages
+  group: cf-pages
   cancel-in-progress: false
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
+    name: Build & deploy
+    # Exposed at job level so the deploy step's `if:` can test for it (secrets
+    # can't be referenced directly in an `if` expression).
+    env:
+      CF_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
     steps:
       - uses: actions/checkout@v4
 
@@ -34,33 +45,23 @@ jobs:
           node-version: 22
           cache: npm
 
-      - name: Resolve Pages base path
-        id: pages
-        uses: actions/configure-pages@v5
-
-      - name: Install dependencies
-        run: npm ci
+      - run: npm ci
 
       - name: Build
         env:
-          # Serve under the project sub-path (e.g. /pack-website/) and point
-          # canonical/sitemap URLs at the Pages origin.
-          SITE_URL: ${{ steps.pages.outputs.origin }}
-          BASE_PATH: ${{ steps.pages.outputs.base_path }}
+          # Canonical + sitemap always point at production. Cloudflare Pages
+          # serves at the domain root, so the base path is always "/".
+          SITE_URL: https://www.packetflow.be
+          BASE_PATH: /
         run: npm run build
 
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+      - name: Deploy to Cloudflare Pages
+        # Skips (CI stays green) until the owner adds the Cloudflare secrets
+        # — see §1b. Once CLOUDFLARE_API_TOKEN exists, deploys run normally.
+        if: ${{ env.CF_API_TOKEN != '' }}
+        uses: cloudflare/wrangler-action@v3
         with:
-          path: ./dist
-
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          # main -> production; any other branch/PR -> preview deployment
+          command: pages deploy dist --project-name=packetflow --branch=${{ github.head_ref || github.ref_name }}
