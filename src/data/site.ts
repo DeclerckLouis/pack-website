@@ -24,11 +24,11 @@ export const site = {
     country: "België",
   },
   serviceArea: "West-Vlaanderen",
-  // Off-site profiles for LocalBusiness `sameAs`. TODO: fill in once the
-  // Google Business Profile and LinkedIn page exist (highest-leverage local
-  // SEO action). Empty entries are filtered out, so schema stays valid.
+  // Off-site profiles for LocalBusiness `sameAs`. Feeds both the reviews button
+  // (src/components/Reviews.astro) and the schema sameAs. Empty entries are
+  // filtered out, so schema stays valid. TODO: add LinkedIn once it exists.
   profiles: {
-    googleBusiness: "",
+    googleBusiness: "https://share.google/0mYTn2sSQFX99Kdqs",
     linkedin: "",
   },
   // Odoo CRM instance that receives website-form submissions. The contact form
