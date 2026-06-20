@@ -1,16 +1,19 @@
 name: Deploy to GitHub Pages
 
-# Publishes the site to GitHub Pages as well as Cloudflare Pages (see
-# deploy.yml). GitHub Pages serves under the project sub-path, so the build
-# uses the base path resolved by configure-pages — unlike the Cloudflare build,
-# which always serves at the domain root.
+# Staging / acceptance environment. Publishes the `acc` branch to GitHub Pages
+# so changes can be reviewed before they go live on Cloudflare (production,
+# from `main` — see deploy.yml). Promote with: merge acc -> main.
+#
+# GitHub Pages serves under the project sub-path, so the build uses the base
+# path resolved by configure-pages — unlike the Cloudflare build, which always
+# serves at the domain root.
 #
 # ONE-TIME SETUP (required, owner only — CI cannot do this):
 #   Repo → Settings → Pages → "Build and deployment" → Source: "GitHub Actions".
 on:
   push:
     branches:
-      - main
+      - acc
   workflow_dispatch:
 
 # Allow the workflow to publish to Pages.

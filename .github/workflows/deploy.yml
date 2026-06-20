@@ -1,8 +1,11 @@
 name: Deploy to Cloudflare Pages
 
-# Builds the site and deploys it to Cloudflare Pages.
-#   - push to main          -> production deploy (www.packetflow.be)
-#   - any other branch / PR -> preview deploy
+# Production deploy (the live site, www.packetflow.be):
+#   - push to main          -> production deploy
+#   - pull_request          -> preview deploy + build validation
+#   - workflow_dispatch     -> manual run
+# Staging/acceptance lives on GitHub Pages instead (see github-pages.yml,
+# which deploys from the `acc` branch). Promote acc -> main to go live.
 #
 # ONE-TIME SETUP (owner only — CI cannot do this), see the handoff brief §1b:
 #   1. Cloudflare dashboard -> Workers & Pages -> Create -> Pages -> Direct
