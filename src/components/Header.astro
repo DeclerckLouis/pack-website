@@ -15,18 +15,16 @@ const isActive = (href: string) => {
 
 // Dropdown contents, keyed by the `dropdown` marker on a nav item. Each child
 // keeps its own page, so these are plain links into the existing hubs.
-type DropdownItem = { label: string; href: string; description: string; icon: string };
+type DropdownItem = { label: string; href: string; icon: string };
 const dropdowns: Record<string, DropdownItem[]> = {
   sectors: sectors.map((s) => ({
     label: s.navTitle,
     href: `/sectoren/${s.slug}`,
-    description: s.tagline,
     icon: s.icon,
   })),
   services: services.map((s) => ({
     label: s.navTitle,
     href: `/diensten/${s.slug}`,
-    description: s.tagline,
     icon: s.icon,
   })),
 };
@@ -75,10 +73,7 @@ const dropdowns: Record<string, DropdownItem[]> = {
                         class:list={["site-nav__menu-link", isActive(c.href) && "is-active"]}
                       >
                         <span class="site-nav__menu-icon"><Icon name={c.icon} size={18} /></span>
-                        <span class="site-nav__menu-text">
-                          <span class="site-nav__menu-title">{c.label}</span>
-                          <span class="site-nav__menu-desc">{c.description}</span>
-                        </span>
+                        <span class="site-nav__menu-title">{c.label}</span>
                       </a>
                     </li>
                   ))}
@@ -160,7 +155,7 @@ const dropdowns: Record<string, DropdownItem[]> = {
     left: 50%;
     transform: translate(-50%, 6px);
     padding-top: 12px;
-    min-width: 320px;
+    min-width: 230px;
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
@@ -191,9 +186,9 @@ const dropdowns: Record<string, DropdownItem[]> = {
   }
   .site-nav__menu-link {
     display: flex;
-    align-items: flex-start;
-    gap: 12px;
-    padding: 10px 12px;
+    align-items: center;
+    gap: 10px;
+    padding: 9px 12px;
     border-radius: var(--radius-sm, 8px);
     transition: background-color var(--dur-fast) var(--ease-out);
   }
@@ -206,27 +201,18 @@ const dropdowns: Record<string, DropdownItem[]> = {
     flex: none;
     display: grid;
     place-content: center;
-    width: 34px;
-    height: 34px;
+    width: 30px;
+    height: 30px;
     border-radius: var(--radius-sm, 8px);
     background: var(--cream);
     color: var(--primary);
-  }
-  .site-nav__menu-text {
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
   }
   .site-nav__menu-title {
     font-family: var(--font-sans);
     font-size: var(--text-sm);
     font-weight: var(--fw-medium);
     color: var(--text-strong);
-  }
-  .site-nav__menu-desc {
-    font-size: var(--text-xs, 12px);
-    line-height: 1.4;
-    color: var(--text-muted);
+    white-space: nowrap;
   }
 
   .site-header__actions {
