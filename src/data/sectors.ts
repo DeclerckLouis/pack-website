@@ -148,6 +148,7 @@ export const sectors: Sector[] = [
       "Gescheiden gasten- en kassanetwerk, veilig opgesplitst.",
       "Naadloze WiFi-dekking, ook buiten en in elke kamer.",
       "Netwerk dat seizoenspieken en volle zalen aankan.",
+      "Camerabewaking met beeld op uw smartphone, veilig gescheiden van gasten-WiFi.",
       "Beheer op afstand — ik grijp in vóór u het merkt.",
     ],
     serviceSlugs: ["zakelijke-wifi-netwerken", "cloud-backup-beveiliging"],
