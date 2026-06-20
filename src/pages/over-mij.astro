@@ -6,8 +6,14 @@ import Kicker from "@/components/Kicker.astro";
 import Icon from "@/components/Icon.astro";
 import Button from "@/components/Button.astro";
 import Portrait from "@/components/Portrait.astro";
+import Breadcrumbs from "@/components/Breadcrumbs.astro";
 import { site } from "@/data/site";
 import { breadcrumbs, ORG_ID } from "@/lib/schema";
+
+const crumbs: [string, string][] = [
+  ["Home", "/"],
+  ["Over mij", "/over-mij"],
+];
 
 const jsonLd = [
   {
@@ -18,10 +24,7 @@ const jsonLd = [
     worksFor: { "@id": ORG_ID },
     homeLocation: { "@type": "Place", name: `${site.address.city}, ${site.address.region}` },
   },
-  breadcrumbs([
-    ["Home", "/"],
-    ["Over mij", "/over-mij"],
-  ]),
+  breadcrumbs(crumbs),
 ];
 
 const principles = [
@@ -56,6 +59,7 @@ const firstContact = [
   <section class="page-hero">
     <div class="container page-hero__in about-hero">
       <div>
+        <Breadcrumbs items={crumbs} />
         <Kicker>Over mij</Kicker>
         <h1>Hallo, ik ben Louis!</h1>
         <div class="prose about-hero__intro">

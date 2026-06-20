@@ -2,6 +2,7 @@
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import CtaSection from "@/components/CtaSection.astro";
 import Partners from "@/components/Partners.astro";
+import Reviews from "@/components/Reviews.astro";
 import Button from "@/components/Button.astro";
 import Badge from "@/components/Badge.astro";
 import Card from "@/components/Card.astro";
@@ -39,6 +40,7 @@ const serviceItems = [
   ["shield", "Cybersecurity", "Bescherming tegen phishing en ransomware, MFA en updates — met AI-detectie van verdacht gedrag."],
   ["sparkles", "Microsoft 365 Copilot & AI", "AI die u tijd bespaart bij documenten en e-mail — veilig ingericht, gegevens privé."],
   ["radar", "Monitoring & onderhoud", "Bewaking op de achtergrond, onderhoud 's avonds — zonder uw werk te onderbreken."],
+  ["cctv", "Camerabewaking", "HD-camera's met nachtzicht en beeld op uw smartphone — veilig op een gescheiden netwerk, GDPR-correct geplaatst."],
 ];
 
 const posture = [
@@ -164,9 +166,9 @@ const posture = [
         <span class="rule ai__rule"></span>
         <p class="lead ai__lead">
           AI bespaart u tijd: e-mails opstellen, documenten samenvatten,
-          terugkerend werk automatiseren. Maar voor een advocaat, architect of
-          makelaar telt vooral één ding — uw cliëntgegevens blijven privé. Ik
-          richt AI zo in dat ze nuttig is én onder controle.
+          terugkerend werk automatiseren. Maar voor een praktijk of kantoor
+          telt vooral één ding — uw cliënt- en patiëntgegevens blijven privé.
+          Ik richt AI zo in dat ze nuttig is én onder controle.
         </p>
         <ul class="ai__points">
           {
@@ -234,6 +236,8 @@ const posture = [
   </section>
 
   <Partners />
+
+  <Reviews />
 
   <CtaSection />
 </BaseLayout>

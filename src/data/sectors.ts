@@ -72,11 +72,14 @@ export const sectors: Sector[] = [
     ],
     serviceSlugs: ["it-beheer-support", "cloud-backup-beveiliging"],
     localSlugs: ["it-partner-jabbeke", "it-support-oudenburg", "managed-it-west-vlaanderen"],
-    // TODO (§3e): Apotheek Gobert + OrthoKloeck are real clients — add as
-    // anonymised references once they've given permission, e.g.:
-    //   { label: "Apotheek, regio Brugge" },
-    //   { label: "Orthodontiepraktijk, West-Vlaanderen" },
-    references: [],
+    // Real, permitted clients — kept anonymised by region/sector here. If the
+    // permission covers being named, swap these labels for the real names
+    // (named references are markedly more credible). Never add a reference the
+    // client hasn't approved.
+    references: [
+      { label: "Apotheek, regio Brugge" },
+      { label: "Orthodontiepraktijk, West-Vlaanderen" },
+    ],
   },
   {
     slug: "kantoren-vrije-beroepen",
@@ -145,6 +148,7 @@ export const sectors: Sector[] = [
       "Gescheiden gasten- en kassanetwerk, veilig opgesplitst.",
       "Naadloze WiFi-dekking, ook buiten en in elke kamer.",
       "Netwerk dat seizoenspieken en volle zalen aankan.",
+      "Camerabewaking met beeld op uw smartphone, veilig gescheiden van gasten-WiFi.",
       "Beheer op afstand — ik grijp in vóór u het merkt.",
     ],
     serviceSlugs: ["zakelijke-wifi-netwerken", "cloud-backup-beveiliging"],

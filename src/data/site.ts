@@ -24,11 +24,11 @@ export const site = {
     country: "België",
   },
   serviceArea: "West-Vlaanderen",
-  // Off-site profiles for LocalBusiness `sameAs`. TODO: fill in once the
-  // Google Business Profile and LinkedIn page exist (highest-leverage local
-  // SEO action). Empty entries are filtered out, so schema stays valid.
+  // Off-site profiles for LocalBusiness `sameAs`. Feeds both the reviews button
+  // (src/components/Reviews.astro) and the schema sameAs. Empty entries are
+  // filtered out, so schema stays valid. TODO: add LinkedIn once it exists.
   profiles: {
-    googleBusiness: "",
+    googleBusiness: "https://share.google/0mYTn2sSQFX99Kdqs",
     linkedin: "",
   },
   // Odoo CRM instance that receives website-form submissions. The contact form
@@ -43,9 +43,13 @@ export const site = {
 // Top navigation. Lean by design: the service hubs live under /diensten, the
 // audience hubs under /sectoren, and the local pages sit underneath the
 // service hubs (linked from content + footer).
+//
+// `dropdown` (optional) marks an item whose children are served from a data
+// source (sectors / services). The Header renders those as a hover/focus
+// dropdown while the top-level item keeps linking to its own overview page.
 export const mainNav = [
-  { label: "Voor wie?", href: "/sectoren" },
-  { label: "Diensten", href: "/diensten" },
+  { label: "Voor wie?", href: "/sectoren", dropdown: "sectors" },
+  { label: "Diensten", href: "/diensten", dropdown: "services" },
   { label: "KMO-Pakket", href: "/pakket" },
   { label: "Over mij", href: "/over-mij" },
 ] as const;

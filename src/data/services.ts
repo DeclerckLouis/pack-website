@@ -42,7 +42,7 @@ export const services: ServiceHub[] = [
     slug: "it-beheer-support",
     navTitle: "IT-Beheer & Support",
     title: "IT-beheer & support",
-    audience: "Advocaten, architecten & makelaars",
+    audience: "Praktijken & kantoren",
     icon: "life-buoy",
     tagline:
       "Eén aanspreekpunt dat uw kantoor kent — geen wachtrij, geen wisselende technici.",
@@ -97,7 +97,7 @@ export const services: ServiceHub[] = [
         region: "West-Vlaanderen",
         icon: "life-buoy",
         intro:
-          "Betrouwbare IT-support voor advocaten, architecten en makelaars in Oudenburg. Eén lokaal aanspreekpunt voor beheer, support en beveiliging.",
+          "Betrouwbare IT-support voor praktijken en kantoren in Oudenburg — van apotheek en tandarts tot advocaat, architect en makelaar. Eén lokaal aanspreekpunt voor beheer, support en beveiliging.",
         context:
           "Oudenburg ligt op een steenworp van Jabbeke, langs de as richting Oostende. Voor de zelfstandigen en kleine praktijken hier ben ik dichtbij genoeg om snel langs te komen, zonder de verplaatsingskosten van een IT-bedrijf uit de stad. Ideaal als uw huidige 'IT-er' een neef is die nooit tijd heeft.",
         highlights: [
@@ -107,7 +107,7 @@ export const services: ServiceHub[] = [
           "Persoonlijk: dezelfde persoon, elke keer",
         ],
         description:
-          "IT-support in Oudenburg voor advocaten, architecten en makelaars. Lokale IT-partner voor proactief beheer, Microsoft 365 en cybersecurity.",
+          "IT-support in Oudenburg voor medische praktijken en professionele kantoren. Lokale IT-partner voor proactief beheer, Microsoft 365 en cybersecurity.",
       },
       {
         slug: "managed-it-west-vlaanderen",
@@ -159,6 +159,11 @@ export const services: ServiceHub[] = [
         icon: "radar",
         title: "Beheer op afstand",
         body: "Ik monitor uw netwerk op afstand en grijp in vóór u merkt dat er iets mis is.",
+      },
+      {
+        icon: "cctv",
+        title: "Camerabewaking",
+        body: "Professionele camera's met HD-beeld, nachtzicht en beelden op uw smartphone — op een gescheiden netwerk geplaatst en GDPR-correct ingericht.",
       },
     ],
     locals: [

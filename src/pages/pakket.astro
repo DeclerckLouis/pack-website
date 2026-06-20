@@ -6,6 +6,8 @@ import Badge from "@/components/Badge.astro";
 import Kicker from "@/components/Kicker.astro";
 import Icon from "@/components/Icon.astro";
 import Button from "@/components/Button.astro";
+import Breadcrumbs from "@/components/Breadcrumbs.astro";
+import Reviews from "@/components/Reviews.astro";
 import { site } from "@/data/site";
 import { service, breadcrumbs } from "@/lib/schema";
 
@@ -23,6 +25,11 @@ const includes = [
   ["life-buoy", "Support inbegrepen", "Eén vast aanspreekpunt, bereikbaar 's avonds en in het weekend."],
 ];
 
+const crumbs: [string, string][] = [
+  ["Home", "/"],
+  ["KMO-Pakket", "/pakket"],
+];
+
 const jsonLd = [
   service({
     name: "KMO-Pakket",
@@ -30,10 +37,7 @@ const jsonLd = [
       "Volledige IT-ontzorging voor kleine kantoren: Microsoft 365, backup, Peppol en cybersecurity aan een vaste maandprijs.",
     serviceType: "Managed IT-pakket",
   }),
-  breadcrumbs([
-    ["Home", "/"],
-    ["KMO-Pakket", "/pakket"],
-  ]),
+  breadcrumbs(crumbs),
 ];
 ---
 
@@ -45,6 +49,7 @@ const jsonLd = [
   <section class="page-hero">
     <div class="container page-hero__in pakket-hero">
       <div>
+        <Breadcrumbs items={crumbs} />
         <Kicker>Het KMO-Pakket</Kicker>
         <h1>Volledige ontzorging aan één vaste prijs</h1>
         <p class="lead page-hero__lead">
@@ -120,6 +125,8 @@ const jsonLd = [
       }
     </div>
   </section>
+
+  <Reviews />
 
   <CtaSection
     title="Benieuwd wat het pakket voor uw kantoor kost?"

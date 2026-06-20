@@ -5,6 +5,7 @@ import Card from "@/components/Card.astro";
 import Kicker from "@/components/Kicker.astro";
 import Icon from "@/components/Icon.astro";
 import Button from "@/components/Button.astro";
+import Breadcrumbs from "@/components/Breadcrumbs.astro";
 import { sectors, type Sector } from "@/data/sectors";
 import { getHub, services } from "@/data/services";
 import { service, breadcrumbs } from "@/lib/schema";
@@ -24,13 +25,15 @@ const relatedLocals = sector.localSlugs
   .map((s) => allLocalsFlat.find((l) => l.slug === s))
   .filter(Boolean);
 
+const crumbs: [string, string][] = [
+  ["Home", "/"],
+  ["Voor wie?", "/sectoren"],
+  [sector.navTitle, `/sectoren/${sector.slug}`],
+];
+
 const jsonLd = [
   service({ name: sector.title, description: sector.description }),
-  breadcrumbs([
-    ["Home", "/"],
-    ["Voor wie?", "/sectoren"],
-    [sector.navTitle, `/sectoren/${sector.slug}`],
-  ]),
+  breadcrumbs(crumbs),
 ];
 ---
 
@@ -38,11 +41,7 @@ const jsonLd = [
   <section class="page-hero">
     <div class:list={["container", "page-hero__in", sector.image && "sector-hero"]}>
       <div>
-        <nav class="crumbs" aria-label="Kruimelpad">
-          <a href={url("/sectoren")}>Voor wie?</a>
-          <span class="crumbs__sep">/</span>
-          <span aria-current="page">{sector.navTitle}</span>
-        </nav>
+        <Breadcrumbs items={crumbs} />
         <h1>{sector.title}</h1>
         <p class="lead page-hero__lead">{sector.description}</p>
         <div class="page-hero__actions">
