@@ -6,6 +6,7 @@ import Badge from "@/components/Badge.astro";
 import Kicker from "@/components/Kicker.astro";
 import Icon from "@/components/Icon.astro";
 import Button from "@/components/Button.astro";
+import Breadcrumbs from "@/components/Breadcrumbs.astro";
 import { services, type ServiceHub } from "@/data/services";
 import { service, breadcrumbs } from "@/lib/schema";
 import { url } from "@/lib/url";
@@ -18,24 +19,22 @@ interface Props {
 }
 const { hub } = Astro.props;
 
+const crumbs: [string, string][] = [
+  ["Home", "/"],
+  ["Diensten", "/diensten"],
+  [hub.navTitle, `/diensten/${hub.slug}`],
+];
+
 const jsonLd = [
   service({ name: hub.title, description: hub.description, serviceType: hub.title }),
-  breadcrumbs([
-    ["Home", "/"],
-    ["Diensten", "/diensten"],
-    [hub.navTitle, `/diensten/${hub.slug}`],
-  ]),
+  breadcrumbs(crumbs),
 ];
 ---
 
 <BaseLayout title={hub.title} description={hub.description} jsonLd={jsonLd}>
   <section class="page-hero">
     <div class="container page-hero__in">
-      <nav class="crumbs" aria-label="Kruimelpad">
-        <a href={url("/diensten")}>Diensten</a>
-        <span class="crumbs__sep">/</span>
-        <span aria-current="page">{hub.navTitle}</span>
-      </nav>
+      <Breadcrumbs items={crumbs} />
       <Badge tone="blue">{hub.audience}</Badge>
       <h1>{hub.title}</h1>
       <p class="lead page-hero__lead">{hub.tagline}</p>

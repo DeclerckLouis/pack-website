@@ -5,6 +5,7 @@ import Card from "@/components/Card.astro";
 import Icon from "@/components/Icon.astro";
 import Button from "@/components/Button.astro";
 import Kicker from "@/components/Kicker.astro";
+import Breadcrumbs from "@/components/Breadcrumbs.astro";
 import { site } from "@/data/site";
 import { allLocals, type LocalPage, type ServiceHub } from "@/data/services";
 import { service, breadcrumbs } from "@/lib/schema";
@@ -22,6 +23,13 @@ const { local } = Astro.props;
 const { hub } = local;
 const siblings = hub.locals.filter((l) => l.slug !== local.slug);
 
+const crumbs: [string, string][] = [
+  ["Home", "/"],
+  ["Diensten", "/diensten"],
+  [hub.navTitle, `/diensten/${hub.slug}`],
+  [local.city, `/${local.slug}`],
+];
+
 const jsonLd = [
   service({
     name: local.title,
@@ -29,25 +37,14 @@ const jsonLd = [
     serviceType: hub.title,
     areaName: local.city,
   }),
-  breadcrumbs([
-    ["Home", "/"],
-    ["Diensten", "/diensten"],
-    [hub.navTitle, `/diensten/${hub.slug}`],
-    [local.city, `/${local.slug}`],
-  ]),
+  breadcrumbs(crumbs),
 ];
 ---
 
 <BaseLayout title={local.title} description={local.description} jsonLd={jsonLd}>
   <section class="page-hero">
     <div class="container page-hero__in">
-      <nav class="crumbs" aria-label="Kruimelpad">
-        <a href={url("/diensten")}>Diensten</a>
-        <span class="crumbs__sep">/</span>
-        <a href={url(`/diensten/${hub.slug}`)}>{hub.navTitle}</a>
-        <span class="crumbs__sep">/</span>
-        <span aria-current="page">{local.city}</span>
-      </nav>
+      <Breadcrumbs items={crumbs} />
       <h1>{local.title}</h1>
       <p class="lead page-hero__lead">{local.intro}</p>
       <div class="page-hero__actions">

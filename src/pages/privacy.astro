@@ -1,12 +1,21 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import Kicker from "@/components/Kicker.astro";
+import Breadcrumbs from "@/components/Breadcrumbs.astro";
 import { site } from "@/data/site";
+import { breadcrumbs } from "@/lib/schema";
+
+const crumbs: [string, string][] = [
+  ["Home", "/"],
+  ["Privacybeleid", "/privacy"],
+];
+const jsonLd = breadcrumbs(crumbs);
 ---
 
-<BaseLayout title="Privacybeleid" description={`Privacybeleid van ${site.legalName}.`}>
+<BaseLayout title="Privacybeleid" description={`Privacybeleid van ${site.legalName}.`} jsonLd={jsonLd}>
   <section class="section">
     <div class="container privacy">
+      <Breadcrumbs items={crumbs} />
       <Kicker>Juridisch</Kicker>
       <h1 class="privacy__title">Privacybeleid</h1>
       <div class="prose">
