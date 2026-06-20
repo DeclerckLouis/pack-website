@@ -21,6 +21,10 @@ const fullTitle =
   title === site.name ? site.homeTitle : `${title} | ${site.name}`;
 const canonical = new URL(Astro.url.pathname, Astro.site ?? Astro.url).href;
 const ogImage = new URL(url(image), Astro.site ?? Astro.url).href;
+// Only the production host should be indexable. Staging (GitHub Pages) and
+// Cloudflare preview builds resolve to a different hostname, so they get a
+// noindex to avoid competing with packetflow.be as duplicate content.
+const isProduction = (Astro.site?.hostname ?? "") === "www.packetflow.be";
 ---
 
 <!doctype html>
@@ -30,6 +34,7 @@ const ogImage = new URL(url(image), Astro.site ?? Astro.url).href;
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href={url("/favicon.svg")} />
     <link rel="canonical" href={canonical} />
+    {!isProduction && <meta name="robots" content="noindex,nofollow" />}
     <meta name="generator" content={Astro.generator} />
 
     <title>{fullTitle}</title>
