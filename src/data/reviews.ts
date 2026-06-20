@@ -14,5 +14,23 @@ export type Review = { author: string; rating: number; text: string; date?: stri
 // The Reviews section renders nothing while this array is empty (graceful
 // fallback, like the sector proof strip), so it's safe to ship empty.
 export const reviews: Review[] = [
-  // { author: "…", rating: 5, text: "…", date: "2026-05" },
+  {
+    author: "Stefaan V.H.",
+    rating: 5,
+    text: `Enorm content, Louis heeft de wifi in ons kantoor in Brugge volledig vernieuwd. Stabiele en snelle verbinding in elke kamer, gescheiden gastenwifi.
+Op het einde kregen we een handig documentje met alle info over het netwerk en enkele dingen die we zelf kunnen proberen bij problemen.
+Bereikbaar op zaterdagochtend, meteen het hele weekend doorgewerkt. Een absolute aanrader!`,
+  },
+  {
+    author: "Charlotte C.",
+    rating: 5,
+    text: `Sinds enkele maanden kunnen we bij Packetflow terecht voor het IT beheer van onze apotheek.
+Goedkoper dan de "grote" spelers en altijd vlotte, duidelijke communicatie.
+Doe zo voort!`,
+  },
+  {
+    author: "Alex K.",
+    rating: 5,
+    text: `Zeer correct, vriendelijk, hulpvaardig en met kennis van zaken. Ik kan Louis met veel vertrouwen aanbevelen voor al uw IT-bekommernissen!`,
+  },
 ];

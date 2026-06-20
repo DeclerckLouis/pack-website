@@ -83,6 +83,8 @@ const reviewsLink = googleReviewsUrl || site.profiles.googleBusiness;
     font-size: var(--text-sm);
     line-height: 1.65;
     color: var(--text-body);
+    /* Preserve the verbatim line breaks from the review text. */
+    white-space: pre-line;
   }
   .review__meta {
     margin-top: auto;
