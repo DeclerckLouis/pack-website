@@ -4,13 +4,15 @@ import Card from "@/components/Card.astro";
 import Kicker from "@/components/Kicker.astro";
 import Icon from "@/components/Icon.astro";
 import Button from "@/components/Button.astro";
+import Breadcrumbs from "@/components/Breadcrumbs.astro";
 import { site } from "@/data/site";
 import { breadcrumbs } from "@/lib/schema";
 
-const jsonLd = breadcrumbs([
+const crumbs: [string, string][] = [
   ["Home", "/"],
   ["Contact", "/contact"],
-]);
+];
+const jsonLd = breadcrumbs(crumbs);
 
 const contactItems = [
   ["phone", site.phone, site.phoneHref],
@@ -30,6 +32,7 @@ const odooEndpoint = `${site.odooBaseUrl}/website/form/crm.lead`;
   <section class="section contact">
     <div class="container contact__grid">
       <div>
+        <Breadcrumbs items={crumbs} />
         <Kicker>Vrijblijvend kennismaken</Kicker>
         <h1 class="contact__title">30 minuten, kosteloos — bij u of via telefoon</h1>
         <p class="lead contact__lead">

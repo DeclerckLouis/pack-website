@@ -6,14 +6,16 @@ import Badge from "@/components/Badge.astro";
 import Kicker from "@/components/Kicker.astro";
 import Icon from "@/components/Icon.astro";
 import Button from "@/components/Button.astro";
+import Breadcrumbs from "@/components/Breadcrumbs.astro";
 import { services } from "@/data/services";
 import { breadcrumbs } from "@/lib/schema";
 import { url } from "@/lib/url";
 
-const jsonLd = breadcrumbs([
+const crumbs: [string, string][] = [
   ["Home", "/"],
   ["Diensten", "/diensten"],
-]);
+];
+const jsonLd = breadcrumbs(crumbs);
 ---
 
 <BaseLayout
@@ -23,6 +25,7 @@ const jsonLd = breadcrumbs([
 >
   <section class="page-hero">
     <div class="container page-hero__in">
+      <Breadcrumbs items={crumbs} />
       <Kicker>Diensten</Kicker>
       <h1>Alles wat een klein kantoor nodig heeft</h1>
       <p class="lead page-hero__lead">

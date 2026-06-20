@@ -1,5 +1,7 @@
 ---
 import { site, mainNav } from "@/data/site";
+import { sectors } from "@/data/sectors";
+import { services } from "@/data/services";
 import Logo from "./Logo.astro";
 import Button from "./Button.astro";
 import Icon from "./Icon.astro";
@@ -9,6 +11,24 @@ const path = Astro.url.pathname;
 const isActive = (href: string) => {
   const h = url(href);
   return h === "/" ? path === h : path === h || path.startsWith(h + "/");
+};
+
+// Dropdown contents, keyed by the `dropdown` marker on a nav item. Each child
+// keeps its own page, so these are plain links into the existing hubs.
+type DropdownItem = { label: string; href: string; description: string; icon: string };
+const dropdowns: Record<string, DropdownItem[]> = {
+  sectors: sectors.map((s) => ({
+    label: s.navTitle,
+    href: `/sectoren/${s.slug}`,
+    description: s.tagline,
+    icon: s.icon,
+  })),
+  services: services.map((s) => ({
+    label: s.navTitle,
+    href: `/diensten/${s.slug}`,
+    description: s.tagline,
+    icon: s.icon,
+  })),
 };
 ---
 
@@ -20,15 +40,53 @@ const isActive = (href: string) => {
 
     <nav class="site-nav" aria-label="Hoofdnavigatie">
       {
-        mainNav.map((item) => (
-          <a
-            href={url(item.href)}
-            aria-current={isActive(item.href) ? "page" : undefined}
-            class:list={["site-nav__link", isActive(item.href) && "is-active"]}
-          >
-            {item.label}
-          </a>
-        ))
+        mainNav.map((item) => {
+          const children = "dropdown" in item ? dropdowns[item.dropdown] : undefined;
+          if (!children) {
+            return (
+              <a
+                href={url(item.href)}
+                aria-current={isActive(item.href) ? "page" : undefined}
+                class:list={["site-nav__link", isActive(item.href) && "is-active"]}
+              >
+                {item.label}
+              </a>
+            );
+          }
+          return (
+            <div class="site-nav__item">
+              <a
+                href={url(item.href)}
+                aria-current={isActive(item.href) ? "page" : undefined}
+                aria-haspopup="true"
+                class:list={["site-nav__link", "site-nav__link--parent", isActive(item.href) && "is-active"]}
+              >
+                {item.label}
+                <Icon name="chevron-down" size={15} class="site-nav__caret" />
+              </a>
+              <div class="site-nav__dropdown">
+                <ul class="site-nav__menu" role="menu">
+                  {children.map((c) => (
+                    <li role="none">
+                      <a
+                        role="menuitem"
+                        href={url(c.href)}
+                        aria-current={isActive(c.href) ? "page" : undefined}
+                        class:list={["site-nav__menu-link", isActive(c.href) && "is-active"]}
+                      >
+                        <span class="site-nav__menu-icon"><Icon name={c.icon} size={18} /></span>
+                        <span class="site-nav__menu-text">
+                          <span class="site-nav__menu-title">{c.label}</span>
+                          <span class="site-nav__menu-desc">{c.description}</span>
+                        </span>
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          );
+        })
       }
     </nav>
 
@@ -76,6 +134,101 @@ const isActive = (href: string) => {
   .site-nav__link.is-active {
     color: var(--text-strong);
   }
+
+  /* Dropdown parent */
+  .site-nav__item {
+    position: relative;
+  }
+  .site-nav__link--parent {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .site-nav__caret {
+    transition: transform var(--dur-fast) var(--ease-out);
+  }
+  .site-nav__item:hover .site-nav__caret,
+  .site-nav__item:focus-within .site-nav__caret {
+    transform: rotate(180deg);
+  }
+
+  /* The flyout. `padding-top` is an invisible bridge so the menu doesn't
+     close while the pointer travels from the link down to the panel. */
+  .site-nav__dropdown {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translate(-50%, 6px);
+    padding-top: 12px;
+    min-width: 320px;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition:
+      opacity var(--dur-fast) var(--ease-out),
+      transform var(--dur-fast) var(--ease-out),
+      visibility var(--dur-fast) var(--ease-out);
+  }
+  .site-nav__item:hover .site-nav__dropdown,
+  .site-nav__item:focus-within .site-nav__dropdown {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translate(-50%, 0);
+  }
+
+  .site-nav__menu {
+    list-style: none;
+    margin: 0;
+    padding: 8px;
+    background: var(--paper, #fff);
+    border: 1px solid var(--border-soft);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-lg, var(--shadow-md));
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .site-nav__menu-link {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 10px 12px;
+    border-radius: var(--radius-sm, 8px);
+    transition: background-color var(--dur-fast) var(--ease-out);
+  }
+  .site-nav__menu-link:hover,
+  .site-nav__menu-link:focus-visible,
+  .site-nav__menu-link.is-active {
+    background: var(--surface-sunken, var(--cream));
+  }
+  .site-nav__menu-icon {
+    flex: none;
+    display: grid;
+    place-content: center;
+    width: 34px;
+    height: 34px;
+    border-radius: var(--radius-sm, 8px);
+    background: var(--cream);
+    color: var(--primary);
+  }
+  .site-nav__menu-text {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .site-nav__menu-title {
+    font-family: var(--font-sans);
+    font-size: var(--text-sm);
+    font-weight: var(--fw-medium);
+    color: var(--text-strong);
+  }
+  .site-nav__menu-desc {
+    font-size: var(--text-xs, 12px);
+    line-height: 1.4;
+    color: var(--text-muted);
+  }
+
   .site-header__actions {
     display: flex;
     align-items: center;
