@@ -160,6 +160,11 @@ export const services: ServiceHub[] = [
         title: "Beheer op afstand",
         body: "Ik monitor uw netwerk op afstand en grijp in vóór u merkt dat er iets mis is.",
       },
+      {
+        icon: "cctv",
+        title: "Camerabewaking",
+        body: "Professionele camera's met HD-beeld, nachtzicht en beelden op uw smartphone — op een gescheiden netwerk geplaatst en GDPR-correct ingericht.",
+      },
     ],
     locals: [
       {
