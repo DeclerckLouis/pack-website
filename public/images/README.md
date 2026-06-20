@@ -12,7 +12,8 @@ a graceful monogram/placeholder shows instead, so nothing looks broken).
 | `louis.webp`                  | `https://www.packetflow.be/web/image/3266-973340da/IMG-20240102-WA0062.webp` |
 | `sector-horeca.webp`          | `https://www.packetflow.be/web/image/3267-3deb200e/b%26b.webp` |
 | `sector-vrije-beroepen.webp`  | `https://www.packetflow.be/web/image/3265-372dc538/vrije%20beroepen.webp` |
-| `og-image.png`                | `https://www.packetflow.be/web/image/1488-3f1f0d8b/LD_logo_big.png` |
+| `sector-medisch.webp`         | _new — Medical/zorg hub hero (optional; graceful fallback if absent)_ |
+| `og-image.png`                | _replace the 3 KB logo with a real 1200×630 share card (wordmark + tagline + "West-Vlaanderen") — see brief §2d_ |
 
 Tip: when logged into the old site, right-click → "Save image as", or use
 `curl -o louis.jpg "<url>"` from a browser session that has the cookie.

@@ -15,12 +15,13 @@ const year = new Date().getFullYear();
       </a>
       <p class="site-footer__lead">
         Uw lokale IT-partner in {site.serviceArea}. Eén aanspreekpunt voor
-        advocaten, architecten en makelaars.
+        medische praktijken en professionele kantoren in {site.serviceArea}.
       </p>
       <div class="site-footer__contact">
         <a href={site.phoneHref}><Icon name="phone" size={16} /> {site.phone}</a>
         <a href={`mailto:${site.email}`}><Icon name="mail" size={16} /> {site.email}</a>
-        <span><Icon name="map-pin" size={16} /> {site.address.city}, {site.address.region}</span>
+        <span><Icon name="map-pin" size={16} /> {site.address.postalCode} {site.address.city}, {site.address.region}</span>
+        <span><Icon name="building-2" size={16} /> KBO {site.vatId}</span>
       </div>
     </div>
 
