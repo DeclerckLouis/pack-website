@@ -26,10 +26,10 @@ export const site = {
   serviceArea: "West-Vlaanderen",
   // Off-site profiles for LocalBusiness `sameAs`. Feeds both the reviews button
   // (src/components/Reviews.astro) and the schema sameAs. Empty entries are
-  // filtered out, so schema stays valid. TODO: add LinkedIn once it exists.
+  // filtered out, so schema stays valid.
   profiles: {
     googleBusiness: "https://share.google/0mYTn2sSQFX99Kdqs",
-    linkedin: "",
+    linkedin: "https://www.linkedin.com/company/packetflow-be",
   },
   // Odoo CRM instance that receives website-form submissions. The contact form
   // POSTs to `${odooBaseUrl}/website/form/crm.lead`, which creates a crm.lead
