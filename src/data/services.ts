@@ -34,6 +34,22 @@ export type ServiceHub = {
   tagline: string;
   description: string;
   features: { title: string; body: string; icon: string }[];
+  /**
+   * Optional post-oplevering line shown low on the page. Frames the €49/maand
+   * monitoring as a project-attach ("na de oplevering"), so it reads as an
+   * add-on to this dienst — not a cheaper managed-IT tier that undercuts €99.
+   */
+  aftercare?: string;
+  /**
+   * Optional pricing ladder. Used on it-beheer-support to make the two levels
+   * explicit — €49 = monitoring of wat ik installeerde, €99 = volledige
+   * ontzorging — so a kantoor-klant niet op het laagste cijfer ankert.
+   */
+  ladder?: {
+    title: string;
+    intro?: string;
+    tiers: { price: string; name: string; body: string; href?: string }[];
+  };
   locals: LocalPage[];
 };
 
@@ -70,6 +86,24 @@ export const services: ServiceHub[] = [
         body: "Geen overhead van een groot bedrijf. U betaalt voor het werk, niet voor de kantoren errond.",
       },
     ],
+    ladder: {
+      title: "Monitoring of volledige ontzorging?",
+      intro:
+        "Twee duidelijk verschillende niveaus. Het ene bewaakt wat ik voor u installeerde, het andere neemt uw hele IT uit handen — kies wat bij uw kantoor past.",
+      tiers: [
+        {
+          price: "vanaf €49 / maand",
+          name: "Monitoring & onderhoud",
+          body: "Ik hou de IT die ik voor u installeerde in de gaten: monitoring, updates en een maandelijkse check. Ideaal als u het meeste zelf regelt en gewoon zeker wilt zijn dat alles blijft draaien.",
+        },
+        {
+          price: "vanaf €99 / maand",
+          name: "Het KMO-Pakket — volledige ontzorging",
+          body: "Niet alleen bewaking, maar uw hele IT uit handen: Microsoft 365, back-up, beveiliging, Peppol én support in één vaste prijs. Eén partner voor het geheel, niet enkel het stuk dat ik installeerde.",
+          href: "/pakket",
+        },
+      ],
+    },
     locals: [
       {
         slug: "it-partner-jabbeke",
@@ -166,6 +200,8 @@ export const services: ServiceHub[] = [
         body: "Professionele camera's met HD-beeld, nachtzicht en beelden op uw smartphone — op een gescheiden netwerk geplaatst en GDPR-correct ingericht.",
       },
     ],
+    aftercare:
+      "Na de oplevering hou ik uw netwerk en systemen in de gaten: monitoring, updates en een maandelijkse check. Vanaf €49/maand.",
     locals: [
       {
         slug: "wifi-installatie-horeca-jabbeke",
@@ -263,6 +299,8 @@ export const services: ServiceHub[] = [
         body: "Klaar voor de verplichte e-facturatie via Peppol, correct gekoppeld aan uw boekhouding.",
       },
     ],
+    aftercare:
+      "Na de oplevering hou ik uw netwerk en systemen in de gaten: monitoring, updates en een maandelijkse check. Vanaf €49/maand.",
     locals: [],
   },
 ];

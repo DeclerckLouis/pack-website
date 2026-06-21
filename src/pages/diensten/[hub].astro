@@ -90,6 +90,47 @@ const jsonLd = [
     )
   }
 
+  {
+    hub.ladder && (
+      <section class="section ladder-band">
+        <div class="container">
+          <div class="section-head">
+            <Kicker>Twee niveaus</Kicker>
+            <h2>{hub.ladder.title}</h2>
+            {hub.ladder.intro && <p>{hub.ladder.intro}</p>}
+          </div>
+          <div class="ladder-grid">
+            {hub.ladder.tiers.map((t) => (
+              <Card class="ladder-tier">
+                <span class="ladder-tier__price">{t.price}</span>
+                <h3>{t.name}</h3>
+                <p>{t.body}</p>
+                {t.href && (
+                  <a href={url(t.href)} class="ladder-tier__more">
+                    Meer over dit pakket <Icon name="arrow-right" size={15} />
+                  </a>
+                )}
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+    )
+  }
+
+  {
+    hub.aftercare && (
+      <section class="aftercare">
+        <div class="container">
+          <p class="aftercare__line">
+            <span class="aftercare__icon"><Icon name="radar" size={18} /></span>
+            <span>{hub.aftercare}</span>
+          </p>
+        </div>
+      </section>
+    )
+  }
+
   <CtaSection />
 </BaseLayout>
 
@@ -120,5 +161,75 @@ const jsonLd = [
     font-size: var(--text-sm);
     font-weight: var(--fw-medium);
     color: var(--primary);
+  }
+
+  /* Pricing ladder — keeps the two levels visibly distinct */
+  .ladder-band {
+    background: var(--paper);
+    border-top: 1px solid var(--border-soft);
+  }
+  .ladder-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-5);
+  }
+  .ladder-tier {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+  .ladder-tier__price {
+    font-family: var(--font-display);
+    font-weight: var(--fw-semibold);
+    font-size: var(--text-lg);
+    color: var(--text-strong);
+    letter-spacing: -0.01em;
+  }
+  .ladder-tier h3 {
+    font-size: var(--text-md);
+    margin: 0;
+  }
+  .ladder-tier p {
+    font-size: var(--text-sm);
+    line-height: 1.6;
+    color: var(--text-muted);
+    margin: 0;
+  }
+  .ladder-tier__more {
+    margin-top: auto;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: var(--text-sm);
+    font-weight: var(--fw-medium);
+    color: var(--primary);
+    padding-top: var(--space-2);
+  }
+
+  /* Post-oplevering line — understated, reads as a project-attach */
+  .aftercare {
+    padding-block: var(--space-6);
+  }
+  .aftercare__line {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 0;
+    padding: var(--space-4) var(--space-5);
+    border: 1px solid var(--border-soft);
+    border-radius: var(--radius-md);
+    background: var(--paper);
+    font-size: var(--text-sm);
+    color: var(--text-strong);
+  }
+  .aftercare__icon {
+    flex: none;
+    color: var(--primary);
+    display: inline-flex;
+  }
+  @media (max-width: 880px) {
+    .ladder-grid {
+      grid-template-columns: 1fr;
+    }
   }
 </style>
