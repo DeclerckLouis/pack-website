@@ -21,12 +21,17 @@ https://packetflow.be/*   https://www.packetflow.be/:splat   301!
 /diensten/wifi-netwerk     /diensten/zakelijke-wifi-netwerken    301
 /sectoren/vrije-beroepen   /sectoren/kantoren-vrije-beroepen     301
 /contactus                 /contact                              301
+# /cookie-policy (Odoo) → privacy page
+/cookie-policy             /privacy                              301
 # /appointment/1 — Odoo appointment page
 /appointment/1             /contact                              301
 
-# English pages → Dutch equivalents (site is nl-only now)
+# English pages → Dutch equivalents (site is nl-only now).
+# Specific rules must come BEFORE the /en/* catch-all (first match wins).
 /en/about-me               /over-mij                             301
 /en/privacy                /privacy                              301
+/en/cookie-policy          /privacy                              301
+/en/diensten/it-beheer-ondersteuning  /diensten/it-beheer-support  301
 /en/*                      /                                     301
 
 # Unchanged slugs (/, /over-mij, /privacy) need no redirect.
