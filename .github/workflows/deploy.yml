@@ -1,11 +1,12 @@
 name: Deploy to Cloudflare Pages
 
 # Production deploy (the live site, www.packetflow.be):
-#   - push to main          -> production deploy
-#   - pull_request          -> preview deploy + build validation
+#   - push to main          -> production deploy (i.e. after a PR is merged)
 #   - workflow_dispatch     -> manual run
-# Staging/acceptance lives on GitHub Pages instead (see github-pages.yml,
-# which deploys from the `acc` branch). Promote acc -> main to go live.
+# Nothing here runs on pull requests: a PR must never reach Cloudflare before
+# it's merged. Pre-merge review happens on GitHub Pages staging instead — a
+# ready-for-review PR is published there (see github-pages.yml). Merge to main
+# is what promotes a change to production.
 #
 # ONE-TIME SETUP (owner only — CI cannot do this), see the handoff brief §1b:
 #   1. Cloudflare dashboard -> Workers & Pages -> Create -> Pages -> Direct
@@ -18,7 +19,6 @@ name: Deploy to Cloudflare Pages
 on:
   push:
     branches: [main]
-  pull_request:
   workflow_dispatch:
 
 permissions:
@@ -63,5 +63,6 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          # main -> production; any other branch/PR -> preview deployment
-          command: pages deploy dist --project-name=packetflow --branch=${{ github.head_ref || github.ref_name }}
+          # Only runs for push to main / manual dispatch, so this is always the
+          # production branch -> production deployment.
+          command: pages deploy dist --project-name=packetflow --branch=${{ github.ref_name }}

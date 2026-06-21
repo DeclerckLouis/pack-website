@@ -1,19 +1,26 @@
 name: Deploy to GitHub Pages
 
-# Staging / acceptance environment. Publishes the `acc` branch to GitHub Pages
-# so changes can be reviewed before they go live on Cloudflare (production,
-# from `main` — see deploy.yml). Promote with: merge acc -> main.
+# Staging environment. Publishes a pull request to GitHub Pages once it's
+# marked ready for review, so changes can be reviewed on a real URL before
+# they go live on Cloudflare (production, from `main` — see deploy.yml).
+# Merging the PR to main is what promotes it to production.
+#
+# NOTE: GitHub Pages has a single site per repo, so this is one shared staging
+# URL. If two PRs are ready at the same time, the most recent build wins. Draft
+# PRs are skipped (see the `if` on the build job).
 #
 # GitHub Pages serves under the project sub-path, so the build uses the base
 # path resolved by configure-pages — unlike the Cloudflare build, which always
 # serves at the domain root.
 #
 # ONE-TIME SETUP (required, owner only — CI cannot do this):
-#   Repo → Settings → Pages → "Build and deployment" → Source: "GitHub Actions".
+#   1. Repo → Settings → Pages → "Build and deployment" → Source: "GitHub Actions".
+#   2. Repo → Settings → Environments → github-pages → "Deployment branches and
+#      tags": allow the PR branches to deploy (e.g. "No restriction"), otherwise
+#      a deploy from a non-default branch is rejected.
 on:
-  push:
-    branches:
-      - acc
+  pull_request:
+    types: [opened, reopened, ready_for_review, synchronize]
   workflow_dispatch:
 
 # Allow the workflow to publish to Pages.
@@ -31,6 +38,9 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    # Skip draft PRs — only publish once a PR is ready for review. (A manual
+    # dispatch has no pull_request payload, so `.draft` is empty and it runs.)
+    if: ${{ github.event_name == 'workflow_dispatch' || github.event.pull_request.draft == false }}
     steps:
       - uses: actions/checkout@v4
 
