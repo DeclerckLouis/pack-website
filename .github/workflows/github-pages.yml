@@ -42,9 +42,9 @@ jobs:
     # dispatch has no pull_request payload, so `.draft` is empty and it runs.)
     if: ${{ github.event_name == 'workflow_dispatch' || github.event.pull_request.draft == false }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v5
         with:
           node-version: 22
           cache: npm
