@@ -5,7 +5,8 @@
 // third-party reliability footgun). If a name can't be resolved the component
 // renders an empty, hidden span rather than failing the build.
 import fs from "node:fs";
-import { fileURLToPath } from "node:url";
+import path from "node:path";
+import { createRequire } from "node:module";
 
 interface Props {
   name: string;
@@ -15,11 +16,21 @@ interface Props {
 }
 const { name, size = 18, class: className, color } = Astro.props;
 
+// Resolve the icon SVG from the `lucide-static` package. We use Node's module
+// resolution (createRequire) rather than a relative `../../node_modules` path
+// off import.meta.url: Astro 6 bundles components to a different location at
+// build time, so the relative path no longer resolves and every icon would
+// silently render empty. createRequire walks up node_modules from this module,
+// and we fall back to the project root just in case.
+const require = createRequire(import.meta.url);
 let svg = "";
 try {
-  const file = fileURLToPath(
-    new URL(`../../node_modules/lucide-static/icons/${name}.svg`, import.meta.url),
-  );
+  let file: string;
+  try {
+    file = require.resolve(`lucide-static/icons/${name}.svg`);
+  } catch {
+    file = path.join(process.cwd(), "node_modules/lucide-static/icons", `${name}.svg`);
+  }
   svg = fs.readFileSync(file, "utf-8");
 } catch {
   svg = "";
