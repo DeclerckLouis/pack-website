@@ -5,6 +5,7 @@ practice (MSP) for small offices in West-Vlaanderen. Rebuilt on
 [Astro](https://astro.build) to replace the previous Odoo site, styled with the
 **Packetflow Design System** (warm orange-on-cream editorial brand, Lora +
 Poppins, blue accent, Lucide icons).
+recently moved to private repo  
 
 ## Stack
 
