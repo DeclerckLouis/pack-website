@@ -26,8 +26,24 @@ https://packetflow.be/*   https://www.packetflow.be/:splat   301!
 # /appointment/1 — Odoo appointment page
 /appointment/1             /contact                              301
 
+# ---- Second GSC pass (discovered/404 URLs, see issue #32) ----
+# Old service/sector slugs that changed.
+/diensten/backup-beveiliging   /diensten/cloud-backup-beveiliging   301
+/sectoren/horeca               /sectoren/horeca-bnb                  301
+# Odoo booking pages → contact (where the "plan een gesprek" CTA lives).
+/calendar                  /contact                              301
+/appointment               /contact                              301
+# Odoo support portal (helpdesk + knowledgebase) → contact.
+/helpdesk                  /contact                              301
+/helpdesk/*                /contact                              301
+# Old default-language about slug (the /en/ variant is handled below).
+/about-me                  /over-mij                             301
+# /terms — privacy is the only legal page.
+/terms                     /privacy                              301
+
 # English pages → Dutch equivalents (site is nl-only now).
 # Specific rules must come BEFORE the /en/* catch-all (first match wins).
+/en/contactus              /contact                              301
 /en/about-me               /over-mij                             301
 /en/privacy                /privacy                              301
 /en/cookie-policy          /privacy                              301
@@ -36,5 +52,7 @@ https://packetflow.be/*   https://www.packetflow.be/:splat   301!
 
 # Unchanged slugs (/, /over-mij, /privacy) need no redirect.
 #
-# NOTE: lab.packetflow.be (homelab) is a separate subdomain — out of scope here.
-# TODO: re-check GSC before DNS cutover in case new URLs got indexed since.
+# NOTE: lab.packetflow.be (homelab) is a separate subdomain — out of scope here
+# (its GSC entries can't be handled from this Pages _redirects file).
+# NOTE: /cdn-cgi/l/email-protection is a Cloudflare-internal path, not a page —
+# deliberately not redirected.
