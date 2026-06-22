@@ -8,6 +8,7 @@ import { url } from "@/lib/url";
   <div class="container">
     <div class="partners__head">
       <Kicker>Partners &amp; certificeringen</Kicker>
+      <h2 class="partners__title">Erkende netwerkpartners</h2>
       <p class="partners__intro">{partnersIntro}</p>
     </div>
     <ul class="partners__grid">
@@ -50,6 +51,10 @@ import { url } from "@/lib/url";
   .partners__head {
     max-width: 56ch;
     margin-bottom: var(--space-6);
+  }
+  .partners__title {
+    font-size: var(--text-2xl);
+    margin: var(--space-3) 0 0;
   }
   .partners__intro {
     margin-top: var(--space-3);
