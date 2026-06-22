@@ -8,8 +8,9 @@ import Icon from "@/components/Icon.astro";
 import Button from "@/components/Button.astro";
 import Breadcrumbs from "@/components/Breadcrumbs.astro";
 import Reviews from "@/components/Reviews.astro";
+import Faq from "@/components/Faq.astro";
 import { site } from "@/data/site";
-import { service, breadcrumbs } from "@/lib/schema";
+import { service, breadcrumbs, faqPage } from "@/lib/schema";
 
 // PRICING: an entry "vanaf" price — the package is scoped per kantoor, so the
 // closing CTA ("op maat van uw team") and this headline stay consistent.
@@ -30,6 +31,36 @@ const crumbs: [string, string][] = [
   ["KMO-Pakket", "/pakket"],
 ];
 
+// Visible FAQ + FAQPage schema. Covers the questions people actually ask before
+// they reach out: prijs, opzegbaarheid en GDPR.
+const faqs = [
+  {
+    question: "Wat kost het KMO-Pakket?",
+    answer:
+      "Het pakket start vanaf €99 per maand voor een klein kantoor en wordt samengesteld op maat van uw team. Microsoft 365-licenties worden apart en aan kostprijs doorgerekend. U krijgt vooraf een heldere, vaste maandprijs — geen uurtje-factuurtje en geen verrassingen.",
+  },
+  {
+    question: "Kan ik maandelijks opzeggen?",
+    answer:
+      "Ja. Het pakket is maandelijks opzegbaar, zonder langlopend contract. Zo blijft u flexibel en betaalt u alleen zolang u tevreden bent.",
+  },
+  {
+    question: "Blijven mijn gegevens in regel met de GDPR?",
+    answer:
+      "Ja. Toegang en backup worden zo ingericht dat uw gegevens privé en in regel met de GDPR blijven. Ik leg vast wie bij welke data kan en zorg voor versleutelde, geteste back-ups.",
+  },
+  {
+    question: "Zijn de Microsoft 365-licenties inbegrepen in de prijs?",
+    answer:
+      "De licenties worden apart en aan kostprijs doorgerekend, zodat u nooit meer betaalt dan nodig. Het opzetten, beveiligen en onderhouden ervan zit wél in het pakket.",
+  },
+  {
+    question: "Hoe snel ben ik geholpen bij een probleem?",
+    answer:
+      "U heeft één vast aanspreekpunt, bereikbaar 's avonds en in het weekend. Ik bewaak uw systemen proactief en grijp vaak in vóór u er iets van merkt.",
+  },
+];
+
 const jsonLd = [
   service({
     name: "KMO-Pakket",
@@ -38,6 +69,7 @@ const jsonLd = [
     serviceType: "Managed IT-pakket",
   }),
   breadcrumbs(crumbs),
+  faqPage(faqs),
 ];
 ---
 
@@ -110,7 +142,12 @@ const jsonLd = [
   </section>
 
   <section class="section pakket-why">
-    <div class="container grid-3-plain">
+    <div class="container">
+      <div class="section-head">
+        <Kicker>Waarom het pakket</Kicker>
+        <h2>Eén partner, geen verrassingen</h2>
+      </div>
+      <div class="grid-3-plain">
       {
         [
           ["Voorspelbaar", "Eén vaste prijs. U weet exact waar u aan toe bent, elke maand."],
@@ -123,10 +160,13 @@ const jsonLd = [
           </div>
         ))
       }
+      </div>
     </div>
   </section>
 
   <Reviews />
+
+  <Faq items={faqs} />
 
   <CtaSection
     title="Benieuwd wat het pakket voor uw kantoor kost?"

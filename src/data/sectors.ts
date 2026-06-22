@@ -34,6 +34,11 @@ export type Sector = {
    * the client has given permission — never invent quotes. See §3e.
    */
   references?: { label: string }[];
+  /**
+   * Optional sector FAQ. Rendered visibly (Faq.astro) and emitted as FAQPage
+   * schema, so keep the answers truthful and on-page.
+   */
+  faqs?: { question: string; answer: string }[];
 };
 
 export const sectors: Sector[] = [
@@ -80,6 +85,23 @@ export const sectors: Sector[] = [
       { label: "Apotheek, regio Brugge" },
       { label: "Orthodontiepraktijk, West-Vlaanderen" },
     ],
+    faqs: [
+      {
+        question: "Hoe houdt u patiëntgegevens in regel met de GDPR?",
+        answer:
+          "Ik leg vast wie bij welke gegevens kan, beveilig de toegang met MFA en zorg voor versleutelde, geteste back-ups. Zo blijven medische gegevens privé en blijft u aantoonbaar in regel met de GDPR.",
+      },
+      {
+        question: "Werkt u samen met mijn praktijk- of apotheeksoftware?",
+        answer:
+          "Ja. Ik zorg dat uw netwerk en de koppelingen met uw medisch dossier, voorschriften of apotheeksysteem vlot blijven werken, zodat de balie niet stilvalt.",
+      },
+      {
+        question: "Wat gebeurt er als er iets uitvalt tijdens het spreekuur?",
+        answer:
+          "Ik bewaak uw systemen proactief en grijp vaak in vóór u er iets van merkt. Loopt er toch iets mis, dan heeft u één vast aanspreekpunt dat snel reageert — ook 's avonds en in het weekend.",
+      },
+    ],
   },
   {
     slug: "kantoren-vrije-beroepen",
@@ -116,6 +138,23 @@ export const sectors: Sector[] = [
     ],
     serviceSlugs: ["it-beheer-support", "cloud-backup-beveiliging"],
     localSlugs: ["it-partner-jabbeke", "it-support-oudenburg", "managed-it-west-vlaanderen"],
+    faqs: [
+      {
+        question: "Hoe houdt u vertrouwelijke dossiers privé?",
+        answer:
+          "Ik leg vast wie en wat bij uw dossiers kan, beveilig de toegang met MFA en richt AI en Copilot in met heldere datagrenzen. Zo blijven cliëntgegevens vertrouwelijk, ook nu AI in elk programma sluipt.",
+      },
+      {
+        question: "Wat als er een dossier verloren dreigt te gaan?",
+        answer:
+          "Uw bestanden worden automatisch, versleuteld en getest gebackupt — getest, niet gehoopt. Gaat er iets mis, dan zet ik snel een vorige versie terug.",
+      },
+      {
+        question: "Moet ik een langlopend contract tekenen?",
+        answer:
+          "Nee. Ik werk zonder complexe contracten en met één vast aanspreekpunt dat uw kantoor kent. U betaalt voor wat u nodig heeft, persoonlijk en transparant.",
+      },
+    ],
   },
   {
     slug: "horeca-bnb",
@@ -153,6 +192,23 @@ export const sectors: Sector[] = [
     ],
     serviceSlugs: ["zakelijke-wifi-netwerken", "cloud-backup-beveiliging"],
     localSlugs: ["wifi-installatie-horeca-jabbeke", "gastennetwerk-bnb-brugse-ommeland"],
+    faqs: [
+      {
+        question: "Blijft de WiFi werken als het druk is?",
+        answer:
+          "Ja. Ik installeer professionele netwerken die seizoenspieken en volle zalen aankunnen, met dekking tot in de verste kamer en op het terras — zodat gasten niet klagen over trage WiFi.",
+      },
+      {
+        question: "Kan ik gasten en kassa op aparte netwerken zetten?",
+        answer:
+          "Zeker. Ik scheid gasten-WiFi, kassa en camera's netjes per gebruik, zodat een gast nooit bij uw kassasysteem of camerabeelden kan. Veiliger én stabieler.",
+      },
+      {
+        question: "Wat als er iets uitvalt tijdens de service?",
+        answer:
+          "Ik beheer uw netwerk op afstand en grijp in vóór u het merkt. Zo blijft uw kassa- of bestelsysteem overeind op het drukste moment.",
+      },
+    ],
   },
   {
     slug: "verenigingen-vzw",
@@ -188,6 +244,23 @@ export const sectors: Sector[] = [
     ],
     serviceSlugs: ["cloud-backup-beveiliging", "it-beheer-support"],
     localSlugs: [],
+    faqs: [
+      {
+        question: "Is dit betaalbaar voor een kleine vereniging?",
+        answer:
+          "Ja. Ik kies bewust betaalbare oplossingen — vaak met non-profitkorting op Microsoft 365 — en reken alleen het werk aan. Geen dure contracten voor wie het met een klein budget moet doen.",
+      },
+      {
+        question: "Wat gebeurt er als ons bestuur wisselt?",
+        answer:
+          "Ik richt mailboxen, bestanden en toegang zo in dat ze een bestuurswissel overleven. Als de penningmeester of secretaris wisselt, verdwijnt de toegang niet mee.",
+      },
+      {
+        question: "Kunnen we onze bestanden veilig delen?",
+        answer:
+          "Ja. Verslagen, ledenlijsten en foto's staan centraal en veilig — bereikbaar voor wie het nodig heeft, niet voor de rest. Met een eenvoudige back-up zodat niets verloren gaat.",
+      },
+    ],
   },
 ];
 

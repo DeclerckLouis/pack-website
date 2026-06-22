@@ -1,9 +1,44 @@
 // Structured-data (JSON-LD) helpers. Centralised so every page references the
 // same LocalBusiness via a shared @id, and breadcrumbs are consistent.
 import { site, geo } from "@/data/site";
+import { reviews } from "@/data/reviews";
 
 const SITE_URL = "https://www.packetflow.be";
 export const ORG_ID = `${SITE_URL}/#business`;
+
+/**
+ * Review + AggregateRating nodes built from the on-site reviews (data/reviews).
+ * The aggregate intentionally reflects only the reviews rendered on the page —
+ * Google requires the aggregate to match the visible reviews, so this stays
+ * compliant regardless of the (possibly higher) Google Business Profile total.
+ */
+function reviewSchema() {
+  if (reviews.length === 0) return {};
+  const avg =
+    reviews.reduce((sum, r) => sum + r.rating, 0) / reviews.length;
+  return {
+    aggregateRating: {
+      "@type": "AggregateRating",
+      // Round to one decimal; whole numbers (e.g. 5) serialise cleanly.
+      ratingValue: Math.round(avg * 10) / 10,
+      reviewCount: reviews.length,
+      bestRating: 5,
+      worstRating: 1,
+    },
+    review: reviews.map((r) => ({
+      "@type": "Review",
+      reviewRating: {
+        "@type": "Rating",
+        ratingValue: r.rating,
+        bestRating: 5,
+        worstRating: 1,
+      },
+      author: { "@type": "Person", name: r.author },
+      reviewBody: r.text,
+      ...(r.date ? { datePublished: r.date } : {}),
+    })),
+  };
+}
 
 /** The canonical LocalBusiness node. Reference it by @id elsewhere. */
 export function localBusiness() {
@@ -55,6 +90,20 @@ export function localBusiness() {
         closes: "20:00",
       },
     ],
+    ...reviewSchema(),
+  };
+}
+
+/** A standalone FAQPage node from question/answer pairs. */
+export function faqPage(items: { question: string; answer: string }[]) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: items.map((qa) => ({
+      "@type": "Question",
+      name: qa.question,
+      acceptedAnswer: { "@type": "Answer", text: qa.answer },
+    })),
   };
 }
 
