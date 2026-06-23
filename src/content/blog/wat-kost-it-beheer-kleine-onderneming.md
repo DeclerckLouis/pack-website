@@ -50,7 +50,7 @@ Ik hou het bewust eenvoudig. U kiest wat bij uw situatie past.
 U betaalt voor de tijd die ik effectief werk, aan een vast tarief van €60 per uur
 (excl. btw). Geen abonnement en geen verborgen kosten: u weet vooraf wat een
 ingreep kost. Voor verplaatsing geldt een transparant tarief volgens afstand
-(zie [verplaatsingskosten](/verplaatsingskosten)). Ideaal voor een eenmalige
+(zie [tarieven](/tarieven#verplaatsingskosten)). Ideaal voor een eenmalige
 opkuis of incidentele hulp.
 
 Ter vergelijking: in de Belgische markt liggen uurtarieven voor

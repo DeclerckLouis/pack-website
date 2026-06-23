@@ -107,9 +107,7 @@ const jsonLd = [
         </div>
         <p class="price__note">
           Voor een solo- of duokantoor, op maat van uw team. Maandelijks
-          opzegbaar. Microsoft 365-licenties staan apart en transparant op de
-          factuur, aan de normale Microsoft-prijs. Verplaatsing is inbegrepen in
-          <a href="/verplaatsingskosten">zone 1 en 2</a>.
+          opzegbaar.
         </p>
         <ul class="checklist price__list">
           {
@@ -145,6 +143,11 @@ const jsonLd = [
           ))
         }
       </div>
+      <p class="pakket-note">
+        Microsoft 365-licenties staan apart en transparant op de factuur, aan de
+        normale Microsoft-prijs. Verplaatsing is inbegrepen in zone 1 en 2, zie
+        de <a href="/tarieven">tarieven</a>.
+      </p>
     </div>
   </section>
 
@@ -214,7 +217,15 @@ const jsonLd = [
     color: var(--text-muted);
     margin: 0;
   }
-  .price__note a {
+  .pakket-note {
+    margin-top: var(--space-5);
+    font-size: var(--text-sm);
+    color: var(--text-muted);
+    text-align: center;
+    max-width: 60ch;
+    margin-inline: auto;
+  }
+  .pakket-note a {
     color: var(--text-link);
     text-decoration: underline;
   }
