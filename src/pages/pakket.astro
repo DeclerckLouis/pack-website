@@ -23,7 +23,7 @@ const includes = [
   ["file-check", "Peppol e-facturatie", "Klaar voor de verplichte e-facturatie, gekoppeld aan uw boekhouding."],
   ["shield-check", "Cybersecurity & MFA", "Detecteert wanneer iemand uw Microsoft-account probeert over te nemen. Bescherming tegen phishing en ransomware."],
   ["radar", "Proactieve monitoring", "Ik bewaak uw systemen en grijp in vóór er iets stilvalt."],
-  ["life-buoy", "Support inbegrepen", "Eén vast aanspreekpunt, bereikbaar 's avonds en in het weekend."],
+  ["life-buoy", "Support & interventies", "Eén vast aanspreekpunt, bereikbaar 's avonds en in het weekend. Twee interventies per maand zitten in het pakket."],
 ];
 
 const crumbs: [string, string][] = [
@@ -37,7 +37,7 @@ const faqs = [
   {
     question: "Wat kost het KMO-Pakket?",
     answer:
-      "Het pakket start vanaf €99 per maand voor een klein kantoor en wordt samengesteld op maat van uw team. Microsoft 365-licenties worden apart en aan kostprijs doorgerekend. U krijgt vooraf een heldere, vaste maandprijs — geen uurtje-factuurtje en geen verrassingen.",
+      "Het pakket start vanaf €99 per maand voor een klein kantoor en wordt samengesteld op maat van uw team. Twee interventies per maand zitten in de prijs; extra werk daarboven reken ik aan €60/uur (excl. btw). Microsoft 365-licenties worden apart en aan kostprijs doorgerekend. U krijgt vooraf een heldere, vaste maandprijs — geen uurtje-factuurtje en geen verrassingen.",
   },
   {
     question: "Kan ik maandelijks opzeggen?",
@@ -106,7 +106,7 @@ const jsonLd = [
         </p>
         <ul class="checklist price__list">
           {
-            ["Microsoft 365 & e-mail", "Back-up van uw dossiers", "Peppol e-facturatie", "Beveiliging & monitoring", "Support buiten de uren"].map((i) => (
+            ["Microsoft 365 & e-mail", "Back-up van uw dossiers", "Peppol e-facturatie", "Beveiliging & monitoring", "Twee interventies per maand", "Support buiten de uren"].map((i) => (
               <li>
                 <span class="check"><Icon name="check" size={14} /></span>
                 <span>{i}</span>
