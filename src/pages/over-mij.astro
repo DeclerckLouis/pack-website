@@ -48,6 +48,46 @@ const firstContact = [
   ["U krijgt eerlijk antwoord", "Of ik kan helpen, of niet, of u beter ergens anders zit. Geen verkooppraatje, geen automatisch ingeplande “ontdekkingsgesprekken”."],
   ["Past het?", "Dan plannen we een vrijblijvende intake — telefonisch, op afstand, of ter plaatse als dat zinvol is. Pas als u akkoord bent met een offerte begint het echte werk."],
 ];
+
+// Plain, factual "feiten over Packetflow" block. Deliberately dull and
+// extractable: founder, location, services, service area en KBO op één plek,
+// zodat zoekmachines én AI-assistenten de kerngegevens betrouwbaar oppikken
+// (GEO — zie issue #49). Houd dit feitelijk en in lijn met data/site.ts.
+const facts: { term: string; detail: string; href?: string }[] = [
+  { term: "Oprichter", detail: site.owner },
+  { term: "Onderneming", detail: "Packetflow — eenmanszaak, in bijberoep" },
+  {
+    term: "Thuisbasis",
+    detail: `${site.address.street}, ${site.address.postalCode} ${site.address.city} (${site.address.region})`,
+  },
+  {
+    term: "Werkgebied",
+    detail:
+      "West-Vlaanderen — o.a. Brugge, Oostende, Knokke-Heist, Blankenberge, Zedelgem en Oostkamp. Voor specifieke projecten ook daarbuiten.",
+  },
+  {
+    term: "Diensten",
+    detail:
+      "IT-beheer & support, zakelijke WiFi & netwerken, cloud backup & beveiliging, Microsoft 365, Peppol e-facturatie en cybersecurity.",
+  },
+  {
+    term: "Voor wie",
+    detail:
+      "Medische & zorgpraktijken, kantoren & vrije beroepen, horeca & B&B's en verenigingen & VZW's.",
+  },
+  {
+    term: "Erkenning",
+    detail:
+      "Microsoft Cloud Partner — Microsoft 365-licenties worden rechtstreeks gefactureerd.",
+  },
+  {
+    term: "Bereikbaarheid",
+    detail: "'s Avonds en in het weekend, met één vast aanspreekpunt.",
+  },
+  { term: "Ondernemingsnummer", detail: `KBO ${site.vatId}` },
+  { term: "Telefoon", detail: site.phone, href: site.phoneHref },
+  { term: "E-mail", detail: site.email, href: `mailto:${site.email}` },
+];
 ---
 
 <BaseLayout
@@ -191,6 +231,28 @@ const firstContact = [
     </div>
   </section>
 
+  {/* Feiten — plain, factual block (GEO: makes the core facts easy to extract) */}
+  <section class="section about-facts">
+    <div class="container">
+      <div class="section-head">
+        <Kicker>Feiten</Kicker>
+        <h2>Feiten over Packetflow</h2>
+      </div>
+      <dl class="facts">
+        {
+          facts.map((f) => (
+            <div class="facts__row">
+              <dt class="facts__term">{f.term}</dt>
+              <dd class="facts__detail">
+                {f.href ? <a href={f.href}>{f.detail}</a> : f.detail}
+              </dd>
+            </div>
+          ))
+        }
+      </dl>
+    </div>
+  </section>
+
   <CtaSection />
 </BaseLayout>
 
@@ -305,6 +367,42 @@ const firstContact = [
     color: var(--text-muted);
   }
 
+  .about-facts {
+    background: var(--paper);
+    border-block: 1px solid var(--border-soft);
+  }
+  .facts {
+    margin: 0;
+    max-width: 80ch;
+  }
+  .facts__row {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: var(--space-4);
+    padding: var(--space-4) 0;
+    border-bottom: 1px solid var(--border-soft);
+  }
+  .facts__row:first-child {
+    border-top: 1px solid var(--border-soft);
+  }
+  .facts__term {
+    margin: 0;
+    font-family: var(--font-sans);
+    font-weight: var(--fw-semibold);
+    font-size: var(--text-sm);
+    color: var(--text-strong);
+  }
+  .facts__detail {
+    margin: 0;
+    font-size: var(--text-sm);
+    line-height: var(--leading-relaxed);
+    color: var(--text-muted);
+  }
+  .facts__detail a {
+    color: var(--text-link);
+    text-decoration: underline;
+  }
+
   .about-area {
     background: var(--ink);
   }
@@ -327,6 +425,10 @@ const firstContact = [
     }
     .about-hero__photo {
       order: -1;
+    }
+    .facts__row {
+      grid-template-columns: 1fr;
+      gap: 4px;
     }
   }
 </style>
