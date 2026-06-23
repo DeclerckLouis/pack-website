@@ -1,0 +1,160 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import CtaSection from "@/components/CtaSection.astro";
+import Kicker from "@/components/Kicker.astro";
+import Icon from "@/components/Icon.astro";
+import Breadcrumbs from "@/components/Breadcrumbs.astro";
+import { site } from "@/data/site";
+import { breadcrumbs } from "@/lib/schema";
+
+const crumbs: [string, string][] = [
+  ["Home", "/"],
+  ["Verplaatsingskosten", "/verplaatsingskosten"],
+];
+const jsonLd = breadcrumbs(crumbs);
+
+// Travel zones, measured as radius from Jabbeke. Kept here so the table and any
+// future copy stay in sync.
+const zones = [
+  ["Zone 1", "tot 15 km", "gratis"],
+  ["Zone 2", "15 tot 30 km", "€15"],
+  ["Zone 3", "30 tot 50 km", "€30"],
+];
+
+const description =
+  "Transparante verplaatsingskosten voor IT-werk ter plaatse, volgens afstand vanuit Jabbeke. Kennismaking en scoping-bezoek zijn altijd gratis.";
+---
+
+<BaseLayout title="Verplaatsingskosten" description={description} jsonLd={jsonLd}>
+  <section class="page-hero">
+    <div class="container page-hero__in">
+      <Breadcrumbs items={crumbs} />
+      <Kicker>Tarieven</Kicker>
+      <h1>Verplaatsingskosten</h1>
+      <p class="lead page-hero__lead">
+        Transparant en op voorhand geweten. Een eerste kennismaking en het
+        scoping-bezoek zijn altijd gratis. Voor betaald werk ter plaatse reken
+        ik een verplaatsingskost volgens de afstand vanuit {site.address.city}.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container vk">
+      <table class="vk__table">
+        <thead>
+          <tr>
+            <th>Zone</th>
+            <th>Straal vanuit {site.address.city}</th>
+            <th>Verplaatsingskost (excl. btw)</th>
+          </tr>
+        </thead>
+        <tbody>
+          {
+            zones.map(([zone, straal, kost]) => (
+              <tr>
+                <td>{zone}</td>
+                <td>{straal}</td>
+                <td class="vk__price">{kost}</td>
+              </tr>
+            ))
+          }
+        </tbody>
+      </table>
+
+      <ul class="vk__notes">
+        <li>
+          <span class="vk__check"><Icon name="check" size={14} /></span>
+          Een eerste kennismaking en het scoping-bezoek ter plaatse zijn altijd
+          gratis.
+        </li>
+        <li>
+          <span class="vk__check"><Icon name="check" size={14} /></span>
+          Klanten met het <a href="/pakket">KMO-Pakket</a> hebben verplaatsing
+          inbegrepen in zone 1 en 2. Daarbuiten geldt het standaardtarief.
+        </li>
+        <li>
+          <span class="vk__check"><Icon name="check" size={14} /></span>
+          Buiten zone 3 bekijken we het geval per geval.
+        </li>
+      </ul>
+
+      <p class="vk__foot">
+        Twijfelt u in welke zone u valt? <a href="/contact">Vraag het gerust</a>,
+        dan zeg ik het u meteen.
+      </p>
+    </div>
+  </section>
+
+  <CtaSection />
+</BaseLayout>
+
+<style>
+  .vk {
+    max-width: var(--container-md);
+  }
+  .vk__table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: var(--space-6);
+  }
+  .vk__table th,
+  .vk__table td {
+    text-align: left;
+    padding: 14px 16px;
+    border-bottom: 1px solid var(--border-soft);
+  }
+  .vk__table th {
+    font-family: var(--font-sans);
+    font-size: var(--text-sm);
+    font-weight: var(--fw-semibold);
+    color: var(--text-strong);
+  }
+  .vk__table td {
+    font-size: var(--text-base);
+    color: var(--text-body);
+  }
+  .vk__price {
+    font-weight: var(--fw-semibold);
+    color: var(--text-strong);
+  }
+  .vk__notes {
+    list-style: none;
+    margin: 0 0 var(--space-5);
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .vk__notes li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    font-size: var(--text-base);
+    color: var(--text-body);
+    line-height: var(--leading-relaxed);
+  }
+  .vk__notes a {
+    color: var(--text-link);
+    text-decoration: underline;
+  }
+  .vk__check {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: var(--orange-50);
+    color: var(--orange-600);
+    display: grid;
+    place-content: center;
+    flex: none;
+    margin-top: 1px;
+  }
+  .vk__foot {
+    font-size: var(--text-sm);
+    color: var(--text-muted);
+  }
+  .vk__foot a {
+    color: var(--text-link);
+    text-decoration: underline;
+  }
+</style>
