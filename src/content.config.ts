@@ -28,6 +28,11 @@ const blog = defineCollection({
     // UTM-style campaign label attached to leads from this article's form, so
     // submissions can be told apart in the CRM. Defaults to the slug.
     leadCampaign: z.string().optional(),
+    // Optional FAQ block, rendered visibly and emitted as FAQPage structured
+    // data. Answers must match the on-page text (they're the same source).
+    faqs: z
+      .array(z.object({ question: z.string(), answer: z.string() }))
+      .optional(),
   }),
 });
 

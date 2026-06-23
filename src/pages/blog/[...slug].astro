@@ -4,9 +4,10 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 import Breadcrumbs from "@/components/Breadcrumbs.astro";
 import LeadForm from "@/components/LeadForm.astro";
 import CtaSection from "@/components/CtaSection.astro";
+import Faq from "@/components/Faq.astro";
 import Icon from "@/components/Icon.astro";
 import { getPublishedPosts, formatDate, type Post } from "@/lib/blog";
-import { blogPosting, breadcrumbs } from "@/lib/schema";
+import { blogPosting, breadcrumbs, faqPage } from "@/lib/schema";
 import { url } from "@/lib/url";
 
 export async function getStaticPaths() {
@@ -38,6 +39,9 @@ const jsonLd = [
     image: post.data.image ? `${SITE_URL}${post.data.image}` : undefined,
   }),
   breadcrumbs(crumbs),
+  ...(post.data.faqs && post.data.faqs.length > 0
+    ? [faqPage(post.data.faqs)]
+    : []),
 ];
 
 const updated =
@@ -88,6 +92,10 @@ const updated =
         </p>
       </div>
     </section>
+
+    {post.data.faqs && post.data.faqs.length > 0 && (
+      <Faq items={post.data.faqs} />
+    )}
 
     {
       post.data.leadForm && (
