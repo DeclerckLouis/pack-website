@@ -23,7 +23,7 @@ const includes = [
   ["file-check", "Peppol e-facturatie", "Klaar voor de verplichte e-facturatie, gekoppeld aan uw boekhouding."],
   ["shield-check", "Cybersecurity & MFA", "Detecteert wanneer iemand uw Microsoft-account probeert over te nemen. Bescherming tegen phishing en ransomware."],
   ["radar", "Proactieve monitoring", "Ik bewaak uw systemen en grijp in vóór er iets stilvalt."],
-  ["life-buoy", "Support inbegrepen", "Eén vast aanspreekpunt, bereikbaar 's avonds en in het weekend."],
+  ["life-buoy", "Support & interventies", "Twee interventies per maand inbegrepen, plus een vast aanspreekpunt, bereikbaar 's avonds en in het weekend."],
 ];
 
 const crumbs: [string, string][] = [
@@ -37,7 +37,7 @@ const faqs = [
   {
     question: "Wat kost het KMO-Pakket?",
     answer:
-      "Het pakket start vanaf €99 per maand voor een klein kantoor en wordt samengesteld op maat van uw team. Microsoft 365-licenties worden apart en aan kostprijs doorgerekend. U krijgt vooraf een heldere, vaste maandprijs — geen uurtje-factuurtje en geen verrassingen.",
+      "Het pakket start vanaf €99 per maand voor een solo- of duokantoor en wordt samengesteld op maat van uw team. Twee interventies per maand zitten in de prijs; extra werk daarboven reken ik aan €60/uur (excl. btw). Microsoft 365-licenties staan apart en transparant op de factuur, aan de normale Microsoft-prijs. U krijgt vooraf een heldere, vaste maandprijs, geen uurtje-factuurtje en geen verrassingen.",
   },
   {
     question: "Kan ik maandelijks opzeggen?",
@@ -52,7 +52,12 @@ const faqs = [
   {
     question: "Zijn de Microsoft 365-licenties inbegrepen in de prijs?",
     answer:
-      "De licenties worden apart en aan kostprijs doorgerekend, zodat u nooit meer betaalt dan nodig. Het opzetten, beveiligen en onderhouden ervan zit wél in het pakket.",
+      "De licenties reken ik apart aan, aan de normale Microsoft-prijs en als aparte lijn op uw factuur. Zo ziet u exact wat de licentie kost. Het opzetten, beveiligen en onderhouden ervan zit wél in het pakket.",
+  },
+  {
+    question: "Werk ik met een groter team?",
+    answer:
+      "Het pakket is op zijn best voor solo- en duokantoren en kleine praktijken. Heeft u een groter team, dan stel ik liever een aanpak per gebruiker samen die met u meegroeit. Bespreek het gerust.",
   },
   {
     question: "Hoe snel ben ik geholpen bij een probleem?",
@@ -85,8 +90,8 @@ const jsonLd = [
         <Kicker>Het KMO-Pakket</Kicker>
         <h1>Volledige ontzorging aan één vaste prijs</h1>
         <p class="lead page-hero__lead">
-          Alles wat een klein kantoor nodig heeft om veilig en in regel te
-          werken — gebundeld in één pakket. Geen uurtje-factuurtje, geen
+          Alles wat een solo- of duokantoor nodig heeft om veilig en in regel te
+          werken, gebundeld in één pakket. Geen uurtje-factuurtje, geen
           verrassingen. Eén partner, één vaste prijs.
         </p>
         <div class="page-hero__actions">
@@ -101,12 +106,12 @@ const jsonLd = [
           <span class="price__unit">{priceUnit}</span>
         </div>
         <p class="price__note">
-          Voor een klein kantoor, op maat van uw team. Maandelijks opzegbaar.
-          Microsoft 365-licenties worden apart en aan kostprijs doorgerekend.
+          Voor een solo- of duokantoor, op maat van uw team. Maandelijks
+          opzegbaar.
         </p>
         <ul class="checklist price__list">
           {
-            ["Microsoft 365 & e-mail", "Back-up van uw dossiers", "Peppol e-facturatie", "Beveiliging & monitoring", "Support buiten de uren"].map((i) => (
+            ["Microsoft 365 & e-mail", "Back-up van uw dossiers", "Peppol e-facturatie", "Beveiliging & monitoring", "Twee interventies per maand", "Support buiten de uren"].map((i) => (
               <li>
                 <span class="check"><Icon name="check" size={14} /></span>
                 <span>{i}</span>
@@ -138,6 +143,11 @@ const jsonLd = [
           ))
         }
       </div>
+      <p class="pakket-note">
+        Microsoft 365-licenties staan apart en transparant op de factuur, aan de
+        normale Microsoft-prijs. Verplaatsing is inbegrepen in zone 1 en 2, zie
+        de <a href="/tarieven">tarieven</a>.
+      </p>
     </div>
   </section>
 
@@ -206,6 +216,18 @@ const jsonLd = [
     font-size: var(--text-sm);
     color: var(--text-muted);
     margin: 0;
+  }
+  .pakket-note {
+    margin-top: var(--space-5);
+    font-size: var(--text-sm);
+    color: var(--text-muted);
+    text-align: center;
+    max-width: 60ch;
+    margin-inline: auto;
+  }
+  .pakket-note a {
+    color: var(--text-link);
+    text-decoration: underline;
   }
   .price__list {
     margin: var(--space-2) 0;

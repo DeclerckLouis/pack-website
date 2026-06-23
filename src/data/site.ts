@@ -51,6 +51,7 @@ export const mainNav = [
   { label: "Voor wie?", href: "/sectoren", dropdown: "sectors" },
   { label: "Diensten", href: "/diensten", dropdown: "services" },
   { label: "KMO-Pakket", href: "/pakket" },
+  { label: "Blog", href: "/blog" },
   { label: "Over mij", href: "/over-mij" },
 ] as const;
 

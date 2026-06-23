@@ -107,6 +107,31 @@ export function faqPage(items: { question: string; answer: string }[]) {
   };
 }
 
+/** A BlogPosting node, authored by a Person and published by the business. */
+export function blogPosting(opts: {
+  title: string;
+  description: string;
+  url: string;
+  datePublished: string;
+  dateModified?: string;
+  author: string;
+  image?: string;
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: opts.title,
+    description: opts.description,
+    mainEntityOfPage: opts.url,
+    url: opts.url,
+    datePublished: opts.datePublished,
+    dateModified: opts.dateModified ?? opts.datePublished,
+    author: { "@type": "Person", name: opts.author },
+    publisher: { "@id": ORG_ID },
+    ...(opts.image ? { image: opts.image } : {}),
+  };
+}
+
 /** A Service node tied to the shared LocalBusiness provider. */
 export function service(opts: {
   name: string;
