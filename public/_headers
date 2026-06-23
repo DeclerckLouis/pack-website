@@ -1,0 +1,17 @@
+# Security headers for Cloudflare Pages. Pages sets none by default, so without
+# this file the site ships without HSTS, CSP, nosniff, frame protection, etc.
+# Format: Cloudflare Pages / Netlify `_headers`. Indented lines apply to the
+# path pattern above them.
+#
+# CSP note: the contact and lead forms use small inline <script> blocks (Astro
+# `define:vars`) and Astro injects scoped <style> tags, so script/style need
+# 'unsafe-inline'. The forms POST to the Odoo endpoint, which must therefore be
+# allowed in connect-src/form-action. If the Odoo host (see site.odooBaseUrl) or
+# the form proxy changes, update connect-src and form-action to match.
+/*
+  Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), browsing-topics=()
+  Content-Security-Policy: default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; img-src 'self' data:; font-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; connect-src 'self' https://louisdeclerck.odoo.com; form-action 'self' https://louisdeclerck.odoo.com; upgrade-insecure-requests
