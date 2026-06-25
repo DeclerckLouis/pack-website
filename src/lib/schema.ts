@@ -126,6 +126,8 @@ export function blogPosting(opts: {
   datePublished: string;
   dateModified?: string;
   author: string;
+  /** Profile/bio URL for the author — Google "strongly recommends" it. */
+  authorUrl?: string;
   image?: string;
 }) {
   return {
@@ -137,7 +139,11 @@ export function blogPosting(opts: {
     url: opts.url,
     datePublished: opts.datePublished,
     dateModified: opts.dateModified ?? opts.datePublished,
-    author: { "@type": "Person", name: opts.author },
+    author: {
+      "@type": "Person",
+      name: opts.author,
+      ...(opts.authorUrl ? { url: opts.authorUrl } : {}),
+    },
     publisher: { "@id": ORG_ID },
     ...(opts.image ? { image: opts.image } : {}),
   };
