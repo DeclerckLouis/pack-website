@@ -13,9 +13,8 @@ import { site } from "@/data/site";
 import { services } from "@/data/services";
 import { url } from "@/lib/url";
 
-// The LocalBusiness/Organization node is emitted site-wide by BaseLayout. The
-// homepage visibly renders the reviews, so it opts in to aggregateRating/review
-// via `withReviews` below.
+// The LocalBusiness/Organization node is emitted site-wide by BaseLayout, so
+// the homepage needs no page-specific JSON-LD of its own.
 
 const status = [
   ["Microsoft 365", "shield-check", "success", "Veilig"],
@@ -53,7 +52,6 @@ const posture = [
 <BaseLayout
   title={site.name}
   description="Lokale IT-partner in West-Vlaanderen voor praktijken en kantoren. Microsoft 365, backup, Peppol en cybersecurity — één aanspreekpunt, scherp geprijsd."
-  withReviews
 >
   {/* ---- Hero ---- */}
   <section class="hero">

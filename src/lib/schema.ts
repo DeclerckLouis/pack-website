@@ -1,44 +1,16 @@
 // Structured-data (JSON-LD) helpers. Centralised so every page references the
 // same LocalBusiness via a shared @id, and breadcrumbs are consistent.
 import { site, geo } from "@/data/site";
-import { reviews } from "@/data/reviews";
 
 const SITE_URL = "https://www.packetflow.be";
 export const ORG_ID = `${SITE_URL}/#business`;
 
-/**
- * Review + AggregateRating nodes built from the on-site reviews (data/reviews).
- * The aggregate intentionally reflects only the reviews rendered on the page —
- * Google requires the aggregate to match the visible reviews, so this stays
- * compliant regardless of the (possibly higher) Google Business Profile total.
- */
-function reviewSchema() {
-  if (reviews.length === 0) return {};
-  const avg =
-    reviews.reduce((sum, r) => sum + r.rating, 0) / reviews.length;
-  return {
-    aggregateRating: {
-      "@type": "AggregateRating",
-      // Round to one decimal; whole numbers (e.g. 5) serialise cleanly.
-      ratingValue: Math.round(avg * 10) / 10,
-      reviewCount: reviews.length,
-      bestRating: 5,
-      worstRating: 1,
-    },
-    review: reviews.map((r) => ({
-      "@type": "Review",
-      reviewRating: {
-        "@type": "Rating",
-        ratingValue: r.rating,
-        bestRating: 5,
-        worstRating: 1,
-      },
-      author: { "@type": "Person", name: r.author },
-      reviewBody: r.text,
-      ...(r.date ? { datePublished: r.date } : {}),
-    })),
-  };
-}
+// Note on reviews: Google's LocalBusiness/Organization guidelines state that
+// aggregateRating/review markup is "only recommended for sites that capture
+// reviews about *other* local businesses". Marking up our own reviews on our
+// own entity is self-serving — it won't earn star rich results and risks a
+// manual action — so the reviews are rendered visibly on the page but are
+// deliberately NOT emitted as structured data here.
 
 /**
  * The canonical LocalBusiness node. ProfessionalService is a subtype of both
@@ -47,12 +19,8 @@ function reviewSchema() {
  * (publisher / provider / worksFor) — but only on pages that also emit this
  * node, otherwise the reference dangles. BaseLayout emits it on every page so
  * those references always resolve.
- *
- * @param withReviews  Include aggregateRating/review. Only pass `true` on pages
- *   that visibly render the reviews — Google flags review snippets for content
- *   the visitor can't see on the page.
  */
-export function localBusiness({ withReviews = false }: { withReviews?: boolean } = {}) {
+export function localBusiness() {
   // Off-site profiles, if known — keeps schema valid when they aren't yet set.
   const sameAs = [site.profiles.googleBusiness, site.profiles.linkedin].filter(
     Boolean,
@@ -101,7 +69,6 @@ export function localBusiness({ withReviews = false }: { withReviews?: boolean }
         closes: "20:00",
       },
     ],
-    ...(withReviews ? reviewSchema() : {}),
   };
 }
 
