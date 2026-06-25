@@ -55,6 +55,6 @@ export const mainNav = [
   { label: "Over mij", href: "/over-mij" },
 ] as const;
 
-// Geo coordinates for Jabbeke (approx. town centre) — used in LocalBusiness
-// structured data. Adjust to the exact business location if desired.
-export const geo = { latitude: 51.1786, longitude: 3.0961 } as const;
+// Geo coordinates of the business location — used in LocalBusiness structured
+// data. Google requires at least 5 decimal places of precision.
+export const geo = { latitude: 51.1624016, longitude: 3.1285972 } as const;

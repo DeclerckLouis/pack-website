@@ -4,6 +4,7 @@ import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
 import { site } from "@/data/site";
 import { url } from "@/lib/url";
+import { localBusiness } from "@/lib/schema";
 
 interface Props {
   title: string;
@@ -13,8 +14,17 @@ interface Props {
   image?: string;
 }
 
-const { title, description = site.description, jsonLd, image = "/images/og-image.png" } =
-  Astro.props;
+const {
+  title,
+  description = site.description,
+  jsonLd,
+  image = "/images/og-image.png",
+} = Astro.props;
+
+// The LocalBusiness/Organization node is emitted on *every* page (not just the
+// homepage) so the @id references other pages make — Article.publisher,
+// Service.provider, Person.worksFor — always resolve within the same document.
+const orgJsonLd = localBusiness();
 // The homepage (title === site.name) gets a keyword-bearing <title> with geo +
 // audience; inner pages keep the "{title} | Packetflow" pattern.
 const fullTitle =
@@ -50,6 +60,7 @@ const isProduction = (Astro.site?.hostname ?? "") === "www.packetflow.be";
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:image" content={ogImage} />
 
+    <script type="application/ld+json" set:html={JSON.stringify(orgJsonLd)} />
     {
       jsonLd && (
         <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
