@@ -40,8 +40,19 @@ function reviewSchema() {
   };
 }
 
-/** The canonical LocalBusiness node. Reference it by @id elsewhere. */
-export function localBusiness() {
+/**
+ * The canonical LocalBusiness node. ProfessionalService is a subtype of both
+ * LocalBusiness and Organization, so this one node satisfies Google's
+ * Organization *and* LocalBusiness guidance. Reference it by @id elsewhere
+ * (publisher / provider / worksFor) — but only on pages that also emit this
+ * node, otherwise the reference dangles. BaseLayout emits it on every page so
+ * those references always resolve.
+ *
+ * @param withReviews  Include aggregateRating/review. Only pass `true` on pages
+ *   that visibly render the reviews — Google flags review snippets for content
+ *   the visitor can't see on the page.
+ */
+export function localBusiness({ withReviews = false }: { withReviews?: boolean } = {}) {
   // Off-site profiles, if known — keeps schema valid when they aren't yet set.
   const sameAs = [site.profiles.googleBusiness, site.profiles.linkedin].filter(
     Boolean,
@@ -90,7 +101,7 @@ export function localBusiness() {
         closes: "20:00",
       },
     ],
-    ...reviewSchema(),
+    ...(withReviews ? reviewSchema() : {}),
   };
 }
 
