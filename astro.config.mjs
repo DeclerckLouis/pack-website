@@ -17,10 +17,14 @@ const buildDate = new Date().toISOString();
 export default defineConfig({
   site,
   base,
-  // Canonical URLs carry no trailing slash; Cloudflare Pages still serves the
-  // directory-format output at the slashless path. Keeps canonicals, internal
-  // links and the redirect map consistent (no /pakket vs /pakket/ split).
+  // Canonical URLs carry no trailing slash. `format: "file"` emits /blog.html
+  // (not /blog/index.html) so Cloudflare Pages serves it at the slashless path
+  // with no 308 redirect — directory output forces /blog → /blog/, which breaks
+  // the self-referencing canonical and adds a hop to every internal link. Keeps
+  // canonicals, internal links, sitemap and the redirect map consistent on one
+  // slashless form (no /pakket vs /pakket/ split).
   trailingSlash: "never",
+  build: { format: "file" },
   integrations: [
     sitemap({
       // Stamp every entry with a lastmod so crawlers get a recrawl signal.
