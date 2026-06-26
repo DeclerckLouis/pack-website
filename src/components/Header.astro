@@ -5,9 +5,9 @@ import { services } from "@/data/services";
 import Logo from "./Logo.astro";
 import Button from "./Button.astro";
 import Icon from "./Icon.astro";
-import { url } from "@/lib/url";
+import { url, cleanPath } from "@/lib/url";
 
-const path = Astro.url.pathname;
+const path = cleanPath(Astro.url.pathname);
 const isActive = (href: string) => {
   const h = url(href);
   return h === "/" ? path === h : path === h || path.startsWith(h + "/");
