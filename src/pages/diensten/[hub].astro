@@ -31,7 +31,7 @@ const jsonLd = [
 ];
 ---
 
-<BaseLayout title={hub.title} description={hub.description} jsonLd={jsonLd}>
+<BaseLayout title={hub.title} description={hub.metaDescription ?? hub.description} jsonLd={jsonLd}>
   <section class="page-hero">
     <div class="container page-hero__in">
       <Breadcrumbs items={crumbs} />
