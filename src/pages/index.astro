@@ -396,6 +396,10 @@ const posture = [
     display: flex;
     flex-direction: column;
     gap: 12px;
+    transition: background var(--dur-base) var(--ease-out);
+  }
+  .svc:hover {
+    background: var(--cream);
   }
   .svc__title {
     font-family: var(--font-sans);
@@ -511,6 +515,10 @@ const posture = [
     font-size: var(--text-sm);
     font-weight: var(--fw-medium);
     color: var(--orange-300);
+    transition: color var(--dur-fast) var(--ease-out);
+  }
+  .about__link:hover {
+    color: var(--orange-100);
   }
 
   @media (max-width: 880px) {

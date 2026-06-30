@@ -319,6 +319,10 @@ const dropdowns: Record<string, DropdownItem[]> = {
     font-size: var(--text-sm);
     font-weight: var(--fw-medium);
     color: var(--text-strong);
+    transition: color var(--dur-fast) var(--ease-out);
+  }
+  .site-header__phone:hover {
+    color: var(--primary);
   }
 
   /* ---- Mobile toggle + menu (hidden on desktop) ---- */
