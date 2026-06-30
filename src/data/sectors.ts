@@ -19,6 +19,12 @@ export type Sector = {
   icon: string; // Lucide icon name
   tagline: string;
   description: string;
+  /**
+   * Concise SEO meta description (≤155 chars). Falls back to `description`
+   * when absent. Kept separate so the on-page lead can be richer than the
+   * snippet Google shows. See BaseLayout / the sector template.
+   */
+  metaDescription?: string;
   /** Optional hero photo (in public/images); hidden gracefully if absent. */
   image?: string;
   /** The pains this audience recognises — written in their words. */
@@ -47,11 +53,12 @@ export const sectors: Sector[] = [
     navTitle: "Medische & zorgpraktijken",
     title: "IT voor apotheken, tandartsen en praktijken",
     icon: "stethoscope",
-    image: "/images/sector-medisch.webp", // optional; graceful fallback if absent
     tagline:
       "Betrouwbare IT voor een praktijk waar patiëntgegevens en de balie nooit mogen stilvallen.",
     description:
       "Een apotheek, tandarts- of huisartsenpraktijk draait op patiëntgegevens die privé moeten blijven en op systemen die de hele dag moeten meegaan. Ik zorg dat uw praktijksoftware, uw backup en uw beveiliging kloppen — discreet en in regel met de GDPR, zonder dat u erover hoeft na te denken.",
+    metaDescription:
+      "IT voor apotheken, tandartsen en praktijken: GDPR-conforme praktijksoftware, geteste backup en beveiliging. Eén vast aanspreekpunt in West-Vlaanderen.",
     pains: [
       {
         icon: "shield",
@@ -108,11 +115,12 @@ export const sectors: Sector[] = [
     navTitle: "Kantoren & vrije beroepen",
     title: "IT voor advocaten, architecten & makelaars",
     icon: "scale",
-    image: "/images/sector-vrije-beroepen.webp",
     tagline:
       "Discrete, betrouwbare IT voor kleine kantoren waar vertrouwen en dossiers centraal staan.",
     description:
       "Een advocatenkantoor, architectenbureau of makelaarskantoor draait op vertrouwen en op dossiers die nooit verloren mogen gaan. Ik zorg dat uw Microsoft 365, uw backup en uw beveiliging kloppen — discreet, persoonlijk en zonder complexe contracten.",
+    metaDescription:
+      "Discrete IT voor advocaten, architecten en makelaars: Microsoft 365, geteste backup en beveiliging, zonder complexe contracten. Lokaal in West-Vlaanderen.",
     pains: [
       {
         icon: "lock",
@@ -161,11 +169,12 @@ export const sectors: Sector[] = [
     navTitle: "Horeca & B&B's",
     title: "IT & WiFi voor horeca en B&B's",
     icon: "utensils",
-    image: "/images/sector-horeca.webp",
     tagline:
       "Een kassa die niet uitvalt en gasten-WiFi die werkt — ook op het drukste moment.",
     description:
       "In de horeca en in een B&B telt elke minuut uptime. Een netwerk dat uitvalt tijdens de service of een gast die klaagt over trage WiFi kost u direct geld en reviews. Ik zorg voor stabiele, veilige netwerken die de piek aankunnen.",
+    metaDescription:
+      "Stabiele, veilige netwerken voor horeca en B&B's: gescheiden gasten- en kassanetwerk en WiFi die de piek aankan. IT-partner in West-Vlaanderen.",
     pains: [
       {
         icon: "activity",
@@ -219,6 +228,8 @@ export const sectors: Sector[] = [
       "Betaalbare, eenvoudige IT voor wie het met vrijwilligers en een klein budget moet doen.",
     description:
       "Een vereniging of VZW draait op vrijwilligers, niet op een IT-budget. Toch heeft u e-mail, gedeelde bestanden en een ledenadministratie nodig die werken — en die overdraagbaar zijn als het bestuur wisselt. Ik help u met eenvoudige, betaalbare oplossingen.",
+    metaDescription:
+      "Betaalbare, eenvoudige IT voor verenigingen en VZW's: e-mail, gedeelde bestanden en een ledenadministratie die een bestuurswissel overleven.",
     pains: [
       {
         icon: "wallet",

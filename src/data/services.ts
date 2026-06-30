@@ -33,6 +33,12 @@ export type ServiceHub = {
   icon: string; // Lucide icon name
   tagline: string;
   description: string;
+  /**
+   * Concise SEO meta description (≤155 chars). Falls back to `description`
+   * when absent — kept separate so the on-page intro can be richer than the
+   * snippet Google shows. See the diensten hub template.
+   */
+  metaDescription?: string;
   features: { title: string; body: string; icon: string }[];
   /**
    * Optional post-oplevering line shown low on the page. Frames the €49/maand
@@ -64,6 +70,8 @@ export const services: ServiceHub[] = [
       "Eén aanspreekpunt dat uw kantoor kent — geen wachtrij, geen wisselende technici.",
     description:
       "Ik neem het volledige beheer en de support van uw IT in handen. Altijd dezelfde persoon die uw kantoor en uw dossiers kent, proactief bewaakt en bereikbaar buiten de kantooruren.",
+    metaDescription:
+      "Volledig beheer en support van uw IT door één vast aanspreekpunt. Proactief bewaakt en bereikbaar buiten de kantooruren. Lokaal in West-Vlaanderen.",
     features: [
       {
         icon: "radar",
@@ -173,6 +181,8 @@ export const services: ServiceHub[] = [
     tagline: "Een stabiel, veilig netwerk dat altijd werkt — ook tijdens de piek.",
     description:
       "Professionele WiFi en netwerken voor horeca, B&B's en kantoren. Van een betrouwbaar gastennetwerk tot een gescheiden kassanetwerk dat online blijft, ook op de drukste momenten.",
+    metaDescription:
+      "Professionele WiFi en netwerken voor horeca, B&B's en kantoren: betrouwbaar gastennetwerk en gescheiden kassanetwerk dat online blijft tijdens de piek.",
     features: [
       {
         icon: "wifi",
@@ -272,6 +282,8 @@ export const services: ServiceHub[] = [
       "Uw dossiers veilig, beschermd en altijd terug te halen — met AI die mee bewaakt.",
     description:
       "Microsoft 365, veilige backup en cybersecurity voor uw kantoor. Ik zorg dat uw dossiers veilig in de cloud staan, automatisch gebackupt worden en beschermd zijn tegen verlies, ransomware en menselijke fouten — met AI die verdacht gedrag vroeg opmerkt.",
+    metaDescription:
+      "Microsoft 365, veilige backup en cybersecurity voor uw kantoor. Beschermd tegen verlies, ransomware en menselijke fouten — met AI die mee bewaakt.",
     features: [
       {
         icon: "mail",

@@ -39,7 +39,7 @@ const jsonLd = [
 ];
 ---
 
-<BaseLayout title={sector.navTitle} description={sector.description} jsonLd={jsonLd}>
+<BaseLayout title={sector.navTitle} description={sector.metaDescription ?? sector.description} jsonLd={jsonLd}>
   <section class="page-hero">
     <div class:list={["container", "page-hero__in", sector.image && "sector-hero"]}>
       <div>
