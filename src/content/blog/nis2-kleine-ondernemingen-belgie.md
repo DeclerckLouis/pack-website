@@ -43,7 +43,7 @@ Voor de meeste van mijn klanten — advocatenkantoren, apotheken, huisartsenprak
 
 Een huisartsenpraktijk valt buiten de klassieke NIS2-scope. Een groot ziekenhuisnetwerk is een essentiële entiteit. Het verschil is groot.
 
-Wilt u het zeker weten? Het CCB biedt een zelfbeoordeling aan via hun platform. Dat is het logische eerste aanspreekpunt als u twijfelt.
+Wilt u het zeker weten? Het CCB biedt een zelfevaluatie aan via hun platform — een gestructureerde doorlichting van uw situatie en sector. Ik heb die zelfevaluatie zelf doorlopen en ken de structuur ervan. Als u twijfelt over uw situatie, help ik u er graag mee.
 
 ## Maar: de leveranciersverplichting
 
@@ -79,6 +79,8 @@ Verder zit in elk KMO-Pakket:
 - **Toegangsbeheer**: wie heeft toegang tot wat, en dat is gedocumenteerd
 
 Dat betekent dat klanten die met mij werken al een solide basis hebben — ook als NIS2 formeel niet op hen van toepassing is. Ze voldoen aan de geest van de richtlijn, en ze kunnen dat aantonen als een klant of verzekeraar ernaar vraagt.
+
+Ik volg de volledige NIS2-structuur bewust als leidraad, ook voor wie er formeel niet onder valt. De reden is praktisch: groeit uw organisatie en wordt u ooit aangewezen als belangrijke of essentiële entiteit, dan staat de basis al. U begint niet van nul — u bent al op weg.
 
 ## De CyberFundamentals van het CCB
 

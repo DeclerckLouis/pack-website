@@ -13,7 +13,7 @@ faqs:
   - question: "Is dit duur of ingewikkeld?"
     answer: "Voor een kleine zaak met de juiste apparatuur is het een eenmalige configuratie. U hebt een beheerde switch en een toegangspunt nodig dat meerdere draadloze netwerken ondersteunt. Daarna draait het vanzelf, zonder dagelijks beheer van uw kant."
   - question: "Geldt dit ook voor een gastenverblijf of B&B?"
-    answer: "Zeker. In een B&B met betaalterminal of digitale systemen geldt exact hetzelfde principe. Gasten verdienen een vlot en veilig netwerk — uw eigen systemen verdienen bescherming."
+    answer: "Zeker. In een B&B of hotel geldt exact hetzelfde principe, met twee extra aandachtspunten: QoS zodat geen enkele gast het netwerk monopoliseert, en clientisolatie zodat gasten elkaars apparaten niet kunnen bereiken. Uw eigen systemen staan sowieso in een apart segment."
 ---
 
 Stel: een gast verbindt met uw wifi. Zijn laptop is geïnfecteerd met malware. Niet zijn schuld — hij weet het zelf niet eens. Maar ondertussen draait uw kassasysteem op hetzelfde netwerk. Twee apparaten, één netwerk, en een probleem.
@@ -65,9 +65,19 @@ In de praktijk wordt dit voor kleine zaken zelden gecontroleerd — tot er iets 
 
 Netwerksegmentatie is niet alleen beter voor uw beveiliging — het is ook beter voor uw gasten.
 
-Op een gedeeld netwerk zien apparaten elkaars verkeer, kunnen gasten onbewust elkaars apparaten bereiken, en heeft iedereen last van wie het meeste bandbreedte gebruikt. Op een gescheiden gastennetwerk is al dat lawaai weg. Gasten krijgen een vlotter, stabieler signaal. U kunt zonder zorgen een gastenwachtwoord ophangen aan de bar.
+### QoS: eerlijk bandbreedte voor iedereen
 
-Een bijkomend voordeel: u kunt het gastennetwerk voorzien van een bandbreedtelimiet. Zo kan één gast die een grote download start niet de verbinding van alle anderen vertragenren, én niet die van uw kassasysteem.
+Op een standaard gedeeld netwerk bepaalt wie het hardst trekt, wie de snelste verbinding krijgt. Eén gast die een grote download start of een 4K-stream bekijkt, kan de verbinding voor iedereen vertragen — inclusief uw kassasysteem op het drukste moment van de avond.
+
+Met **QoS** (Quality of Service) verdeelt de router de beschikbare bandbreedte eerlijk over de verbonden apparaten. Elke gast krijgt een redelijk deel; niemand kan het netwerk monopoliseren. Uw bedrijfsnetwerk krijgt voorrang — de kassa hapert nooit door een downloadende gast op het terras. Voor B&B's, hotels en logiesuitbaters is dit bijzonder relevant: meerdere gasten tegelijk verbonden, en u wilt niet dat één apparaat de beleving van iedereen — en de rekening voor extra data — de hoogte injaagt.
+
+### Clientisolatie: gasten zien alleen internet
+
+Op een standaard gastennetwerk kunnen apparaten van verschillende gasten elkaar bereiken. Dat is een privacyprobleem: een gast met de juiste kennis kan bestanden of apparaten van andere gasten benaderen via het lokale netwerk.
+
+Met **clientisolatie** ingeschakeld, ziet elk apparaat op het gastennetwerk enkel het internet — nooit een ander gastapparaat. Gasten zijn volledig van elkaar afgeschermd, ook al zitten ze op dezelfde wifi. Voor een verblijf dat gasten privacy garandeert, is dit geen optie maar een vereiste.
+
+Samen met VLAN-segmentatie levert dat drie lagen bescherming: gasten zijn gescheiden van uw bedrijfsnetwerk, van de beheerslaag, én van elkaar.
 
 ## Is uw netwerk veilig ingericht?
 
