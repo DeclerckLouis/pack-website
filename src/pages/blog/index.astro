@@ -137,9 +137,15 @@ const description =
   .blog-empty {
     color: var(--text-muted);
   }
+  .blog-grid > li:last-child:nth-child(odd) {
+    grid-column: span 2;
+  }
   @media (max-width: 880px) {
     .blog-grid {
       grid-template-columns: 1fr;
+    }
+    .blog-grid > li:last-child:nth-child(odd) {
+      grid-column: span 1;
     }
   }
 </style>
