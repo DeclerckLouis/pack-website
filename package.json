@@ -12,6 +12,8 @@
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.2.1",
+    "@fontsource/lora": "^5.2.8",
+    "@fontsource/poppins": "^5.2.7",
     "astro": "^6.4.6",
     "lucide-static": "^1.21.0"
   },
