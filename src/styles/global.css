@@ -241,6 +241,7 @@ svg {
   padding-block: var(--space-9);
 }
 
+/* keep in sync with --container-md in global.css */
 @media (max-width: 880px) {
   .section {
     padding-block: var(--space-8);
@@ -437,6 +438,7 @@ svg {
   margin-bottom: var(--space-4);
 }
 
+/* keep in sync with --container-md in global.css */
 @media (max-width: 880px) {
   .grid-2,
   .grid-cards {
