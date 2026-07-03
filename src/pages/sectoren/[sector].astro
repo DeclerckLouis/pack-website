@@ -171,6 +171,26 @@ const jsonLd = [
     </div>
   </section>
 
+  {/* Spotlight — standalone landing page cross-sell (e.g. Guesty/PMS) */}
+  {
+    sector.spotlight && (
+      <section class="section spotlight">
+        <div class="container">
+          <a href={url(sector.spotlight.href)} class="spotlight__card">
+            <span class="spotlight__icon"><Icon name={sector.spotlight.icon} size={24} /></span>
+            <div class="spotlight__body">
+              <h2 class="spotlight__title">{sector.spotlight.title}</h2>
+              <p class="spotlight__text">{sector.spotlight.body}</p>
+              <span class="spotlight__link">
+                {sector.spotlight.linkLabel} <Icon name="arrow-right" size={16} />
+              </span>
+            </div>
+          </a>
+        </div>
+      </section>
+    )
+  }
+
   {sector.faqs && sector.faqs.length > 0 && (
     <Faq items={sector.faqs} title={`Veelgestelde vragen — ${sector.navTitle}`} />
   )}
@@ -280,5 +300,58 @@ const jsonLd = [
   }
   .rel-locals a:hover {
     color: var(--text-strong);
+  }
+
+  .spotlight__card {
+    display: flex;
+    align-items: start;
+    gap: var(--space-5);
+    padding: var(--space-6);
+    background: var(--surface-sunken);
+    border: 1px solid var(--border-soft);
+    border-left: 3px solid var(--accent);
+    border-radius: var(--radius-lg);
+    transition:
+      border-color var(--dur-base) var(--ease-out),
+      box-shadow var(--dur-base) var(--ease-out);
+  }
+  .spotlight__card:hover {
+    border-color: var(--orange-300);
+    box-shadow: var(--shadow-md);
+  }
+  .spotlight__icon {
+    flex: none;
+    width: 46px;
+    height: 46px;
+    border-radius: var(--radius-md);
+    background: var(--ink);
+    display: grid;
+    place-content: center;
+    color: #fff;
+  }
+  .spotlight__title {
+    font-size: var(--text-lg);
+    margin: 0 0 var(--space-3);
+  }
+  .spotlight__text {
+    color: var(--text-muted);
+    line-height: var(--leading-relaxed);
+    margin: 0 0 var(--space-4);
+    max-width: 68ch;
+  }
+  .spotlight__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: var(--text-sm);
+    font-weight: var(--fw-medium);
+    color: var(--primary);
+  }
+  /* keep in sync with --container-md in global.css */
+  @media (max-width: 880px) {
+    .spotlight__card {
+      flex-direction: column;
+      gap: var(--space-4);
+    }
   }
 </style>
