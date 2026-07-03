@@ -38,7 +38,6 @@ const serviceItems = [
   ["shield", "Cybersecurity", "Bescherming tegen phishing en ransomware, MFA en updates — met AI-detectie van verdacht gedrag."],
   ["sparkles", "Microsoft 365 Copilot & AI", "AI die u tijd bespaart bij documenten en e-mail — veilig ingericht, gegevens privé."],
   ["radar", "Monitoring & onderhoud", "Bewaking op de achtergrond, onderhoud 's avonds — zonder uw werk te onderbreken."],
-  ["cctv", "Camerabewaking", "HD-camera's met nachtzicht en beeld op uw smartphone — veilig op een gescheiden netwerk, GDPR-correct geplaatst."],
 ];
 
 const posture = [
@@ -340,7 +339,7 @@ const posture = [
   }
   .grid-3 {
     display: grid;
-    grid-template-columns: 1fr 1.15fr 1fr;
+    grid-template-columns: repeat(3, 1fr);
     gap: 20px;
   }
 
@@ -401,9 +400,6 @@ const posture = [
   }
   .svc:hover {
     background: var(--cream);
-  }
-  .svc:last-child {
-    grid-column: span 2;
   }
   .svc__title {
     font-family: var(--font-sans);
