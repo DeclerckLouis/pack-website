@@ -104,6 +104,17 @@ const jsonLd = [
             </Card>
           )
         }
+        {
+          local.related && (
+            <Card class="local-related">
+              <h2 class="local-aside__title">{local.related.title}</h2>
+              <p class="local-related__body">{local.related.body}</p>
+              <a href={url(local.related.href)} class="local-related__link">
+                Meer weten <Icon name="arrow-right" size={15} />
+              </a>
+            </Card>
+          )
+        }
       </aside>
     </div>
   </section>
@@ -193,6 +204,24 @@ const jsonLd = [
   }
   .local-siblings a:hover {
     color: var(--text-strong);
+  }
+  .local-grid :global(.local-related) {
+    border-left: 3px solid var(--accent);
+  }
+  .local-related__body {
+    margin: 0;
+    font-size: var(--text-sm);
+    line-height: var(--leading-relaxed);
+    color: var(--text-muted);
+  }
+  .local-related__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: var(--space-4);
+    font-size: var(--text-sm);
+    font-weight: var(--fw-medium);
+    color: var(--primary);
   }
   /* keep in sync with --container-md in global.css */
   @media (max-width: 880px) {

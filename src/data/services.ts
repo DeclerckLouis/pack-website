@@ -23,6 +23,12 @@ export type LocalPage = {
   context: string;
   highlights: string[];
   description: string; // SEO meta description
+  /**
+   * Optional single cross-reference to a related standalone page (e.g. the
+   * Guesty/PMS landing page). Rendered as a card in the aside — keep it to one
+   * genuinely relevant link, not a link farm.
+   */
+  related?: { href: string; title: string; body: string };
 };
 
 export type ServiceHub = {
@@ -250,6 +256,11 @@ export const services: ServiceHub[] = [
         ],
         description:
           "Gastennetwerk voor B&B's en boutique hotels in het Brugse Ommeland. Betrouwbare WiFi in alle kamers, veilig gescheiden van uw eigen systemen.",
+        related: {
+          href: "/guesty-pms-ondersteuning-bnb",
+          title: "Ook hulp nodig met uw boekingssysteem?",
+          body: "We helpen B&B's met Guesty, channel managers en het koppelen van Booking.com en Airbnb — techniek én boekingsplatform uit één hand.",
+        },
       },
       {
         slug: "stabiel-netwerk-kmo-oostende",

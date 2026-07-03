@@ -36,6 +36,12 @@ export type Sector = {
   /** Local page slugs to surface for this sector (optional). */
   localSlugs: string[];
   /**
+   * Optional spotlight card linking to a standalone landing page that doesn't
+   * fit the hub/local generator (e.g. the Guesty/PMS page). Rendered as a
+   * highlighted call-out; only set where there's a genuine cross-sell.
+   */
+  spotlight?: { icon: string; title: string; body: string; href: string; linkLabel: string };
+  /**
    * Anonymised client references for a small proof strip. Leave empty until
    * the client has given permission — never invent quotes. See §3e.
    */
@@ -201,6 +207,13 @@ export const sectors: Sector[] = [
     ],
     serviceSlugs: ["zakelijke-wifi-netwerken", "cloud-backup-beveiliging"],
     localSlugs: ["wifi-installatie-horeca-jabbeke", "gastennetwerk-bnb-brugse-ommeland"],
+    spotlight: {
+      icon: "calendar-check",
+      title: "Hulp met Guesty en uw boekingssysteem",
+      body: "Dubbele boekingen, kalenders die niet synchroniseren tussen Booking.com en Airbnb, of een channel manager die opnieuw ingesteld moet worden? We helpen B&B's met het opzetten, koppelen en beheren van Guesty en andere PMS-systemen — één aanspreekpunt voor techniek én boekingsplatform.",
+      href: "/guesty-pms-ondersteuning-bnb",
+      linkLabel: "Meer over Guesty & PMS-ondersteuning",
+    },
     faqs: [
       {
         question: "Blijft de WiFi werken als het druk is?",
