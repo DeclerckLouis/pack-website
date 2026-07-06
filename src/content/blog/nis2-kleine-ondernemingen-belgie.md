@@ -60,12 +60,12 @@ De maatregelen die NIS2 oplegt zijn niet exotisch. Het zijn degelijke basisprakt
 - **Risicoanalyse**: weten wat uw risico's zijn en welke systemen cruciaal zijn voor uw werking.
 - **Beveiligingsbeleid**: gedocumenteerde regels over wie toegang heeft tot wat, en hoe dat gecontroleerd wordt.
 - **Incidentrespons**: een procedure als er iets misgaat. Wie doet wat, wie wordt verwittigd, binnen welke termijn?
-- **Back-up en herstel**: versleutelde back-ups, regelmatig getest. Niet alleen hebben, maar ook kunnen bewijzen dat ze werken.
+- **[Back-up en herstel](/diensten/cloud-backup-beveiliging)**: versleutelde back-ups, regelmatig getest. Niet alleen hebben, maar ook kunnen bewijzen dat ze werken.
 - **Toegangsbeheer en MFA**: meervoudige verificatie, en het principe van minimale rechten — iedereen heeft enkel toegang tot wat hij nodig heeft.
 - **Patchbeheer**: beveiligingsupdates tijdig installeren, niet maanden uitstellen.
 - **Encryptie**: gevoelige gegevens versleuteld opslaan en versturen.
 
-Herkent u dit? Dit zijn exact de maatregelen die ik standaard toepas voor klanten in het KMO-Pakket.
+Herkent u dit? Dit zijn exact de maatregelen die ik standaard toepas voor klanten in het [KMO-Pakket](/pakket).
 
 ## Wat Packetflow standaard doet
 

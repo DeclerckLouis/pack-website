@@ -53,7 +53,7 @@ Een standaard ISP-router ondersteunt dit doorgaans niet. U hebt twee dingen nodi
 1. Een **beheerde switch** die VLAN's begrijpt en het verkeer correct scheidt.
 2. Een **professioneel toegangspunt** (access point) dat meerdere SSID's kan uitzenden op afzonderlijke VLAN's.
 
-Voor een kleine zaak is dit een eenmalige installatie. Daarna draait het automatisch. Nieuwe apparaten die u aan het gastennetwerk koppelt, kunnen uw bedrijfssystemen sowieso niet bereiken.
+Voor een kleine zaak is dit een eenmalige installatie. Daarna draait het automatisch. Nieuwe apparaten die u aan het gastennetwerk koppelt, kunnen uw bedrijfssystemen sowieso niet bereiken. Dit is precies het soort werk dat ik doe bij een [professionele wifi- en netwerkinstallatie](/diensten/zakelijke-wifi-netwerken).
 
 ## PCI DSS: de betaalnorm die zelden wordt uitgelegd
 
@@ -69,7 +69,7 @@ Netwerksegmentatie is niet alleen beter voor uw beveiliging — het is ook beter
 
 Op een standaard gedeeld netwerk bepaalt wie het hardst trekt, wie de snelste verbinding krijgt. Eén gast die een grote download start of een 4K-stream bekijkt, kan de verbinding voor iedereen vertragen — inclusief uw kassasysteem op het drukste moment van de avond.
 
-Met **QoS** (Quality of Service) verdeelt de router de beschikbare bandbreedte eerlijk over de verbonden apparaten. Elke gast krijgt een redelijk deel; niemand kan het netwerk monopoliseren. Uw bedrijfsnetwerk krijgt voorrang — de kassa hapert nooit door een downloadende gast op het terras. Voor B&B's, hotels en logiesuitbaters is dit bijzonder relevant: meerdere gasten tegelijk verbonden, en u wilt niet dat één apparaat de beleving van iedereen — en de rekening voor extra data — de hoogte injaagt.
+Met **QoS** (Quality of Service) verdeelt de router de beschikbare bandbreedte eerlijk over de verbonden apparaten. Elke gast krijgt een redelijk deel; niemand kan het netwerk monopoliseren. Uw bedrijfsnetwerk krijgt voorrang — de kassa hapert nooit door een downloadende gast op het terras. Voor B&B's, hotels en logiesuitbaters is dit bijzonder relevant: meerdere gasten tegelijk verbonden, en u wilt niet dat één apparaat de beleving van iedereen — en de rekening voor extra data — de hoogte injaagt. Meer over volledige dekking en tevreden gasten in een gastenverblijf leest u in [WiFi voor een B&B](/blog/wifi-bnb-volledige-dekking).
 
 ### Clientisolatie: gasten zien alleen internet
 
