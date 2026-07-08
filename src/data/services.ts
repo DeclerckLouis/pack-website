@@ -62,6 +62,13 @@ export type ServiceHub = {
     intro?: string;
     tiers: { price: string; name: string; body: string; href?: string }[];
   };
+  /**
+   * Optional "verder lezen" block: contextual links from a service hub into
+   * related kennisbank-artikels. This is the cheapest internal-linking lever —
+   * it points link equity at blog posts that otherwise sit isolated. Keep it to
+   * a few genuinely relevant articles, not a link farm.
+   */
+  reading?: { href: string; title: string; body: string }[];
   locals: LocalPage[];
 };
 
@@ -118,6 +125,18 @@ export const services: ServiceHub[] = [
         },
       ],
     },
+    reading: [
+      {
+        href: "/blog/nis2-kleine-ondernemingen-belgie",
+        title: "NIS2-compliance voor KMO's",
+        body: "Geldt NIS2 voor uw KMO, en wat verwacht een NIS2-plichtige klant van u als leverancier? Wat goed IT-beheer daar standaard voor regelt.",
+      },
+      {
+        href: "/blog/wat-kost-it-beheer-kleine-onderneming",
+        title: "Wat kost IT-beheer voor een kleine onderneming?",
+        body: "Een eerlijk prijsoverzicht: het uurtarief, het KMO-Pakket vanaf €99/maand en waar bij andere aanbieders de verborgen kosten zich verstoppen.",
+      },
+    ],
     locals: [
       {
         slug: "it-partner-jabbeke",
@@ -237,6 +256,11 @@ export const services: ServiceHub[] = [
         ],
         description:
           "WiFi-installatie voor horeca in Jabbeke. Stabiel gastennetwerk, gescheiden kassanetwerk en volledige dekking, lokaal geïnstalleerd en beheerd.",
+        related: {
+          href: "/blog/kassanetwerk-scheiden-horeca",
+          title: "Waarom uw kassa en gastenwifi gescheiden horen",
+          body: "Gasten op hetzelfde netwerk als uw kassa is een veiligheidsrisico. Lees hoe netwerksegmentatie dat in de horeca oplost.",
+        },
       },
       {
         slug: "gastennetwerk-bnb-brugse-ommeland",

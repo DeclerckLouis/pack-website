@@ -53,7 +53,7 @@ Een standaard ISP-router ondersteunt dit doorgaans niet. U hebt twee dingen nodi
 1. Een **beheerde switch** die VLAN's begrijpt en het verkeer correct scheidt.
 2. Een **professioneel toegangspunt** (access point) dat meerdere SSID's kan uitzenden op afzonderlijke VLAN's.
 
-Voor een kleine zaak is dit een eenmalige installatie. Daarna draait het automatisch. Nieuwe apparaten die u aan het gastennetwerk koppelt, kunnen uw bedrijfssystemen sowieso niet bereiken. Dit is precies het soort werk dat ik doe bij een [professionele wifi- en netwerkinstallatie](/diensten/zakelijke-wifi-netwerken).
+Voor een kleine zaak is dit een eenmalige installatie. Daarna draait het automatisch. Nieuwe apparaten die u aan het gastennetwerk koppelt, kunnen uw bedrijfssystemen sowieso niet bereiken. Dit is precies het soort werk dat ik doe bij een [professionele wifi- en netwerkinstallatie](/diensten/zakelijke-wifi-netwerken). Voor horecazaken in en rond Jabbeke werk ik dat concreet uit als [WiFi-installatie voor horeca in Jabbeke](/wifi-installatie-horeca-jabbeke), met een gescheiden kassanetwerk als vast onderdeel.
 
 ## PCI DSS: de betaalnorm die zelden wordt uitgelegd
 
