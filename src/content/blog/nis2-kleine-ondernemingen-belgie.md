@@ -8,6 +8,8 @@ leadCampaign: "blog-nis2-kleine-ondernemingen"
 faqs:
   - question: "Geldt NIS2 voor mijn kleine onderneming?"
     answer: "Waarschijnlijk niet rechtstreeks. NIS2 richt zich op middelgrote en grote organisaties (minstens 50 werknemers of €10 miljoen omzet) in 18 kritieke sectoren. Micro- en kleine ondernemingen vallen er in de meeste gevallen buiten. Uitzondering: als u als kleine speler actief bent in kritieke infrastructuur (energie, gezondheidszorg, ...) kan het alsnog van toepassing zijn."
+  - question: "Geldt NIS2 voor een KMO?"
+    answer: "Meestal niet rechtstreeks. Een KMO met minder dan 50 werknemers én minder dan €10 miljoen omzet valt in de regel buiten de NIS2-scope. Toch is NIS2 ook voor een KMO relevant: levert u aan een NIS2-plichtige klant, dan kan die de beveiligingslat bij u leggen via de leveranciersketen. En de onderliggende maatregelen — MFA, versleutelde back-up, patchbeheer — zijn voor elke KMO sowieso goede praktijk."
   - question: "Wat als mijn klanten wel onder NIS2 vallen?"
     answer: "Dan kunnen zij de NIS2-verplichtingen doorschuiven naar u als leverancier. Leveranciersbeveiliging (supply chain security) is een expliciete NIS2-verplichting — grotere klanten zullen u kunnen vragen te voldoen aan bepaalde minimale beveiligingsnormen."
   - question: "Wat zijn de belangrijkste NIS2-maatregelen?"
@@ -18,7 +20,7 @@ faqs:
 
 NIS2 duikt overal op: in de pers, op seminaries, in e-mails van uw accountant of beroepsfederatie. Maar geldt het nu voor ú? En als het niet geldt — moet u dan niets doen?
 
-Korte versie: de meeste kleine Belgische ondernemingen vallen er niet rechtstreeks onder. Maar negeren is ook niet het juiste antwoord. Hieronder leg ik uit waarom.
+Korte versie: de meeste kleine Belgische ondernemingen en KMO's vallen er niet rechtstreeks onder. Maar negeren is ook niet het juiste antwoord. Hieronder leg ik uit waarom NIS2 ook voor een KMO relevant blijft.
 
 ## Wat is NIS2?
 
@@ -96,6 +98,6 @@ Waarschijnlijk niet rechtstreeks. Maar dat betekent niet dat u er niets mee te m
 2. **Goede praktijk**: de maatregelen die NIS2 vraagt zijn sowieso de norm, niet de uitzondering.
 3. **CCB-verwachting**: ook buiten de wettelijke verplichting verwacht het CCB dat Belgische bedrijven een minimale beveiligingsbaseline respecteren.
 
-Goed IT-beheer is in 2026 geen luxe meer. Het is de basisverwachting van klanten, verzekeraars en overheden — NIS2 of niet.
+[Goed IT-beheer](/diensten/it-beheer-support) is in 2026 geen luxe meer. Het is de basisverwachting van klanten, verzekeraars en overheden — NIS2 of niet.
 
 Wil u weten hoe uw setup er vandaag voorstaat? Vul hieronder kort in hoe uw zaak eruitziet, dan geef ik u eerlijk feedback.

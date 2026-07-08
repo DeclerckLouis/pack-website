@@ -119,6 +119,31 @@ const jsonLd = [
   }
 
   {
+    hub.reading && hub.reading.length > 0 && (
+      <section class="section reading-band">
+        <div class="container">
+          <div class="section-head">
+            <Kicker>Uit de kennisbank</Kicker>
+            <h2>Verder lezen</h2>
+          </div>
+          <div class="grid-cards">
+            {hub.reading.map((r) => (
+              <a href={url(r.href)} class="reading-link">
+                <Card class="feature">
+                  <span class="feature__icon"><Icon name="book-open" size={20} /></span>
+                  <h3>{r.title}</h3>
+                  <p>{r.body}</p>
+                  <span class="reading-link__more">Lees het artikel <Icon name="arrow-right" size={15} /></span>
+                </Card>
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+    )
+  }
+
+  {
     hub.aftercare && (
       <section class="aftercare">
         <div class="container">
@@ -155,6 +180,32 @@ const jsonLd = [
     box-shadow: var(--shadow-md);
   }
   .local-link__more {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: var(--text-sm);
+    font-weight: var(--fw-medium);
+    color: var(--primary);
+  }
+
+  /* Verder lezen — contextual links into the kennisbank */
+  .reading-band {
+    background: var(--paper);
+    border-top: 1px solid var(--border-soft);
+  }
+  .reading-link {
+    display: block;
+  }
+  .reading-link :global(.card) {
+    transition:
+      border-color var(--dur-base) var(--ease-out),
+      box-shadow var(--dur-base) var(--ease-out);
+  }
+  .reading-link:hover :global(.card) {
+    border-color: var(--orange-300);
+    box-shadow: var(--shadow-md);
+  }
+  .reading-link__more {
     display: inline-flex;
     align-items: center;
     gap: 6px;
