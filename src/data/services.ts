@@ -49,13 +49,13 @@ export type ServiceHub = {
   /**
    * Optional post-oplevering line shown low on the page. Frames the €49/maand
    * monitoring as a project-attach ("na de oplevering"), so it reads as an
-   * add-on to this dienst — not a cheaper managed-IT tier that undercuts €99.
+   * add-on to this dienst — not a cheaper managed-IT tier that undercuts beheer.
    */
   aftercare?: string;
   /**
    * Optional pricing ladder. Used on it-beheer-support to make the two levels
-   * explicit — €49 = monitoring of wat ik installeerde, €99 = volledige
-   * ontzorging — so a kantoor-klant niet op het laagste cijfer ankert.
+   * explicit — €49 = monitoring of wat ik installeerde, beheer per module =
+   * volledige ontzorging — so a kantoor-klant niet op het laagste cijfer ankert.
    */
   ladder?: {
     title: string;
@@ -118,10 +118,10 @@ export const services: ServiceHub[] = [
           body: "Ik hou de IT die ik voor u installeerde in de gaten: monitoring, updates en een maandelijkse check. Ideaal als u het meeste zelf regelt en gewoon zeker wilt zijn dat alles blijft draaien.",
         },
         {
-          price: "vanaf €99 / maand",
-          name: "Het KMO-Pakket — volledige ontzorging",
-          body: "Niet alleen bewaking, maar uw hele IT uit handen: Microsoft 365, back-up, beveiliging, Peppol én support in één vaste prijs. Eén partner voor het geheel, niet enkel het stuk dat ik installeerde.",
-          href: "/pakket",
+          price: "vanaf €15 / toestel / maand",
+          name: "Beheer — volledige ontzorging per module",
+          body: "Niet alleen bewaking, maar uw hele IT uit handen: beveiliging, Microsoft 365-bescherming, back-up en netwerk. U kiest per module wat u nodig heeft en betaalt per toestel of per gebruiker, maandelijks opzegbaar.",
+          href: "/prijzen",
         },
       ],
     },
@@ -134,7 +134,7 @@ export const services: ServiceHub[] = [
       {
         href: "/blog/wat-kost-it-beheer-kleine-onderneming",
         title: "Wat kost IT-beheer voor een kleine onderneming?",
-        body: "Een eerlijk prijsoverzicht: het uurtarief, het KMO-Pakket vanaf €99/maand en waar bij andere aanbieders de verborgen kosten zich verstoppen.",
+        body: "Een eerlijk prijsoverzicht: het uurtarief, de urenkaart, beheer per module en waar bij andere aanbieders de verborgen kosten zich verstoppen.",
       },
     ],
     locals: [
