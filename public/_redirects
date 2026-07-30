@@ -16,8 +16,10 @@ https://packetflow.be/*   https://www.packetflow.be/:splat   301!
 # ---- Old Odoo paths → new equivalents (from GSC) ----
 # /diensten/it-beheer — 493 impressions
 /diensten/it-beheer        /diensten/it-beheer-support           301
-# /kmo-pakket — 377 impressions
-/kmo-pakket                /pakket                               301
+# /kmo-pakket — 377 impressions (old Odoo path → new pricing page)
+/kmo-pakket                /prijzen                              301
+# /pakket → /prijzen: the old KMO-Pakket page is retired; keep its link equity.
+/pakket                    /prijzen                              301!
 /diensten/wifi-netwerk     /diensten/zakelijke-wifi-netwerken    301
 /sectoren/vrije-beroepen   /sectoren/kantoren-vrije-beroepen     301
 /contactus                 /contact                              301

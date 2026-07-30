@@ -15,7 +15,7 @@ faqs:
   - question: "Wat zijn de belangrijkste NIS2-maatregelen?"
     answer: "Risicoanalyse en beveiligingsbeleid, incidentrespons, back-up en herstel, toegangsbeheer en MFA, encryptie, patchbeheer en een procedure voor beveiligingsincidenten. Dit zijn ook zonder NIS2 goede basismaatregelen voor elke onderneming."
   - question: "Wat doet Packetflow rond NIS2?"
-    answer: "Servers die ik beheer zijn standaard CIS-gehardend. MFA, versleutelde back-ups, patchbeheer en toegangsbeheer zijn onderdeel van elk KMO-Pakket. Clients voldoen daarmee al aan de kern van wat NIS2 van gelijkaardige maatregelen vraagt, ook al vallen ze er formeel niet onder."
+    answer: "Servers die ik beheer zijn standaard CIS-gehardend. MFA, versleutelde back-ups, patchbeheer en toegangsbeheer zitten standaard in beheer. Clients voldoen daarmee al aan de kern van wat NIS2 van gelijkaardige maatregelen vraagt, ook al vallen ze er formeel niet onder."
 ---
 
 NIS2 duikt overal op: in de pers, op seminaries, in e-mails van uw accountant of beroepsfederatie. Maar geldt het nu voor ú? En als het niet geldt — moet u dan niets doen?
@@ -67,13 +67,13 @@ De maatregelen die NIS2 oplegt zijn niet exotisch. Het zijn degelijke basisprakt
 - **Patchbeheer**: beveiligingsupdates tijdig installeren, niet maanden uitstellen.
 - **Encryptie**: gevoelige gegevens versleuteld opslaan en versturen.
 
-Herkent u dit? Dit zijn exact de maatregelen die ik standaard toepas voor klanten in het [KMO-Pakket](/pakket).
+Herkent u dit? Dit zijn exact de maatregelen die ik standaard toepas voor klanten met [beheer](/prijzen).
 
 ## Wat Packetflow standaard doet
 
 Servers die ik beheer zijn standaard **CIS-gehardend** — geconfigureerd volgens de benchmarks van het Center for Internet Security, een van de meest erkende internationale frameworks voor veilige serverconfiguratie. Dat is geen optionele extra, het is de baseline.
 
-Verder zit in elk KMO-Pakket:
+Verder zit standaard in beheer:
 
 - **MFA voor Microsoft 365**, standaard ingesteld en afgedwongen
 - **Versleutelde back-ups**, automatisch en getest

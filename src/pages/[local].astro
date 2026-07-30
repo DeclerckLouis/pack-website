@@ -12,7 +12,7 @@ import { service, breadcrumbs } from "@/lib/schema";
 import { url } from "@/lib/url";
 
 // Flat, root-level slugs (e.g. /it-support-oudenburg). Static routes like
-// /pakket and /contact take priority, so there is no collision.
+// /prijzen and /contact take priority, so there is no collision.
 export function getStaticPaths() {
   return allLocals().map((local) => ({ params: { local: local.slug }, props: { local } }));
 }

@@ -20,7 +20,7 @@
 ## Belangrijkste pagina's
 
 - [Home](https://www.packetflow.be/): overzicht van Packetflow en het aanbod.
-- [KMO-Pakket](https://www.packetflow.be/pakket): volledige IT-ontzorging (Microsoft 365, backup, Peppol, cybersecurity) aan één vaste maandprijs vanaf €99/maand.
+- [Prijzen](https://www.packetflow.be/prijzen): drie manieren om te werken — beheer per module (vanaf €15/toestel/maand), een urenkaart van 10u voor €550, of losse hulp aan €60/u. Alles excl. btw.
 - [Over mij](https://www.packetflow.be/over-mij): Louis Declerck, werkwijze, principes en de feiten over Packetflow.
 - [Lokale IT-partner vs. groot IT-bedrijf](https://www.packetflow.be/lokale-it-partner-vs-groot-it-bedrijf): eerlijke vergelijking op prijs, bereikbaarheid, contract en kennis van uw zaak.
 - [Tarieven](https://www.packetflow.be/tarieven): uurtarief en verplaatsingskosten per zone.

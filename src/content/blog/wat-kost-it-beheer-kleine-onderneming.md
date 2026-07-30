@@ -1,20 +1,21 @@
 ---
 title: "Wat kost IT-beheer voor een kleine onderneming in België?"
-description: "Wat kost IT-beheer voor een kleine Belgische onderneming? Eerlijk overzicht met €60/uur (excl. btw) en KMO-Pakket vanaf €99/maand met 2 interventies."
+description: "Wat kost IT-beheer voor een kleine Belgische onderneming? Eerlijk overzicht met €60/uur, een urenkaart van 10u voor €550 en beheer per module vanaf €15/toestel."
 pubDate: 2026-06-23
+updatedDate: 2026-07-30
 tags: ["IT-beheer", "Prijzen"]
 image: "/images/blog/wat-kost-it-beheer.png"
 leadForm: true
 leadCampaign: "blog-wat-kost-it-beheer"
 faqs:
   - question: "Wat kost IT-beheer bij Packetflow?"
-    answer: "U werkt aan €60 per uur (excl. btw) voor losse hulp, of via het KMO-Pakket vanaf €99 per maand met twee interventies per maand inbegrepen. Projecten en installaties krijgen een vaste prijs na een gratis scoping-bezoek."
-  - question: "Wat is een interventie?"
-    answer: "Een interventie is één afgehandelde vraag of probleem, of dat nu telefonisch, op afstand of ter plaatse is, ongeacht of het tien minuten of een uur duurt."
+    answer: "U werkt aan €60 per uur (excl. btw) voor losse hulp, met een urenkaart van 10 uur voor €550 (€55/u), of via beheer per module vanaf €15 per toestel per maand. Projecten en installaties krijgen een vaste prijs na een gratis scoping-bezoek."
+  - question: "Wat is beheer per module?"
+    answer: "Bij beheer kiest u per module wat u nodig heeft en betaalt u per toestel of per gebruiker — geen groot pakket dat u half gebruikt. De basis is PacketFlow Secure (€15 per toestel per maand): automatische updates en beveiliging met 24/7 detectie. Daarnaast zijn er modules voor Microsoft 365-bescherming, back-up en netwerk. Beheer is maandelijks opzegbaar."
   - question: "Zijn de Microsoft 365-licenties inbegrepen in de prijs?"
     answer: "Nee. Die reken ik apart aan, aan de normale Microsoft-prijs en als aparte lijn op uw factuur. Zo betaalt u niet meer dan wanneer u rechtstreeks bij Microsoft zou afnemen, en ziet u exact wat de licentie kost."
   - question: "Reken je verplaatsingskosten aan?"
-    answer: "Een eerste kennismaking en het scoping-bezoek zijn altijd gratis. Voor betaald werk ter plaatse geldt een transparant tarief volgens de afstand vanuit Jabbeke. KMO-Pakket-klanten hebben verplaatsing inbegrepen in zone 1 en 2."
+    answer: "Een eerste kennismaking en het scoping-bezoek zijn altijd gratis. Voor betaald werk ter plaatse geldt een transparant tarief volgens de afstand vanuit Jabbeke. Beheerklanten hebben verplaatsing inbegrepen in zone 1 en 2."
   - question: "Hoe worden projecten en installaties geprijsd?"
     answer: "Met een vaste prijs (forfait) na een gratis scoping-bezoek ter plaatse, zodat u vooraf weet wat het kost. Voor klein of moeilijk in te schatten werk geldt €60 per uur (excl. btw)."
 ---
@@ -25,9 +26,9 @@ ontwijken, maar omdat een eerlijk antwoord afhangt van hoe groot uw team is, hoe
 uw systemen er vandaag bijliggen en hoeveel u écht wil uitbesteden.
 
 Wat ik wél kan doen, is volledig open zijn. Ook over mijn eigen tarieven, iets
-waar de meeste IT-bedrijven liever omheen draaien. Ik werk aan een vast
-uurtarief van €60 per uur (excl. btw), of via een KMO-Pakket met een vaste
-maandprijs waarin interventies al inbegrepen zitten. Hieronder leg ik uit wat dat
+waar de meeste IT-bedrijven liever omheen draaien. U kan bij mij op drie
+manieren terecht: per uur, met een urenkaart die u vooraf koopt, of via beheer
+waarbij u per module kiest wat u nodig heeft. Hieronder leg ik uit wat dat
 concreet betekent en waar bij andere aanbieders de verborgen kosten zich
 verstoppen.
 
@@ -43,7 +44,8 @@ scope. Vraag elke partij even concreet: wat zit er in, en wat niet?
 
 ## Hoe u met mij kunt werken
 
-Ik hou het bewust eenvoudig. U kiest wat bij uw situatie past.
+Ik hou het bewust eenvoudig. U kiest wat bij uw situatie past — u hoeft niet in
+een abonnement te stappen als u dat niet wil.
 
 ### 1. Per uur: €60 per uur (excl. btw)
 
@@ -58,39 +60,45 @@ IT-ondersteuning doorgaans tussen €75 en €120 per uur. Dat ik daar merkbaar 
 zit, heeft een eenvoudige reden. Ik werk lokaal, in bijberoep, zonder dure
 overhead of verkoopslaag. Dat voordeel geef ik gewoon door.
 
-Het nadeel van enkel per uur werken is hetzelfde voor elke IT'er: er is geen
-ingebouwde prikkel om problemen vóór te zijn. Daarvoor bestaat het pakket.
+### 2. Urenkaart: 10 uur voor €550 (€55/u)
 
-### 2. Het KMO-Pakket: vaste maandprijs, interventies inbegrepen
+Wilt u af en toe hulp zonder vaste maandprijs, dan koopt u een blok uren vooraf.
+Een urenkaart van tien uur kost €550 (€55/u, excl. btw) en blijft twaalf maanden
+geldig. U gebruikt de uren wanneer het uitkomt en betaalt iets minder dan het
+losse uurtarief. Ideaal om mee te starten; wilt u later toch alles uit handen
+geven, dan schakelt u eenvoudig over naar beheer.
 
-Wil u voorspelbaarheid in plaats van losse facturen, dan is er het
-[KMO-Pakket](/pakket): één vaste maandprijs waarin het beheer van uw IT zit, én
-twee interventies per maand inbegrepen. Komt er een maand niets tussen, dan
-draait alles gewoon door. Loopt er iets mis, dan is de hulp al voorzien zonder
-dat de teller begint te lopen.
+### 3. Beheer: per module, vanaf €15 per toestel per maand
 
-Een interventie is één afgehandelde vraag of probleem, of dat nu telefonisch, op
-afstand of ter plaatse is, ongeacht of het tien minuten of een uur duurt.
+Wil u voorspelbaarheid in plaats van losse facturen, en uw IT liever niet meer
+zien, dan is er [beheer](/prijzen). Anders dan één groot pakket dat u half
+gebruikt, kiest u per module wat u nodig heeft en betaalt u per toestel of per
+gebruiker. Zo groeit de prijs netjes mee met uw kantoor.
 
-In dat pakket zit onder meer:
+De modules op een rij:
 
-- **Microsoft 365**: e-mail, agenda, Teams en licenties, opgezet en onderhouden
-- **Veilige back-up** van uw dossiers, versleuteld en getest
-- **Peppol e-facturatie**, klaar voor de verplichting
-- **Beveiliging & MFA**: bescherming tegen phishing en ransomware
-- **Proactieve monitoring**: ik grijp in vóór er iets stilvalt
-- **Twee interventies per maand** inbegrepen. Extra werk daarboven aan hetzelfde
-  transparante tarief van €60 per uur
+- **PacketFlow Secure** — €15 per toestel/maand. Automatische updates en
+  EDR-beveiliging met 24/7 detectie en respons. De basis op elk beheerd toestel.
+- **PacketFlow Identity** — €9 per gebruiker/maand. Beveiliging van uw Microsoft
+  365-account: detectie van verdachte aanmeldingen, MFA-beheer en mailbeveiliging.
+- **PacketFlow Backup – Microsoft 365** — €6 per gebruiker/maand. Back-up van
+  e-mail, OneDrive, SharePoint en Teams. Getest, niet gehoopt.
+- **PacketFlow Backup – Lokaal** — €20 per toestel/maand. Back-up van wat lokaal
+  op uw toestel staat, 300 GB inbegrepen.
+- **PacketFlow Network** — €40 per locatie/maand. Beheerde firewall,
+  netwerkmonitoring en beheer van wifi en VLAN's.
 
-Voor een klein kantoor start dat vanaf €99 per maand. Het grote voordeel: de
-belangen lopen gelijk. Ik word niet betaald per brand die ik blus, maar om te
-zorgen dat er geen branden zijn.
+Het grote voordeel: de belangen lopen gelijk. Ik word niet betaald per brand die
+ik blus, maar om te zorgen dat er geen branden zijn. Beheer is maandelijks
+opzegbaar, zonder langlopend contract. Heeft u zelf nog werk buiten het beheer
+nodig, dan reken ik dat aan het uurtarief of trek ik het van uw urenkaart.
 
-### 3. Projecten en installaties: een vaste prijs na een gratis scoping-bezoek
+### 4. Projecten en installaties: een vaste prijs na een gratis scoping-bezoek
 
-Naast los uurwerk en het pakket is er een derde manier van werken, en die geldt
-voor de meeste installaties en projecten: een nieuwe e-mailomgeving, een
-data-migratie, het opzetten van een server, een netwerkinstallatie.
+Naast los uurwerk, de urenkaart en beheer is er een vierde manier van werken, en
+die geldt voor de meeste installaties en projecten: een nieuwe e-mailomgeving,
+een data-migratie, het opzetten van een server, een netwerkinstallatie of het
+klaarzetten van Peppol-e-facturatie.
 
 Zulk werk start altijd met een gratis scoping-bezoek ter plaatse. Ik bekijk wat
 er nodig is, en daarna krijgt u een van twee dingen:
@@ -106,10 +114,10 @@ Wat het wordt, spreek ik op voorhand met u af. Geen verrassingen achteraf.
 ## Welke past bij u?
 
 Een vuistregel: heeft u zelden hulp nodig en draagt u het risico liever zelf,
-dan volstaat het uurtarief. Belt u vaker, of wilt u gewoon niet meer wakker
-liggen van uw IT, dan verdient het pakket zichzelf snel terug. Twee inbegrepen
-interventies dekken voor de meeste kleine kantoren de normale maand ruimschoots,
-en u weet vooraf exact wat u betaalt.
+dan volstaat het uurtarief of een urenkaart. Belt u vaker, of wilt u gewoon niet
+meer wakker liggen van uw IT, dan verdient beheer zichzelf snel terug — u betaalt
+een voorspelbaar bedrag om de dure, onvoorspelbare ellende te vermijden, en u
+weet vooraf exact wat u betaalt.
 
 ## Wat zit er níét in de prijs?
 
@@ -131,7 +139,8 @@ van uw situatie, maar dit is waar u op kunt rekenen.
 | Manier van werken | Prijs | Past bij |
 | --- | --- | --- |
 | Per uur | €60 / uur (excl. btw) | Incidentele hulp of een eenmalige opkuis |
-| KMO-Pakket | vanaf €99 / maand, 2 interventies inbegrepen | Wie voorspelbaarheid en preventie wil |
+| Urenkaart | 10 uur voor €550 (€55/u), 12 maanden geldig | Wie af en toe hulp wil zonder maandprijs |
+| Beheer per module | vanaf €15 / toestel / maand | Wie voorspelbaarheid en preventie wil |
 | Project of installatie | Vaste prijs na gratis scoping-bezoek | Migraties, serveropzet, netwerkinstallatie |
 | Microsoft 365-licentie | richtprijs €13-14 (Standard) of €22 (Premium) | Apart en transparant op de factuur |
 
@@ -158,10 +167,10 @@ na, en merk dat de antwoorden bij mij telkens "geen" of "transparant" zijn:
   op voorhand kent. Geen verborgen instapkost bovenop.
 - **Licenties apart of inbegrepen?** Apart en transparant op de factuur, zie
   hierboven.
-- **Wat valt buiten scope?** Boven de twee inbegrepen interventies werk ik aan
-  hetzelfde uurtarief. Geen plots ander "projecttarief".
-- **Opzegtermijn?** Het pakket is maandelijks opzegbaar, zonder contract van
-  drie jaar.
+- **Betaal ik voor modules die ik niet gebruik?** Nee. Bij beheer kiest u per
+  module en betaalt u enkel wat u nodig heeft — per toestel of per gebruiker.
+- **Opzegtermijn?** Beheer is maandelijks opzegbaar, zonder contract van drie
+  jaar.
 
 Een eerlijke partner heeft geen moeite met deze vragen. Wie errond draait,
 vertelt u eigenlijk al wat u wil weten.
@@ -177,27 +186,29 @@ het als ik het níét doe?".
 
 ## Een voorbeeld om het concreet te maken
 
-Stel: een advocatenkantoor met drie medewerkers en een propere setup.
+Stel: een advocatenkantoor met twee medewerkers en drie toestellen, dat volledig
+in Microsoft 365 werkt.
 
-- KMO-Pakket: €99 per maand (beheer, backup, Peppol, beveiliging, monitoring en
-  twee interventies per maand inbegrepen)
-- Microsoft 365 Business Premium: drie gebruikers aan de normale
-  Microsoft-prijs, apart op de factuur
+- Beheer per module: PacketFlow Secure op drie toestellen (3 × €15), plus Identity
+  en Microsoft 365-back-up voor twee gebruikers (2 × €9 en 2 × €6). Samen €75 per
+  maand, maandelijks opzegbaar.
+- Microsoft 365 Business Premium: twee gebruikers aan de normale Microsoft-prijs,
+  apart op de factuur.
 - Eenmalig: een gratis scoping-bezoek, en als er opzet of migratie nodig is, een
-  vaste prijs die u vooraf kent
+  vaste prijs die u vooraf kent.
 
-Reken zo op een voorspelbaar maandbedrag rond €165 (pakket plus licenties).
+Reken zo op een voorspelbaar maandbedrag rond €120 (beheer plus licenties).
 Hardware en grotere projecten staan altijd apart en vooraf geprijsd. Dit is een
 voorbeeld, geen offerte: uw juiste prijs hangt af van uw team en uw huidige
 setup.
 
 ## Concreet voor uw zaak
 
-Samengevat: u werkt met mij aan €60 per uur (excl. btw) voor losse hulp, via het
-[KMO-Pakket](/pakket) vanaf €99 per maand met twee interventies inbegrepen als u
-liever één vaste, voorspelbare prijs heeft, of met een vaste projectprijs voor
-installaties en migraties. Microsoft-licenties staan altijd apart en transparant
-op de factuur.
+Samengevat: u werkt met mij aan €60 per uur (excl. btw) voor losse hulp, met een
+urenkaart van 10 uur voor €550 als u af en toe hulp wil, via
+[beheer per module](/prijzen) vanaf €15 per toestel per maand als u liever alles
+uit handen geeft, of met een vaste projectprijs voor installaties en migraties.
+Microsoft-licenties staan altijd apart en transparant op de factuur.
 
 Wat het precies voor úw zaak wordt, hangt af van uw team en uw huidige setup. Dat
 zeg ik liever na een eerlijk gesprek dan met een cijfer uit de lucht. Vul
