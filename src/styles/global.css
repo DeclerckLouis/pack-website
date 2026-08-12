@@ -184,6 +184,23 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Honour the OS "reduce motion" setting: drop smooth scrolling and collapse
+   every transition/animation (hover moves, the nav flyout, the button spinner)
+   to an instant for users prone to motion sickness. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
 body {
   margin: 0;
   background: var(--surface-page);
