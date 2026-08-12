@@ -79,7 +79,7 @@ const formId = `lead-form-${source}`;
         <p class="lead-form__fine">Geen verkooppraat. Uw gegevens blijven bij mij — zie <a href="/privacy">privacy</a>.</p>
       </form>
 
-      <div class="lead-form__success form-success" hidden>
+      <div class="lead-form__success form-success" role="status" tabindex="-1" hidden>
         <span class="form-success__icon"><Icon name="check" size={28} color="var(--success)" /></span>
         <h3 class="form-success__title">Bedankt — tot binnenkort!</h3>
         <p class="form-success__body">Ik neem binnen één werkdag contact met u op.</p>
@@ -94,6 +94,16 @@ const formId = `lead-form-${source}`;
     const errorEl = form.querySelector(".lead-form__msg");
     const successEl = form.parentElement.querySelector(".lead-form__success");
 
+    // Swap the form out for the success panel and move focus + announce it, so
+    // a keyboard/screen-reader user isn't left on the now-hidden submit button.
+    const showSuccess = () => {
+      form.hidden = true;
+      if (successEl) {
+        successEl.hidden = false;
+        successEl.focus();
+      }
+    };
+
     form.addEventListener("submit", async (event) => {
       event.preventDefault();
       if (!form.reportValidity()) return;
@@ -101,14 +111,19 @@ const formId = `lead-form-${source}`;
       // Honeypot: if filled, silently pretend success (it's a bot).
       const honey = form.querySelector('input[name="website"]');
       if (honey && honey.value) {
-        form.hidden = true;
-        if (successEl) successEl.hidden = false;
+        showSuccess();
         return;
       }
 
       const submitBtn = form.querySelector('button[type="submit"]');
       if (errorEl) errorEl.hidden = true;
-      if (submitBtn) submitBtn.disabled = true;
+      const setBusy = (busy) => {
+        if (!submitBtn) return;
+        submitBtn.disabled = busy;
+        submitBtn.classList.toggle("is-loading", busy);
+        submitBtn.setAttribute("aria-busy", String(busy));
+      };
+      setBusy(true);
 
       const data = new FormData(form);
       data.delete("website"); // drop honeypot
@@ -131,11 +146,10 @@ const formId = `lead-form-${source}`;
         // response is opaque. We optimistically show success; only a real
         // network failure rejects and reveals the error/mailto fallback.
         await fetch(endpoint, { method: "POST", mode: "no-cors", body: data });
-        form.hidden = true;
-        if (successEl) successEl.hidden = false;
+        showSuccess();
       } catch (err) {
         console.error("Lead-formulier versturen mislukt:", err);
-        if (submitBtn) submitBtn.disabled = false;
+        setBusy(false);
         if (errorEl) errorEl.hidden = false;
       }
     });

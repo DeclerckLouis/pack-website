@@ -96,7 +96,7 @@ const odooEndpoint = `${site.odooBaseUrl}/website/form/crm.lead`;
           </Button>
         </form>
 
-        <div id="contact-success" class="form-success" hidden>
+        <div id="contact-success" class="form-success" role="status" tabindex="-1" hidden>
           <span class="form-success__icon"><Icon name="check" size={28} color="var(--success)" /></span>
           <h2 class="form-success__title">Bedankt — tot binnenkort!</h2>
           <p class="form-success__body">Ik neem binnen één werkdag contact met u op.</p>
@@ -112,6 +112,14 @@ const odooEndpoint = `${site.odooBaseUrl}/website/form/crm.lead`;
   const successEl = document.getElementById("contact-success");
 
   if (form) {
+    // Swap the form out for the success panel and move focus + announce it, so
+    // a keyboard/screen-reader user isn't left on the now-hidden submit button.
+    const showSuccess = () => {
+      form.hidden = true;
+      successEl.hidden = false;
+      successEl.focus();
+    };
+
     form.addEventListener("submit", async (event) => {
       event.preventDefault();
       if (!form.reportValidity()) return;
@@ -119,14 +127,19 @@ const odooEndpoint = `${site.odooBaseUrl}/website/form/crm.lead`;
       // Honeypot: if filled, silently pretend success (it's a bot).
       const honey = form.querySelector('input[name="website"]');
       if (honey && honey.value) {
-        form.hidden = true;
-        successEl.hidden = false;
+        showSuccess();
         return;
       }
 
       const submitBtn = form.querySelector('button[type="submit"]');
       errorEl.hidden = true;
-      if (submitBtn) submitBtn.disabled = true;
+      const setBusy = (busy) => {
+        if (!submitBtn) return;
+        submitBtn.disabled = busy;
+        submitBtn.classList.toggle("is-loading", busy);
+        submitBtn.setAttribute("aria-busy", String(busy));
+      };
+      setBusy(true);
 
       const data = new FormData(form);
       data.delete("website"); // drop honeypot
@@ -143,11 +156,10 @@ const odooEndpoint = `${site.odooBaseUrl}/website/form/crm.lead`;
         // (On Odoo.sh/self-hosted you can install packetflow_form_cors and
         // switch to a normal fetch to verify the response — see odoo/ in repo.)
         await fetch(endpoint, { method: "POST", mode: "no-cors", body: data });
-        form.hidden = true;
-        successEl.hidden = false;
+        showSuccess();
       } catch (err) {
         console.error("Contactformulier versturen mislukt:", err);
-        if (submitBtn) submitBtn.disabled = false;
+        setBusy(false);
         errorEl.hidden = false;
       }
     });

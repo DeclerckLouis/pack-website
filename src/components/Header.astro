@@ -58,18 +58,16 @@ const dropdowns: Record<string, DropdownItem[]> = {
               <a
                 href={url(item.href)}
                 aria-current={isActive(item.href) ? "page" : undefined}
-                aria-haspopup="true"
                 class:list={["site-nav__link", "site-nav__link--parent", isActive(item.href) && "is-active"]}
               >
                 {item.label}
                 <Icon name="chevron-down" size={15} class="site-nav__caret" />
               </a>
               <div class="site-nav__dropdown">
-                <ul class="site-nav__menu" role="menu">
+                <ul class="site-nav__menu">
                   {children.map((c) => (
-                    <li role="none">
+                    <li>
                       <a
-                        role="menuitem"
                         href={url(c.href)}
                         aria-current={isActive(c.href) ? "page" : undefined}
                         class:list={["site-nav__menu-link", isActive(c.href) && "is-active"]}
